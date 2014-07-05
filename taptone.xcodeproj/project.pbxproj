@@ -1,0 +1,709 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5FB8BBA55C864006B0F17F1B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AB64C92760C4AD8B223FA16 /* libPods.a */; };
+		967C22921963B52E001B7F7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C22911963B52E001B7F7F /* AppDelegate.swift */; };
+		967C22941963B52E001B7F7F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C22931963B52E001B7F7F /* MainViewController.swift */; };
+		967C22971963B52E001B7F7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967C22951963B52E001B7F7F /* Main.storyboard */; };
+		967C22991963B52E001B7F7F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 967C22981963B52E001B7F7F /* Images.xcassets */; };
+		967C22A51963B52E001B7F7F /* taptoneTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C22A41963B52E001B7F7F /* taptoneTests.swift */; };
+		96CF9AE819677C4A00389595 /* A#2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AB619677C4A00389595 /* A#2.caf */; };
+		96CF9AE919677C4A00389595 /* A#3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AB719677C4A00389595 /* A#3.caf */; };
+		96CF9AEA19677C4A00389595 /* A#4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AB819677C4A00389595 /* A#4.caf */; };
+		96CF9AEB19677C4A00389595 /* A#5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AB919677C4A00389595 /* A#5.caf */; };
+		96CF9AEC19677C4A00389595 /* A2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ABA19677C4A00389595 /* A2.caf */; };
+		96CF9AED19677C4A00389595 /* A3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ABB19677C4A00389595 /* A3.caf */; };
+		96CF9AEE19677C4A00389595 /* A4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ABC19677C4A00389595 /* A4.caf */; };
+		96CF9AEF19677C4A00389595 /* A5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ABD19677C4A00389595 /* A5.caf */; };
+		96CF9AF019677C4A00389595 /* B2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ABE19677C4A00389595 /* B2.caf */; };
+		96CF9AF119677C4A00389595 /* B3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ABF19677C4A00389595 /* B3.caf */; };
+		96CF9AF219677C4A00389595 /* B4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AC019677C4A00389595 /* B4.caf */; };
+		96CF9AF319677C4B00389595 /* B5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AC119677C4A00389595 /* B5.caf */; };
+		96CF9AF419677C4B00389595 /* C#2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AC219677C4A00389595 /* C#2.caf */; };
+		96CF9AF519677C4B00389595 /* C#3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AC319677C4A00389595 /* C#3.caf */; };
+		96CF9AF619677C4B00389595 /* C#4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AC419677C4A00389595 /* C#4.caf */; };
+		96CF9AF719677C4B00389595 /* C#5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AC519677C4A00389595 /* C#5.caf */; };
+		96CF9AF819677C4B00389595 /* C#6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AC619677C4A00389595 /* C#6.caf */; };
+		96CF9AF919677C4B00389595 /* C2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AC719677C4A00389595 /* C2.caf */; };
+		96CF9AFA19677C4B00389595 /* C3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AC819677C4A00389595 /* C3.caf */; };
+		96CF9AFB19677C4B00389595 /* C4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AC919677C4A00389595 /* C4.caf */; };
+		96CF9AFC19677C4B00389595 /* C5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ACA19677C4A00389595 /* C5.caf */; };
+		96CF9AFD19677C4B00389595 /* C6.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ACB19677C4A00389595 /* C6.caf */; };
+		96CF9AFE19677C4B00389595 /* D#2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ACC19677C4A00389595 /* D#2.caf */; };
+		96CF9AFF19677C4B00389595 /* D#3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ACD19677C4A00389595 /* D#3.caf */; };
+		96CF9B0019677C4B00389595 /* D#4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ACE19677C4A00389595 /* D#4.caf */; };
+		96CF9B0119677C4B00389595 /* D#5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ACF19677C4A00389595 /* D#5.caf */; };
+		96CF9B0219677C4B00389595 /* D2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AD019677C4A00389595 /* D2.caf */; };
+		96CF9B0319677C4B00389595 /* D3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AD119677C4A00389595 /* D3.caf */; };
+		96CF9B0419677C4B00389595 /* D4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AD219677C4A00389595 /* D4.caf */; };
+		96CF9B0519677C4B00389595 /* D5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AD319677C4A00389595 /* D5.caf */; };
+		96CF9B0619677C4B00389595 /* E2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AD419677C4A00389595 /* E2.caf */; };
+		96CF9B0719677C4B00389595 /* E3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AD519677C4A00389595 /* E3.caf */; };
+		96CF9B0819677C4B00389595 /* E4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AD619677C4A00389595 /* E4.caf */; };
+		96CF9B0919677C4B00389595 /* E5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AD719677C4A00389595 /* E5.caf */; };
+		96CF9B0A19677C4B00389595 /* F#2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AD819677C4A00389595 /* F#2.caf */; };
+		96CF9B0B19677C4B00389595 /* F#3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AD919677C4A00389595 /* F#3.caf */; };
+		96CF9B0C19677C4B00389595 /* F#4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ADA19677C4A00389595 /* F#4.caf */; };
+		96CF9B0D19677C4B00389595 /* F#5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ADB19677C4A00389595 /* F#5.caf */; };
+		96CF9B0E19677C4B00389595 /* F2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ADC19677C4A00389595 /* F2.caf */; };
+		96CF9B0F19677C4B00389595 /* F3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ADD19677C4A00389595 /* F3.caf */; };
+		96CF9B1019677C4B00389595 /* F4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ADE19677C4A00389595 /* F4.caf */; };
+		96CF9B1119677C4B00389595 /* F5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9ADF19677C4A00389595 /* F5.caf */; };
+		96CF9B1219677C4B00389595 /* G#2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AE019677C4A00389595 /* G#2.caf */; };
+		96CF9B1319677C4B00389595 /* G#3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AE119677C4A00389595 /* G#3.caf */; };
+		96CF9B1419677C4B00389595 /* G#4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AE219677C4A00389595 /* G#4.caf */; };
+		96CF9B1519677C4B00389595 /* G#5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AE319677C4A00389595 /* G#5.caf */; };
+		96CF9B1619677C4B00389595 /* G2.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AE419677C4A00389595 /* G2.caf */; };
+		96CF9B1719677C4B00389595 /* G3.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AE519677C4A00389595 /* G3.caf */; };
+		96CF9B1819677C4B00389595 /* G4.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AE619677C4A00389595 /* G4.caf */; };
+		96CF9B1919677C4B00389595 /* G5.caf in Resources */ = {isa = PBXBuildFile; fileRef = 96CF9AE719677C4A00389595 /* G5.caf */; };
+		96CF9B1B19679EC200389595 /* Pusher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9B1A19679EC200389595 /* Pusher.swift */; };
+		96CF9B1D1967A0FE00389595 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9B1C1967A0FE00389595 /* KeyboardViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		967C229F1963B52E001B7F7F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 967C22841963B52E001B7F7F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 967C228B1963B52E001B7F7F;
+			remoteInfo = taptone;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		2AB64C92760C4AD8B223FA16 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E6BCB901F3F4E0CBE95272D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		967C228C1963B52E001B7F7F /* taptone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taptone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		967C22901963B52E001B7F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		967C22911963B52E001B7F7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		967C22931963B52E001B7F7F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		967C22961963B52E001B7F7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		967C22981963B52E001B7F7F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		967C229E1963B52E001B7F7F /* taptoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = taptoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		967C22A31963B52E001B7F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		967C22A41963B52E001B7F7F /* taptoneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taptoneTests.swift; sourceTree = "<group>"; };
+		96CF9AB619677C4A00389595 /* A#2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "A#2.caf"; sourceTree = "<group>"; };
+		96CF9AB719677C4A00389595 /* A#3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "A#3.caf"; sourceTree = "<group>"; };
+		96CF9AB819677C4A00389595 /* A#4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "A#4.caf"; sourceTree = "<group>"; };
+		96CF9AB919677C4A00389595 /* A#5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "A#5.caf"; sourceTree = "<group>"; };
+		96CF9ABA19677C4A00389595 /* A2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = A2.caf; sourceTree = "<group>"; };
+		96CF9ABB19677C4A00389595 /* A3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = A3.caf; sourceTree = "<group>"; };
+		96CF9ABC19677C4A00389595 /* A4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = A4.caf; sourceTree = "<group>"; };
+		96CF9ABD19677C4A00389595 /* A5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = A5.caf; sourceTree = "<group>"; };
+		96CF9ABE19677C4A00389595 /* B2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = B2.caf; sourceTree = "<group>"; };
+		96CF9ABF19677C4A00389595 /* B3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = B3.caf; sourceTree = "<group>"; };
+		96CF9AC019677C4A00389595 /* B4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = B4.caf; sourceTree = "<group>"; };
+		96CF9AC119677C4A00389595 /* B5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = B5.caf; sourceTree = "<group>"; };
+		96CF9AC219677C4A00389595 /* C#2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "C#2.caf"; sourceTree = "<group>"; };
+		96CF9AC319677C4A00389595 /* C#3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "C#3.caf"; sourceTree = "<group>"; };
+		96CF9AC419677C4A00389595 /* C#4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "C#4.caf"; sourceTree = "<group>"; };
+		96CF9AC519677C4A00389595 /* C#5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "C#5.caf"; sourceTree = "<group>"; };
+		96CF9AC619677C4A00389595 /* C#6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "C#6.caf"; sourceTree = "<group>"; };
+		96CF9AC719677C4A00389595 /* C2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = C2.caf; sourceTree = "<group>"; };
+		96CF9AC819677C4A00389595 /* C3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = C3.caf; sourceTree = "<group>"; };
+		96CF9AC919677C4A00389595 /* C4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = C4.caf; sourceTree = "<group>"; };
+		96CF9ACA19677C4A00389595 /* C5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = C5.caf; sourceTree = "<group>"; };
+		96CF9ACB19677C4A00389595 /* C6.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = C6.caf; sourceTree = "<group>"; };
+		96CF9ACC19677C4A00389595 /* D#2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "D#2.caf"; sourceTree = "<group>"; };
+		96CF9ACD19677C4A00389595 /* D#3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "D#3.caf"; sourceTree = "<group>"; };
+		96CF9ACE19677C4A00389595 /* D#4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "D#4.caf"; sourceTree = "<group>"; };
+		96CF9ACF19677C4A00389595 /* D#5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "D#5.caf"; sourceTree = "<group>"; };
+		96CF9AD019677C4A00389595 /* D2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = D2.caf; sourceTree = "<group>"; };
+		96CF9AD119677C4A00389595 /* D3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = D3.caf; sourceTree = "<group>"; };
+		96CF9AD219677C4A00389595 /* D4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = D4.caf; sourceTree = "<group>"; };
+		96CF9AD319677C4A00389595 /* D5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = D5.caf; sourceTree = "<group>"; };
+		96CF9AD419677C4A00389595 /* E2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = E2.caf; sourceTree = "<group>"; };
+		96CF9AD519677C4A00389595 /* E3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = E3.caf; sourceTree = "<group>"; };
+		96CF9AD619677C4A00389595 /* E4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = E4.caf; sourceTree = "<group>"; };
+		96CF9AD719677C4A00389595 /* E5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = E5.caf; sourceTree = "<group>"; };
+		96CF9AD819677C4A00389595 /* F#2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F#2.caf"; sourceTree = "<group>"; };
+		96CF9AD919677C4A00389595 /* F#3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F#3.caf"; sourceTree = "<group>"; };
+		96CF9ADA19677C4A00389595 /* F#4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F#4.caf"; sourceTree = "<group>"; };
+		96CF9ADB19677C4A00389595 /* F#5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "F#5.caf"; sourceTree = "<group>"; };
+		96CF9ADC19677C4A00389595 /* F2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = F2.caf; sourceTree = "<group>"; };
+		96CF9ADD19677C4A00389595 /* F3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = F3.caf; sourceTree = "<group>"; };
+		96CF9ADE19677C4A00389595 /* F4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = F4.caf; sourceTree = "<group>"; };
+		96CF9ADF19677C4A00389595 /* F5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = F5.caf; sourceTree = "<group>"; };
+		96CF9AE019677C4A00389595 /* G#2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "G#2.caf"; sourceTree = "<group>"; };
+		96CF9AE119677C4A00389595 /* G#3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "G#3.caf"; sourceTree = "<group>"; };
+		96CF9AE219677C4A00389595 /* G#4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "G#4.caf"; sourceTree = "<group>"; };
+		96CF9AE319677C4A00389595 /* G#5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "G#5.caf"; sourceTree = "<group>"; };
+		96CF9AE419677C4A00389595 /* G2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = G2.caf; sourceTree = "<group>"; };
+		96CF9AE519677C4A00389595 /* G3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = G3.caf; sourceTree = "<group>"; };
+		96CF9AE619677C4A00389595 /* G4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = G4.caf; sourceTree = "<group>"; };
+		96CF9AE719677C4A00389595 /* G5.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = G5.caf; sourceTree = "<group>"; };
+		96CF9B1A19679EC200389595 /* Pusher.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Pusher.swift; sourceTree = "<group>"; };
+		96CF9B1C1967A0FE00389595 /* KeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		96D23B6E1963B88800343C74 /* taptone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "taptone-Bridging-Header.h"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		967C22891963B52E001B7F7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FB8BBA55C864006B0F17F1B /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		967C229B1963B52E001B7F7F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		02F7BA13174F49B1A4208BDC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				2AB64C92760C4AD8B223FA16 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		967C22831963B52E001B7F7F = {
+			isa = PBXGroup;
+			children = (
+				96CF9A7419674F9700389595 /* samples */,
+				967C228E1963B52E001B7F7F /* taptone */,
+				967C22A11963B52E001B7F7F /* taptoneTests */,
+				967C228D1963B52E001B7F7F /* Products */,
+				6E6BCB901F3F4E0CBE95272D /* Pods.xcconfig */,
+				02F7BA13174F49B1A4208BDC /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		967C228D1963B52E001B7F7F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				967C228C1963B52E001B7F7F /* taptone.app */,
+				967C229E1963B52E001B7F7F /* taptoneTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		967C228E1963B52E001B7F7F /* taptone */ = {
+			isa = PBXGroup;
+			children = (
+				96D23B6E1963B88800343C74 /* taptone-Bridging-Header.h */,
+				967C22911963B52E001B7F7F /* AppDelegate.swift */,
+				967C22931963B52E001B7F7F /* MainViewController.swift */,
+				96CF9B1C1967A0FE00389595 /* KeyboardViewController.swift */,
+				96CF9B1A19679EC200389595 /* Pusher.swift */,
+				967C22951963B52E001B7F7F /* Main.storyboard */,
+				967C22981963B52E001B7F7F /* Images.xcassets */,
+				967C228F1963B52E001B7F7F /* Supporting Files */,
+			);
+			path = taptone;
+			sourceTree = "<group>";
+		};
+		967C228F1963B52E001B7F7F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				967C22901963B52E001B7F7F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		967C22A11963B52E001B7F7F /* taptoneTests */ = {
+			isa = PBXGroup;
+			children = (
+				967C22A41963B52E001B7F7F /* taptoneTests.swift */,
+				967C22A21963B52E001B7F7F /* Supporting Files */,
+			);
+			path = taptoneTests;
+			sourceTree = "<group>";
+		};
+		967C22A21963B52E001B7F7F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				967C22A31963B52E001B7F7F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		96CF9A7419674F9700389595 /* samples */ = {
+			isa = PBXGroup;
+			children = (
+				96CF9A831967766E00389595 /* caf */,
+			);
+			path = samples;
+			sourceTree = "<group>";
+		};
+		96CF9A831967766E00389595 /* caf */ = {
+			isa = PBXGroup;
+			children = (
+				96CF9AB619677C4A00389595 /* A#2.caf */,
+				96CF9AB719677C4A00389595 /* A#3.caf */,
+				96CF9AB819677C4A00389595 /* A#4.caf */,
+				96CF9AB919677C4A00389595 /* A#5.caf */,
+				96CF9ABA19677C4A00389595 /* A2.caf */,
+				96CF9ABB19677C4A00389595 /* A3.caf */,
+				96CF9ABC19677C4A00389595 /* A4.caf */,
+				96CF9ABD19677C4A00389595 /* A5.caf */,
+				96CF9ABE19677C4A00389595 /* B2.caf */,
+				96CF9ABF19677C4A00389595 /* B3.caf */,
+				96CF9AC019677C4A00389595 /* B4.caf */,
+				96CF9AC119677C4A00389595 /* B5.caf */,
+				96CF9AC219677C4A00389595 /* C#2.caf */,
+				96CF9AC319677C4A00389595 /* C#3.caf */,
+				96CF9AC419677C4A00389595 /* C#4.caf */,
+				96CF9AC519677C4A00389595 /* C#5.caf */,
+				96CF9AC619677C4A00389595 /* C#6.caf */,
+				96CF9AC719677C4A00389595 /* C2.caf */,
+				96CF9AC819677C4A00389595 /* C3.caf */,
+				96CF9AC919677C4A00389595 /* C4.caf */,
+				96CF9ACA19677C4A00389595 /* C5.caf */,
+				96CF9ACB19677C4A00389595 /* C6.caf */,
+				96CF9ACC19677C4A00389595 /* D#2.caf */,
+				96CF9ACD19677C4A00389595 /* D#3.caf */,
+				96CF9ACE19677C4A00389595 /* D#4.caf */,
+				96CF9ACF19677C4A00389595 /* D#5.caf */,
+				96CF9AD019677C4A00389595 /* D2.caf */,
+				96CF9AD119677C4A00389595 /* D3.caf */,
+				96CF9AD219677C4A00389595 /* D4.caf */,
+				96CF9AD319677C4A00389595 /* D5.caf */,
+				96CF9AD419677C4A00389595 /* E2.caf */,
+				96CF9AD519677C4A00389595 /* E3.caf */,
+				96CF9AD619677C4A00389595 /* E4.caf */,
+				96CF9AD719677C4A00389595 /* E5.caf */,
+				96CF9AD819677C4A00389595 /* F#2.caf */,
+				96CF9AD919677C4A00389595 /* F#3.caf */,
+				96CF9ADA19677C4A00389595 /* F#4.caf */,
+				96CF9ADB19677C4A00389595 /* F#5.caf */,
+				96CF9ADC19677C4A00389595 /* F2.caf */,
+				96CF9ADD19677C4A00389595 /* F3.caf */,
+				96CF9ADE19677C4A00389595 /* F4.caf */,
+				96CF9ADF19677C4A00389595 /* F5.caf */,
+				96CF9AE019677C4A00389595 /* G#2.caf */,
+				96CF9AE119677C4A00389595 /* G#3.caf */,
+				96CF9AE219677C4A00389595 /* G#4.caf */,
+				96CF9AE319677C4A00389595 /* G#5.caf */,
+				96CF9AE419677C4A00389595 /* G2.caf */,
+				96CF9AE519677C4A00389595 /* G3.caf */,
+				96CF9AE619677C4A00389595 /* G4.caf */,
+				96CF9AE719677C4A00389595 /* G5.caf */,
+			);
+			path = caf;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		967C228B1963B52E001B7F7F /* taptone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 967C22A81963B52E001B7F7F /* Build configuration list for PBXNativeTarget "taptone" */;
+			buildPhases = (
+				9D061BEA8D2B435DBEF8FCE4 /* Check Pods Manifest.lock */,
+				967C22881963B52E001B7F7F /* Sources */,
+				967C22891963B52E001B7F7F /* Frameworks */,
+				967C228A1963B52E001B7F7F /* Resources */,
+				DB7785F9396E4543B0B7C618 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = taptone;
+			productName = taptone;
+			productReference = 967C228C1963B52E001B7F7F /* taptone.app */;
+			productType = "com.apple.product-type.application";
+		};
+		967C229D1963B52E001B7F7F /* taptoneTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 967C22AB1963B52E001B7F7F /* Build configuration list for PBXNativeTarget "taptoneTests" */;
+			buildPhases = (
+				967C229A1963B52E001B7F7F /* Sources */,
+				967C229B1963B52E001B7F7F /* Frameworks */,
+				967C229C1963B52E001B7F7F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				967C22A01963B52E001B7F7F /* PBXTargetDependency */,
+			);
+			name = taptoneTests;
+			productName = taptoneTests;
+			productReference = 967C229E1963B52E001B7F7F /* taptoneTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		967C22841963B52E001B7F7F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0600;
+				ORGANIZATIONNAME = bguo;
+				TargetAttributes = {
+					967C228B1963B52E001B7F7F = {
+						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = T2TGK9929F;
+					};
+					967C229D1963B52E001B7F7F = {
+						CreatedOnToolsVersion = 6.0;
+						TestTargetID = 967C228B1963B52E001B7F7F;
+					};
+				};
+			};
+			buildConfigurationList = 967C22871963B52E001B7F7F /* Build configuration list for PBXProject "taptone" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 967C22831963B52E001B7F7F;
+			productRefGroup = 967C228D1963B52E001B7F7F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				967C228B1963B52E001B7F7F /* taptone */,
+				967C229D1963B52E001B7F7F /* taptoneTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		967C228A1963B52E001B7F7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				96CF9B0919677C4B00389595 /* E5.caf in Resources */,
+				96CF9B0219677C4B00389595 /* D2.caf in Resources */,
+				96CF9AF219677C4A00389595 /* B4.caf in Resources */,
+				96CF9AEF19677C4A00389595 /* A5.caf in Resources */,
+				96CF9AFC19677C4B00389595 /* C5.caf in Resources */,
+				96CF9B0B19677C4B00389595 /* F#3.caf in Resources */,
+				96CF9AEB19677C4A00389595 /* A#5.caf in Resources */,
+				96CF9AFB19677C4B00389595 /* C4.caf in Resources */,
+				96CF9AE819677C4A00389595 /* A#2.caf in Resources */,
+				96CF9AF619677C4B00389595 /* C#4.caf in Resources */,
+				96CF9AFF19677C4B00389595 /* D#3.caf in Resources */,
+				96CF9B0419677C4B00389595 /* D4.caf in Resources */,
+				96CF9AED19677C4A00389595 /* A3.caf in Resources */,
+				96CF9AF719677C4B00389595 /* C#5.caf in Resources */,
+				96CF9AEE19677C4A00389595 /* A4.caf in Resources */,
+				96CF9B0F19677C4B00389595 /* F3.caf in Resources */,
+				96CF9B0C19677C4B00389595 /* F#4.caf in Resources */,
+				96CF9AF819677C4B00389595 /* C#6.caf in Resources */,
+				96CF9B1019677C4B00389595 /* F4.caf in Resources */,
+				96CF9AEC19677C4A00389595 /* A2.caf in Resources */,
+				96CF9B1719677C4B00389595 /* G3.caf in Resources */,
+				967C22971963B52E001B7F7F /* Main.storyboard in Resources */,
+				96CF9B0A19677C4B00389595 /* F#2.caf in Resources */,
+				96CF9AF519677C4B00389595 /* C#3.caf in Resources */,
+				96CF9B0119677C4B00389595 /* D#5.caf in Resources */,
+				96CF9B1419677C4B00389595 /* G#4.caf in Resources */,
+				96CF9B1919677C4B00389595 /* G5.caf in Resources */,
+				96CF9B0619677C4B00389595 /* E2.caf in Resources */,
+				96CF9AE919677C4A00389595 /* A#3.caf in Resources */,
+				96CF9B0819677C4B00389595 /* E4.caf in Resources */,
+				96CF9AFD19677C4B00389595 /* C6.caf in Resources */,
+				96CF9AEA19677C4A00389595 /* A#4.caf in Resources */,
+				96CF9B1519677C4B00389595 /* G#5.caf in Resources */,
+				967C22991963B52E001B7F7F /* Images.xcassets in Resources */,
+				96CF9AFE19677C4B00389595 /* D#2.caf in Resources */,
+				96CF9B0519677C4B00389595 /* D5.caf in Resources */,
+				96CF9B1319677C4B00389595 /* G#3.caf in Resources */,
+				96CF9AF919677C4B00389595 /* C2.caf in Resources */,
+				96CF9AF019677C4A00389595 /* B2.caf in Resources */,
+				96CF9AF419677C4B00389595 /* C#2.caf in Resources */,
+				96CF9B1619677C4B00389595 /* G2.caf in Resources */,
+				96CF9B0E19677C4B00389595 /* F2.caf in Resources */,
+				96CF9B1219677C4B00389595 /* G#2.caf in Resources */,
+				96CF9B0319677C4B00389595 /* D3.caf in Resources */,
+				96CF9AFA19677C4B00389595 /* C3.caf in Resources */,
+				96CF9B0719677C4B00389595 /* E3.caf in Resources */,
+				96CF9B1819677C4B00389595 /* G4.caf in Resources */,
+				96CF9B0019677C4B00389595 /* D#4.caf in Resources */,
+				96CF9B0D19677C4B00389595 /* F#5.caf in Resources */,
+				96CF9B1119677C4B00389595 /* F5.caf in Resources */,
+				96CF9AF119677C4A00389595 /* B3.caf in Resources */,
+				96CF9AF319677C4B00389595 /* B5.caf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		967C229C1963B52E001B7F7F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		9D061BEA8D2B435DBEF8FCE4 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		DB7785F9396E4543B0B7C618 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		967C22881963B52E001B7F7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				967C22941963B52E001B7F7F /* MainViewController.swift in Sources */,
+				967C22921963B52E001B7F7F /* AppDelegate.swift in Sources */,
+				96CF9B1B19679EC200389595 /* Pusher.swift in Sources */,
+				96CF9B1D1967A0FE00389595 /* KeyboardViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		967C229A1963B52E001B7F7F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				967C22A51963B52E001B7F7F /* taptoneTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		967C22A01963B52E001B7F7F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 967C228B1963B52E001B7F7F /* taptone */;
+			targetProxy = 967C229F1963B52E001B7F7F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		967C22951963B52E001B7F7F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				967C22961963B52E001B7F7F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		967C22A61963B52E001B7F7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PROVISIONING_PROFILE = "9B573097-2EEF-4111-90AB-367A0B53C8A4";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		967C22A71963B52E001B7F7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PROVISIONING_PROFILE = "9B573097-2EEF-4111-90AB-367A0B53C8A4";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		967C22A91963B52E001B7F7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6BCB901F3F4E0CBE95272D /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = taptone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "taptone/taptone-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		967C22AA1963B52E001B7F7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6E6BCB901F3F4E0CBE95272D /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = taptone/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "taptone/taptone-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		967C22AC1963B52E001B7F7F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/taptone.app/taptone";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = taptoneTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Debug;
+		};
+		967C22AD1963B52E001B7F7F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/taptone.app/taptone";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = taptoneTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		967C22871963B52E001B7F7F /* Build configuration list for PBXProject "taptone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				967C22A61963B52E001B7F7F /* Debug */,
+				967C22A71963B52E001B7F7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		967C22A81963B52E001B7F7F /* Build configuration list for PBXNativeTarget "taptone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				967C22A91963B52E001B7F7F /* Debug */,
+				967C22AA1963B52E001B7F7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		967C22AB1963B52E001B7F7F /* Build configuration list for PBXNativeTarget "taptoneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				967C22AC1963B52E001B7F7F /* Debug */,
+				967C22AD1963B52E001B7F7F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 967C22841963B52E001B7F7F /* Project object */;
+}

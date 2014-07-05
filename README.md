@@ -1,0 +1,1 @@
+G3 makes an iPhone 5S vibrate gently
