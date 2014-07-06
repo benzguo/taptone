@@ -16,7 +16,7 @@ class KeyboardView: UIView {
             var noteHeight: CGFloat
             if n.keyColor == .Black {
                 noteHeight = blackKeyHeight
-                y -= blackKeyHeight
+                y -= blackKeyHeight*1/2
                 keyWidth = blackKeyWidth
             }
             else {
@@ -25,7 +25,7 @@ class KeyboardView: UIView {
                     y -= noteHeight
                 }
                 else {
-                    y -= blackKeyHeight/2
+                    y -= blackKeyHeight
                 }
                 keyWidth = width
             }
