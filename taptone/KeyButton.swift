@@ -1,8 +1,9 @@
 class KeyButton: UIButton {
 
-    init(coder aDecoder: NSCoder!) {
-        super.init(coder: aDecoder)
-        self.backgroundColor = UIColor.greenColor()
+    init(frame: CGRect, color: KeyColor) {
+
+        super.init(frame: frame)
+        backgroundColor = (color == KeyColor.White) ? UIColor.whiteColor() : UIColor.blackColor()
     }
 
 }

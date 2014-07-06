@@ -63,21 +63,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5e-bQ-Qd9">
-                                <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5e-bQ-Qd9">
+                                <rect key="frame" x="80" y="0.0" width="320" height="480"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="A5e-bQ-Qd9" firstAttribute="leading" secondItem="V98-Ht-ESn" secondAttribute="leading" id="6Qw-WG-klO"/>
-                            <constraint firstAttribute="trailing" secondItem="A5e-bQ-Qd9" secondAttribute="trailing" id="LQ3-JF-U65"/>
+                            <constraint firstAttribute="centerX" secondItem="A5e-bQ-Qd9" secondAttribute="centerX" id="LkV-bf-B3t"/>
                             <constraint firstItem="A5e-bQ-Qd9" firstAttribute="top" secondItem="V98-Ht-ESn" secondAttribute="top" id="anq-hQ-bGm"/>
                             <constraint firstItem="3oh-7b-3cb" firstAttribute="top" secondItem="A5e-bQ-Qd9" secondAttribute="bottom" id="fae-Nf-jMm"/>
                         </constraints>
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
-                        <outlet property="scrollView" destination="A5e-bQ-Qd9" id="kaR-KS-pqR"/>
+                        <outlet property="scrollView" destination="A5e-bQ-Qd9" id="jaf-uB-7VA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zYa-37-RNB" userLabel="First Responder" sceneMemberID="firstResponder"/>

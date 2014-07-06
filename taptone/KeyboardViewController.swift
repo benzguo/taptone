@@ -19,8 +19,8 @@ class KeyboardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        var keyboardView: UIView =
-            NSBundle.mainBundle().loadNibNamed("KeyboardView", owner: self, options: nil)[0] as UIView
+        var keyboardView = KeyboardView(width: scrollView.frame.size.width, notes: notes)
+        scrollView.backgroundColor = UIColor.whiteColor()
         scrollView.addSubview(keyboardView)
         scrollView.contentSize = keyboardView.frame.size
     }

@@ -10,6 +10,46 @@ enum NoteName: Character {
     case B = "B"
 }
 
+enum KeyColor {
+    case White, Black
+    static func colorForNoteName(name: NoteName, accidental: Accidental?) -> KeyColor {
+        var color: KeyColor = .White
+        if (accidental) {
+            switch (name) {
+            case .C:
+                if accidental! == .Sharp || accidental! == .DoubleFlat {
+                    color = .Black
+                }
+            case .D:
+                if accidental! == .Sharp || accidental! == .Flat {
+                    color = .Black
+                }
+            case .E:
+                if accidental! == .DoubleSharp || accidental! == .Flat {
+                    color = .Black
+                }               
+            case .F:
+                if accidental! == .Sharp || accidental! == .DoubleFlat {
+                    color = .Black
+                }
+            case .G:
+                if accidental! == .Sharp || accidental! == .Flat {
+                    color = .Black
+                }               
+            case .A:
+                if accidental! == .Sharp || accidental! == .Flat {
+                    color = .Black
+                }
+            case .B:
+                if accidental! == .DoubleSharp || accidental! == .Flat {
+                    color = .Black
+                }   
+            }
+        }
+        return color
+    }
+}
+
 enum Accidental: Character {
     case DoubleSharp = "𝄪"
     case Sharp = "♯"
@@ -36,10 +76,12 @@ enum Accidental: Character {
 class ProtoNote {
     var name: NoteName
     var accidental: Accidental?
+    var keyColor: KeyColor
 
     init(name n: NoteName, accidental a: Accidental?) {
         name = n
         accidental = a
+        keyColor = KeyColor.colorForNoteName(name, accidental: accidental)
     }
 }
 
