@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Main View Controller - Friends-->
         <scene sceneID="iFl-Bt-vwZ">
             <objects>
                 <tableViewController id="AzT-xy-8b6" customClass="MainViewController" customModule="taptone" customModuleProvider="target" sceneMemberID="viewController">
@@ -26,7 +26,7 @@
                             <outlet property="delegate" destination="AzT-xy-8b6" id="egK-FU-so1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="SNt-1A-HXw"/>
+                    <navigationItem key="navigationItem" title="Friends" id="SNt-1A-HXw"/>
                     <connections>
                         <segue destination="bk2-Tn-0YW" kind="show" identifier="showKeyboard" id="NkB-bs-b63"/>
                     </connections>
@@ -65,6 +65,7 @@
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A5e-bQ-Qd9">
                                 <rect key="frame" x="80" y="0.0" width="320" height="480"/>
+                                <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

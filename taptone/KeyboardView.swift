@@ -1,13 +1,14 @@
 class KeyboardView: UIView {
 
+    var whiteKeys: KeyButton[] = []
+    var blackKeys: KeyButton[] = []
+
     init(width: CGFloat, notes: Note[]) {
         var whiteNotes = notes.filter { $0.keyColor == KeyColor.White }
         var whiteKeyHeight = width / 5;
         var blackKeyHeight = whiteKeyHeight * 2/3
         var blackKeyWidth = width / 2;
         var viewHeight = whiteKeyHeight * CGFloat(whiteNotes.count) + 1
-        var whiteKeys: KeyButton[] = []
-        var blackKeys: KeyButton[] = []
 
         var y = viewHeight
         var prevKeyColor = KeyColor.White
@@ -43,7 +44,7 @@ class KeyboardView: UIView {
 
         var frame = CGRectMake(0, 0, width, viewHeight)
         super.init(frame: frame)
-        backgroundColor = UIColor.lightGrayColor()
+        backgroundColor = UIColor.tt_grayColor()
         for k in whiteKeys {
             addSubview(k)
         }

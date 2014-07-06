@@ -10,6 +10,7 @@
 		5FB8BBA55C864006B0F17F1B /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AB64C92760C4AD8B223FA16 /* libPods.a */; };
 		9617A3E81967C5480032ED54 /* KeyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617A3E71967C5480032ED54 /* KeyButton.swift */; };
 		96626FC21969E7A9002D5296 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96626FC11969E7A9002D5296 /* KeyboardView.swift */; };
+		96626FC5196A067C002D5296 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96626FC4196A067C002D5296 /* UIColorExtension.swift */; };
 		967C22921963B52E001B7F7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C22911963B52E001B7F7F /* AppDelegate.swift */; };
 		967C22941963B52E001B7F7F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C22931963B52E001B7F7F /* MainViewController.swift */; };
 		967C22971963B52E001B7F7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967C22951963B52E001B7F7F /* Main.storyboard */; };
@@ -85,6 +86,7 @@
 		6E6BCB901F3F4E0CBE95272D /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		9617A3E71967C5480032ED54 /* KeyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyButton.swift; sourceTree = "<group>"; };
 		96626FC11969E7A9002D5296 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		96626FC4196A067C002D5296 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		967C228C1963B52E001B7F7F /* taptone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taptone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967C22901963B52E001B7F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		967C22911963B52E001B7F7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -177,6 +179,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		96626FC3196A024A002D5296 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				96CF9B1C1967A0FE00389595 /* KeyboardViewController.swift */,
+				96626FC11969E7A9002D5296 /* KeyboardView.swift */,
+				9617A3E71967C5480032ED54 /* KeyButton.swift */,
+			);
+			name = Keyboard;
+			sourceTree = "<group>";
+		};
 		967C22831963B52E001B7F7F = {
 			isa = PBXGroup;
 			children = (
@@ -202,12 +214,11 @@
 			isa = PBXGroup;
 			children = (
 				96D23B6E1963B88800343C74 /* taptone-Bridging-Header.h */,
+				96626FC3196A024A002D5296 /* Keyboard */,
 				967C22911963B52E001B7F7F /* AppDelegate.swift */,
 				967C22931963B52E001B7F7F /* MainViewController.swift */,
-				96CF9B1C1967A0FE00389595 /* KeyboardViewController.swift */,
-				96626FC11969E7A9002D5296 /* KeyboardView.swift */,
-				9617A3E71967C5480032ED54 /* KeyButton.swift */,
 				96CF9B1A19679EC200389595 /* Pusher.swift */,
+				96626FC4196A067C002D5296 /* UIColorExtension.swift */,
 				96CF9B1E1967A64700389595 /* Music.swift */,
 				967C22951963B52E001B7F7F /* Main.storyboard */,
 				967C22981963B52E001B7F7F /* Images.xcassets */,
@@ -494,6 +505,7 @@
 				967C22941963B52E001B7F7F /* MainViewController.swift in Sources */,
 				967C22921963B52E001B7F7F /* AppDelegate.swift in Sources */,
 				96626FC21969E7A9002D5296 /* KeyboardView.swift in Sources */,
+				96626FC5196A067C002D5296 /* UIColorExtension.swift in Sources */,
 				96CF9B1F1967A64700389595 /* Music.swift in Sources */,
 				9617A3E81967C5480032ED54 /* KeyButton.swift in Sources */,
 				96CF9B1B19679EC200389595 /* Pusher.swift in Sources */,

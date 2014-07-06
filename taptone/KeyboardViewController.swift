@@ -19,6 +19,7 @@ class KeyboardViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         var keyboardView = KeyboardView(width: scrollView.frame.size.width, notes: notes)
         scrollView.backgroundColor = UIColor.whiteColor()
         scrollView.addSubview(keyboardView)
