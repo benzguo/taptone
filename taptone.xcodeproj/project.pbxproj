@@ -69,6 +69,9 @@
 		96CF9B1B19679EC200389595 /* Pusher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9B1A19679EC200389595 /* Pusher.swift */; };
 		96CF9B1D1967A0FE00389595 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9B1C1967A0FE00389595 /* KeyboardViewController.swift */; };
 		96CF9B1F1967A64700389595 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9B1E1967A64700389595 /* Music.swift */; };
+		96F57756196CF230001B985C /* LogInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F57755196CF230001B985C /* LogInViewController.swift */; };
+		96F57758196CF239001B985C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F57757196CF239001B985C /* SignUpViewController.swift */; };
+		96F5775A196CF243001B985C /* SendCodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96F57759196CF243001B985C /* SendCodeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +153,9 @@
 		96CF9B1C1967A0FE00389595 /* KeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		96CF9B1E1967A64700389595 /* Music.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		96D23B6E1963B88800343C74 /* taptone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "taptone-Bridging-Header.h"; sourceTree = "<group>"; };
+		96F57755196CF230001B985C /* LogInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogInViewController.swift; sourceTree = "<group>"; };
+		96F57757196CF239001B985C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		96F57759196CF243001B985C /* SendCodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendCodeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +221,7 @@
 			children = (
 				96D23B6E1963B88800343C74 /* taptone-Bridging-Header.h */,
 				96626FC3196A024A002D5296 /* Keyboard */,
+				96F57754196CF20E001B985C /* Intro */,
 				967C22911963B52E001B7F7F /* AppDelegate.swift */,
 				967C22931963B52E001B7F7F /* MainViewController.swift */,
 				96CF9B1A19679EC200389595 /* Pusher.swift */,
@@ -315,6 +322,16 @@
 				96CF9AE719677C4A00389595 /* G5.caf */,
 			);
 			path = caf;
+			sourceTree = "<group>";
+		};
+		96F57754196CF20E001B985C /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				96F57755196CF230001B985C /* LogInViewController.swift */,
+				96F57757196CF239001B985C /* SignUpViewController.swift */,
+				96F57759196CF243001B985C /* SendCodeViewController.swift */,
+			);
+			name = Intro;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -504,7 +521,10 @@
 			files = (
 				967C22941963B52E001B7F7F /* MainViewController.swift in Sources */,
 				967C22921963B52E001B7F7F /* AppDelegate.swift in Sources */,
+				96F57756196CF230001B985C /* LogInViewController.swift in Sources */,
 				96626FC21969E7A9002D5296 /* KeyboardView.swift in Sources */,
+				96F57758196CF239001B985C /* SignUpViewController.swift in Sources */,
+				96F5775A196CF243001B985C /* SendCodeViewController.swift in Sources */,
 				96626FC5196A067C002D5296 /* UIColorExtension.swift in Sources */,
 				96CF9B1F1967A64700389595 /* Music.swift in Sources */,
 				9617A3E81967C5480032ED54 /* KeyButton.swift in Sources */,
