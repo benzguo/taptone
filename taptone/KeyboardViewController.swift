@@ -21,7 +21,7 @@ class KeyboardViewController: UIViewController {
         super.viewDidLoad()
 
         var keyboardView = KeyboardView(width: scrollView.frame.size.width, notes: notes)
-        scrollView.backgroundColor = UIColor.whiteColor()
+        scrollView.backgroundColor = UIColor.tt_orangeColor()
         scrollView.addSubview(keyboardView)
         scrollView.contentSize = keyboardView.frame.size
     }

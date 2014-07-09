@@ -4,12 +4,10 @@ class MainViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         var navBar = navigationController.navigationBar
+        navBar.barTintColor = UIColor.tt_orangeColor()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.shadowImage = UIImage()
-        navBar.barTintColor = UIColor.magentaColor()
-        navBar.translucent = false
-        navBar.alpha = 0.7
-        navBar.barStyle = .Black
+        tableView.backgroundColor = UIColor.tt_orangeColor()
         tableView.tableFooterView = UIView()
         tableView.separatorInset = UIEdgeInsetsZero
     }

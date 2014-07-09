@@ -4,12 +4,12 @@ class KeyButton: UIButton {
 
         super.init(frame: frame)
         if color == KeyColor.White {
-            backgroundColor = UIColor.whiteColor()
-            setBackgroundImage(UIImage(color: UIColor.lightGrayColor(), size: CGSizeMake(1, 1)), forState: .Highlighted)
+            backgroundColor = UIColor.tt_whiteColor()
+            setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)), forState: .Highlighted)
         }
         else {
-            backgroundColor = UIColor.blackColor()
-            setBackgroundImage(UIImage(color: UIColor.grayColor(), size: CGSizeMake(1, 1)), forState: .Highlighted)
+            backgroundColor = UIColor.tt_grayColor()
+            setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)), forState: .Highlighted)
         }
     }
 

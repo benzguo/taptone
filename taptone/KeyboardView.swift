@@ -44,7 +44,7 @@ class KeyboardView: UIView {
 
         var frame = CGRectMake(0, 0, width, viewHeight)
         super.init(frame: frame)
-        backgroundColor = UIColor.tt_grayColor()
+        backgroundColor = UIColor.tt_orangeColor()
         for k in whiteKeys {
             addSubview(k)
         }
