@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13D65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="okB-Wb-GAG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="okB-Wb-GAG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
     </dependencies>
     <scenes>
-        <!--Sign Up View Controller-->
+        <!--Intro View Controller-->
         <scene sceneID="gjI-dW-DlZ">
             <objects>
-                <viewController id="okB-Wb-GAG" customClass="SignUpViewController" customModule="taptone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="okB-Wb-GAG" customClass="IntroViewController" customModule="taptone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LEX-8F-jTh"/>
                         <viewControllerLayoutGuide type="bottom" id="1Yk-Uo-VLT"/>
@@ -31,7 +31,7 @@
                                             <color key="titleColor" red="0.99215692280000001" green="0.5647059083" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="fZx-4J-LOO" kind="show" id="XbA-VT-0oR"/>
+                                            <action selector="signUp:" destination="okB-Wb-GAG" eventType="touchUpInside" id="osq-JW-7Io"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ITq-gt-G4A">
@@ -45,6 +45,9 @@
                                         <state key="selected">
                                             <color key="titleColor" red="0.99215692280000001" green="0.5647059083" blue="0.14901961389999999" alpha="1" colorSpace="deviceRGB"/>
                                         </state>
+                                        <connections>
+                                            <action selector="logIn:" destination="okB-Wb-GAG" eventType="touchUpInside" id="SwZ-c7-CVF"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -154,7 +157,4 @@
             <point key="canvasLocation" x="251" y="362"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="9Wn-22-nKX"/>
-    </inferredMetricsTieBreakers>
 </document>

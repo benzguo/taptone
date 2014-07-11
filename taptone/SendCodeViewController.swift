@@ -1,4 +1,0 @@
-
-class SendCodeViewController: UIViewController {
-
-}
