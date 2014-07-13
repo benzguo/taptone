@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "_default": {
+            "link": "taptone"
+        }, 
+        "taptone": {
+            "applicationId": "RUXkfe7Otj8ROooI0DQxH1AZULZonaz1EA3XFjnk", 
+            "masterKey": "OPAd5F1I2vWdZzKIgDDJshZDzW6WBWtC7JYqvvQ0"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.19"
+    }
+}
