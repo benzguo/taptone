@@ -74,9 +74,9 @@ enum Accidental: Character {
 }
 
 class ProtoNote {
-    var name: NoteName
-    var accidental: Accidental?
-    var keyColor: KeyColor
+    let name: NoteName
+    let accidental: Accidental?
+    let keyColor: KeyColor
 
     init(name n: NoteName, accidental a: Accidental?) {
         name = n
@@ -86,9 +86,9 @@ class ProtoNote {
 }
 
 class Note: ProtoNote {
-    var midiNumber: Int
-    var octaveNumber: Int
-    var protoNoteMap: Dictionary<Int, ProtoNote> = [
+    let midiNumber: Int
+    let octaveNumber: Int
+    let protoNoteMap: Dictionary<Int, ProtoNote> = [
         0: ProtoNote(name: .C, accidental: nil),
         1: ProtoNote(name: .C, accidental: Accidental.Sharp),
         2: ProtoNote(name: .D, accidental: nil),
@@ -106,7 +106,7 @@ class Note: ProtoNote {
     init(midiNumber number: Int) {
         midiNumber = number
         octaveNumber = Int(Float(number)/12.0)
-        var protoNote: ProtoNote = protoNoteMap[number%12]!
+        let protoNote: ProtoNote = protoNoteMap[number%12]!
         super.init(name: protoNote.name, accidental: protoNote.accidental)
     }
 
@@ -121,7 +121,7 @@ class Note: ProtoNote {
     func _toString(ASCII: Bool) -> String {
         var fullName: String = String(name.toRaw())
         if let _accidental = accidental {
-            var accidentalString = ASCII ? String(_accidental.toRaw()) : _accidental.toASCII()
+            let accidentalString = ASCII ? String(_accidental.toRaw()) : _accidental.toASCII()
             fullName = fullName + accidentalString
         }
         return fullName + String(octaveNumber)

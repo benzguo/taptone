@@ -6,8 +6,8 @@ extension Range {
 
 class KeyboardViewController: UIViewController {
 
-    var noteNumbers: Int[]
-    var notes: Note[]
+    let noteNumbers: Int[]
+    let notes: Note[]
 
     @IBOutlet var scrollView: UIScrollView
 
@@ -20,7 +20,7 @@ class KeyboardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        var keyboardView = KeyboardView(width: scrollView.frame.size.width, notes: notes)
+        let keyboardView = KeyboardView(width: scrollView.frame.size.width, notes: notes)
         scrollView.backgroundColor = UIColor.tt_orangeColor()
         scrollView.addSubview(keyboardView)
         scrollView.contentSize = keyboardView.frame.size

@@ -3,7 +3,7 @@ class MainViewController: UITableViewController {
                             
     override func viewDidLoad() {
         super.viewDidLoad()
-        var navBar = navigationController.navigationBar
+        let navBar = navigationController.navigationBar
         navBar.barTintColor = UIColor.tt_orangeColor()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.shadowImage = UIImage()

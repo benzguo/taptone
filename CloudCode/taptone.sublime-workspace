@@ -1,0 +1,291 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"sqr",
+				"sqrt-iter-new"
+			],
+			[
+				"sq",
+				"sqrt-iter-new"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "cloud/main.js",
+			"settings":
+			{
+				"buffer_size": 2001,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "taptone.sublime-project",
+			"settings":
+			{
+				"buffer_size": 239,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 67.0,
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 502.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/bguo/github.com/benzguo/taptone/samples/convert.rb",
+		"/Users/bguo/github.com/benzguo/taptone/README.md",
+		"/Users/bguo/Library/Containers/com.evernote.Evernote/Data/Library/CoreData/com.evernote.Evernote/3917CA0A-A149-481A-A4C9-D27D2A828354/ENNote/_records/2/0/p274.ennote",
+		"/Users/bguo/github.com/benzguo/zalgo/textables.json",
+		"/Users/bguo/github.com/benzguo/zalgo/unichar.m",
+		"/Users/bguo/github.com/benzguo/learning-elm/TouchLineStyleDict.elm",
+		"/Users/bguo/github.com/benzguo/zalgo/glitchr.txt",
+		"/Users/bguo/github.com/benzguo/learning-elm/TouchLineStyleDict2.elm",
+		"/Users/bguo/github.com/benzguo/learning-elm/ColorDropdown.elm",
+		"/Users/bguo/github.com/benzguo/learning-elm/Drawing/BrushColors.elm",
+		"/Users/bguo/github.com/benzguo/learning-elm/DrawColors.elm",
+		"/Users/bguo/github.com/benzguo/learning-elm/MouseEyes.elm",
+		"/Users/bguo/github.com/benzguo/learning-elm/MouseRadialGradient.elm",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_14.md",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_15.scm",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_6.scm",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_3.scm",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_10.scm",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_13.tex",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_14.scm",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_12.scm",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_9.scm",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_8.scm",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_7.scm",
+		"/Users/bguo/github.com/benzguo/sicp/README.md",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_4.scm",
+		"/Users/bguo/github.com/benzguo/sicp/1/ex1_5.scm",
+		"/Users/bguo/github.com/benzguo/sicp/exercises/ex1_3.scm",
+		"/Applications/Sublime Text.app/Contents/MacOS/Package Control Messages",
+		"/Applications/Sublime Text.app/Contents/MacOS/changelog.txt"
+	],
+	"find":
+	{
+		"height": 23.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"╚═",
+			"͗",
+			"╚═",
+			"-    ",
+			"  \"",
+			"\\",
+			"lineStyle",
+			"Color",
+			"colorInput",
+			"row",
+			"col"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "cloud/main.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2001,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								246,
+								246
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 336.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "taptone.sublime-project",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 239,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								166,
+								166
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 23.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"project": "taptone.sublime-project",
+	"replace":
+	{
+		"height": 42.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
