@@ -9,6 +9,19 @@ function randomCode() {
   return nums.join("");
 }
 
+function emailCode(email, code, response) {
+   Mailgun.sendEmail({
+      to: email,
+      from: "taptone@taptone.me",
+      subject: "Your sign in code: "+code,
+      text: "You requested a sign in code for Taptone." }, {
+      success: function(httpResponse) {
+            response.success("Email sent"); },
+      error: function(httpResponse) {
+            response.error("Failed to email code"); }
+  }); 
+}
+
 Parse.Cloud.define("signup", function(request, response) {
   var email = request.params.email;
   var username = request.params.username;
@@ -23,7 +36,7 @@ Parse.Cloud.define("signup", function(request, response) {
     success: function(results) {
       if (results.length) {
         var user = results[0];
-        if (user.username == username) {
+        if (user.getUsername() == username) {
           response.error("Username taken");
         }
         else {
@@ -35,10 +48,9 @@ Parse.Cloud.define("signup", function(request, response) {
          { email: email,
             code: code }, {
           success: function(user) {
-            console.log("signup_succeeded");
+            emailCode(request.params.email, code, response);
           },
           error: function(user, error) {
-            console.error(error);
             response.error("Signup failed");
           }
         });
@@ -52,20 +64,4 @@ Parse.Cloud.define("signup", function(request, response) {
     }
   });
 
-  Mailgun.sendEmail({
-      to: request.params.email,
-      from: "taptone@taptone.me",
-      subject: "Your sign in code: "+code,
-      text: "You requested a sign in code for Taptone."
-  }, {
-      success: function(httpResponse) {
-            console.log(httpResponse);
-            response.success("Email sent");
-                  },
-      error: function(httpResponse) {
-            console.error(httpResponse);
-                response.error("Email code failed");
-                  }
-  });
-  response.success("Sent verification email");
 });

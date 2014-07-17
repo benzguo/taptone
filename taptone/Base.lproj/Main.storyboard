@@ -64,7 +64,7 @@
                         <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
-                        <segue destination="fZx-4J-LOO" kind="show" id="9Wn-22-nKX"/>
+                        <segue destination="fZx-4J-LOO" kind="show" identifier="login" id="9Wn-22-nKX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EmX-Db-3KV" userLabel="First Responder" sceneMemberID="firstResponder"/>
