@@ -3,24 +3,70 @@ Mailgun.initialize('taptone.me', 'key-9jagq65bowrwiamosv35pcxj9lxt4q74');
 
 function randomCode() {
   var nums = [];
-  for (i = 0; i < 6; i++) {
+  for (i = 0; i < 5; i++) {
     nums.push(Math.floor((Math.random() * 10)));
   }
   return nums.join("");
 }
 
-function emailCode(email, code, response) {
+function emailCode(username, email, code, response) {
    Mailgun.sendEmail({
       to: email,
       from: "taptone@taptone.me",
       subject: "Your sign in code: "+code,
       text: "You requested a sign in code for Taptone." }, {
       success: function(httpResponse) {
-            response.success("Email sent"); },
+            response.success(username); },
       error: function(httpResponse) {
             response.error("Failed to email code"); }
   }); 
 }
+
+function handleError(error, response) {
+  if (error.code === Parse.Error.OBJECT_NOT_FOUND) {
+    response.error("Object not found")
+  } 
+  else if (error.code === Parse.Error.CONNECTION_FAILED) {
+    response.error("Connection error")
+  }
+  else {
+    response.error("Object not found")
+  } 
+}
+
+Parse.Cloud.define("login", function(request, response) {
+  var handle = request.params.handle; 
+
+  var emailQuery = new Parse.Query(Parse.User);
+  emailQuery.equalTo("email", handle);
+  var usernameQuery = new Parse.Query(Parse.User);
+  usernameQuery.equalTo("username", handle);
+  var query = Parse.Query.or(emailQuery, usernameQuery);
+
+  query.find({
+    success: function(results) {
+      if (results.length) {
+        var user = results[0];
+        var code = randomCode();
+        var email = user.get("email");
+        var username = user.getUsername();
+        Parse.Cloud.useMasterKey();
+        user.setPassword(code);
+        user.save().then(function(user) {
+          emailCode(username, email, code, response);
+        }, function(error) {
+          response.error("Failed to send code")
+        });
+      }
+      else {
+        response.error("User not found");
+      }
+    },
+    error: function(error) {
+      handleError(error, response)
+    }
+  });
+})
 
 Parse.Cloud.define("signup", function(request, response) {
   var email = request.params.email;
@@ -36,7 +82,7 @@ Parse.Cloud.define("signup", function(request, response) {
     success: function(results) {
       if (results.length) {
         var user = results[0];
-        if (user.getUsername() == username) {
+        if (user.getUsername() === username) {
           response.error("Username taken");
         }
         else {
@@ -48,7 +94,7 @@ Parse.Cloud.define("signup", function(request, response) {
          { email: email,
             code: code }, {
           success: function(user) {
-            emailCode(request.params.email, code, response);
+            emailCode(username, email, code, response);
           },
           error: function(user, error) {
             response.error("Signup failed");
@@ -57,10 +103,7 @@ Parse.Cloud.define("signup", function(request, response) {
       }
     },
     error: function(error) {
-      if (error.code === Parse.Error.OBJECT_NOT_FOUND) {
-      } else if (error.code === Parse.Error.CONNECTION_FAILED) {
-        response.error("Connection error")
-      }
+      handleError(error, response)
     }
   });
 

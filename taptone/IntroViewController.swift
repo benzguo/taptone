@@ -9,10 +9,20 @@ extension UIAlertController {
 
 class IntroViewController: UIViewController, UIAlertViewDelegate {
 
+    enum GenericError: String {
+        case ConnectionError = "Connection error"
+        case ObjectNotFound = "Object not found"
+    }
+
     enum SignupError: String {
         case UsernameTaken = "Username taken"
         case EmailTaken = "Email taken"
         case SignupFailed = "Signup failed"
+    }
+
+    enum LoginError: String {
+        case UserNotFound = "User not found"
+        case FailedToSendCode = "Failed to send code"
     }
 
     func handleSignupError(error: NSError) {
@@ -34,7 +44,26 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
         }
     }
 
-    func enterCode(handle: String) {
+    func handleLoginError(error: NSError) {
+        let userInfo = error.userInfo
+        if let u = userInfo {
+            let errorString: NSString = u["error"] as NSString
+            switch errorString {
+            case LoginError.UserNotFound.toRaw():
+                UIAlertController.presentStandardAlert(errorString,
+                    message: "Check your info or sign up to create an account.",
+                    fromViewController: self)
+             case LoginError.FailedToSendCode.toRaw():
+                UIAlertController.presentStandardAlert(errorString,
+                    message: "Please try again",
+                    fromViewController: self)               
+            default:
+               SVProgressHUD.showErrorWithStatus(errorString)
+            }
+        }
+    }
+
+    func enterCode(username: String) {
         var codeTextField = UITextField()
         var ac = UIAlertController(title: "Enter code",
             message: "Check your email and enter the code the log in.",
@@ -42,9 +71,11 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
         ac.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Log in", style: UIAlertActionStyle.Default, handler:
         { action in
-            PFUser.logInWithUsernameInBackground(handle,
+            SVProgressHUD.show()
+            PFUser.logInWithUsernameInBackground(username,
                 password: codeTextField.text,
                 block: { (user: PFUser?, error: NSError?) in
+                    SVProgressHUD.dismiss()
                     if error {
                          UIAlertController.presentStandardAlert("Log in failed",
                             message: "Please try again",
@@ -57,6 +88,7 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
         }))
         ac.addTextFieldWithConfigurationHandler {
             textField in
+            textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = NSLocalizedString("code", comment: "")
             codeTextField = textField
@@ -70,10 +102,24 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
         ac.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Log in", style: UIAlertActionStyle.Default, handler:
         { action in
-
+            SVProgressHUD.show()
+            PFCloud.callFunctionInBackground("login",
+                withParameters: ["handle": handleTextField.text],
+                block: {(result: AnyObject?, error: NSError?) in
+                    SVProgressHUD.dismiss()
+                    if let e = error {
+                        self.handleLoginError(e)
+                    }
+                    else {
+                        if let username = result as? String {
+                            self.enterCode(username);
+                        }
+                    }
+                })
         }))
         ac.addTextFieldWithConfigurationHandler {
             textField in
+            textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = NSLocalizedString("username or email", comment: "")
             handleTextField = textField
@@ -88,10 +134,12 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
         ac.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Sign up", style: UIAlertActionStyle.Default, handler:
         { action in
+            SVProgressHUD.show()
             PFCloud.callFunctionInBackground("signup",
                 withParameters: ["username": usernameTextField.text,
                                  "email": emailTextField.text],
                 block: {(result: AnyObject?, error: NSError?) in
+                    SVProgressHUD.dismiss()
                     if let e = error {
                         self.handleSignupError(e)
                     }
@@ -103,12 +151,14 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
         }))
         ac.addTextFieldWithConfigurationHandler {
             textField in
+            textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = "username"
             usernameTextField = textField
         }
         ac.addTextFieldWithConfigurationHandler {
             textField in
+            textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = "email"
             emailTextField = textField
