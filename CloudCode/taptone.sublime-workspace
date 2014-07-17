@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"user",
+				"usernameQuery	{}"
+			],
+			[
 				"sqr",
 				"sqrt-iter-new"
 			],
@@ -19,15 +23,7 @@
 			"file": "cloud/main.js",
 			"settings":
 			{
-				"buffer_size": 2001,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "taptone.sublime-project",
-			"settings":
-			{
-				"buffer_size": 239,
+				"buffer_size": 2062,
 				"line_ending": "Unix"
 			}
 		}
@@ -35,9 +31,13 @@
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 67.0,
+		"height": 227.0,
 		"selected_items":
 		[
+			[
+				"package in",
+				"Package Control: Install Package"
+			],
 			[
 				"instal",
 				"Package Control: Install Package"
@@ -51,7 +51,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 502.0
+		"width": 467.0
 	},
 	"console":
 	{
@@ -72,6 +72,10 @@
 	},
 	"file_history":
 	[
+		"/Users/bguo/github.com/benzguo/benzguo.github.io/_posts/2014_07_15_blocks.md",
+		"/Users/bguo/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/bguo/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/Users/bguo/github.com/benzguo/taptone/CloudCode/taptone.sublime-project",
 		"/Users/bguo/github.com/benzguo/taptone/samples/convert.rb",
 		"/Users/bguo/github.com/benzguo/taptone/README.md",
 		"/Users/bguo/Library/Containers/com.evernote.Evernote/Data/Library/CoreData/com.evernote.Evernote/3917CA0A-A149-481A-A4C9-D27D2A828354/ENNote/_records/2/0/p274.ennote",
@@ -156,56 +160,53 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2001,
+						"buffer_size": 2062,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								246,
-								246
+								1709,
+								1709
 							]
 						],
 						"settings":
 						{
+							"highlight_line": false,
 							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
 							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"translate_tabs_to_spaces": true,
+							"vintage":
+							{
+								"_vintageous_glue_until_normal_mode": false,
+								"_vintageous_gluing_sequence": false,
+								"_vintageous_non_interactive": false,
+								"action": null,
+								"action_count": "",
+								"capture_register": false,
+								"mode": "mode_normal",
+								"motion": null,
+								"motion_count": "",
+								"normal_insert_count": "1",
+								"partial_sequence": "",
+								"register": "\"",
+								"repeat_data":
+								[
+									"vi",
+									"dd",
+									"mode_internal_normal",
+									null
+								],
+								"sequence": "",
+								"xpos": 0
+							}
 						},
 						"translation.x": 0.0,
-						"translation.y": 336.0,
+						"translation.y": 16.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "taptone.sublime-project",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 239,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								166,
-								166
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -278,6 +279,11 @@
 	},
 	"settings":
 	{
+		"_vintageous_reset_during_init": true,
+		"vintage":
+		{
+			"_cmdline_cd": "/Users/bguo/github.com/benzguo/benzguo.github.io/_posts"
+		}
 	},
 	"show_minimap": true,
 	"show_open_files": false,
