@@ -1,9 +1,9 @@
 class KeyboardView: UIView {
 
-    var whiteKeys: KeyButton[] = []
-    var blackKeys: KeyButton[] = []
+    var whiteKeys: [KeyButton] = []
+    var blackKeys: [KeyButton] = []
 
-    init(width: CGFloat, notes: Note[]) {
+    init(width: CGFloat, notes: [Note]) {
         let whiteNotes = notes.filter { $0.keyColor == KeyColor.White }
         let whiteKeyHeight = width / 5;
         let blackKeyHeight = whiteKeyHeight * 2/3

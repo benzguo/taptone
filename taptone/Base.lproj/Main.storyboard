@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6154.21" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="okB-Wb-GAG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="okB-Wb-GAG">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6153.13"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
     <scenes>
         <!--Intro View Controller-->
@@ -61,7 +61,6 @@
                             <constraint firstAttribute="centerY" secondItem="R44-2H-FuH" secondAttribute="centerY" id="ifI-AJ-6VP"/>
                             <constraint firstAttribute="centerX" secondItem="R44-2H-FuH" secondAttribute="centerX" id="qoR-1Q-Dv5"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
                         <segue destination="fZx-4J-LOO" kind="show" identifier="login" id="9Wn-22-nKX"/>
@@ -79,7 +78,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                         <color key="separatorColor" red="0.99215692281723022" green="0.56470590829849243" blue="0.14901961386203766" alpha="1" colorSpace="deviceRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" id="cuM-CO-F4f">
@@ -94,7 +92,10 @@
                             <outlet property="delegate" destination="AzT-xy-8b6" id="egK-FU-so1"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="SNt-1A-HXw"/>
+                    <navigationItem key="navigationItem" id="SNt-1A-HXw">
+                        <barButtonItem key="leftBarButtonItem" title="☰☰" id="1fP-GK-Liy"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7qP-dw-X63"/>
+                    </navigationItem>
                     <connections>
                         <segue destination="bk2-Tn-0YW" kind="show" identifier="showKeyboard" id="NkB-bs-b63"/>
                     </connections>
@@ -146,7 +147,6 @@
                             <constraint firstItem="A5e-bQ-Qd9" firstAttribute="top" secondItem="V98-Ht-ESn" secondAttribute="top" id="anq-hQ-bGm"/>
                             <constraint firstItem="3oh-7b-3cb" firstAttribute="top" secondItem="A5e-bQ-Qd9" secondAttribute="bottom" id="fae-Nf-jMm"/>
                         </constraints>
-                        <simulatedOrientationMetrics key="simulatedOrientationMetrics" orientation="landscapeRight"/>
                     </view>
                     <connections>
                         <outlet property="scrollView" destination="A5e-bQ-Qd9" id="jaf-uB-7VA"/>

@@ -1,13 +1,13 @@
 extension Range {
-    func toArray() -> T[] {
-        return T[](self)
+    func toArray() -> [T] {
+        return [T](self)
     }
 }
 
 class KeyboardViewController: UIViewController {
 
-    let noteNumbers: Int[]
-    let notes: Note[]
+    let noteNumbers: [Int]
+    let notes: [Note]
 
     @IBOutlet var scrollView: UIScrollView
 

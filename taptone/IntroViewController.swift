@@ -1,4 +1,8 @@
 
+let KeychainServiceName = "taptone"
+let KeychainKeyUsername = "username"
+let KeychainKeyPassword = "password"
+
 extension UIAlertController {
     class func presentStandardAlert(title: String, message: String, fromViewController viewController: UIViewController) {
         var ac = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
@@ -23,6 +27,27 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
     enum LoginError: String {
         case UserNotFound = "User not found"
         case FailedToSendCode = "Failed to send code"
+    }
+
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+
+        let username = SSKeychain.passwordForService(KeychainServiceName, account: KeychainKeyUsername)
+        let password = SSKeychain.passwordForService(KeychainServiceName, account: KeychainKeyPassword)
+        if username && password {
+            PFUser.logInWithUsernameInBackground(username,
+                password: password,
+                block: { (user: PFUser?, error: NSError?) in
+                    SVProgressHUD.dismiss()
+                    if error {
+                        SSKeychain.deletePasswordForService(KeychainServiceName, account: KeychainKeyUsername)
+                        SSKeychain.deletePasswordForService(KeychainServiceName, account: KeychainKeyPassword)
+                    }
+                    else {
+                        self.performSegueWithIdentifier("login", sender: self)
+                    }
+            })
+        }
     }
 
     func handleSignupError(error: NSError) {
@@ -72,8 +97,9 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
         ac.addAction(UIAlertAction(title: "Log in", style: UIAlertActionStyle.Default, handler:
         { action in
             SVProgressHUD.show()
+            let password = codeTextField.text
             PFUser.logInWithUsernameInBackground(username,
-                password: codeTextField.text,
+                password: password,
                 block: { (user: PFUser?, error: NSError?) in
                     SVProgressHUD.dismiss()
                     if error {
@@ -82,6 +108,8 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
                             fromViewController: self)                       
                     }
                     else {
+                        SSKeychain.setPassword(username, forService: KeychainServiceName, account: KeychainKeyUsername)
+                        SSKeychain.setPassword(password, forService: KeychainServiceName, account: KeychainKeyPassword)
                         self.performSegueWithIdentifier("login", sender: self)
                     }
             })

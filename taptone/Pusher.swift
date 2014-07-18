@@ -1,7 +1,7 @@
 import Foundation
 
 class Pusher {
-    class func pushToUsers(users: String[], note: String) {
+    class func pushToUsers(users: [String], note: String) {
         let push = PFPush()
         let pushQuery = PFInstallation.query()
         pushQuery.whereKey("deviceType", equalTo: "ios")

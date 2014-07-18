@@ -5,4 +5,5 @@
 #import <Parse/Parse.h>
 #import <UIImage+Additions/UIImage+Additions.h>
 #import <SVProgressHUD/SVProgressHUD.h>
+#import <SSKeychain/SSKeychain.h>
 

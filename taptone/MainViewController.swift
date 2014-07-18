@@ -20,7 +20,6 @@ class MainViewController: UITableViewController {
 
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
         var cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
-        cell.text = "bla"
         return cell
     }
 

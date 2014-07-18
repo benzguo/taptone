@@ -9,7 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool
     {
-        application.setStatusBarHidden(true, animated: false)
+        application.statusBarHidden = true
 
         // configure Parse + notifications
         Parse.setApplicationId("RUXkfe7Otj8ROooI0DQxH1AZULZonaz1EA3XFjnk",
