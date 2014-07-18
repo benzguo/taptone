@@ -15,6 +15,10 @@ class MainViewController: UITableViewController {
 
     @IBAction func showMenu(sender: AnyObject) {
        var ac = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+         ac.addAction(UIAlertAction(title: "Send invite", style: .Default,
+            handler: { action in
+
+            }))
         ac.addAction(UIAlertAction(title: "Log out", style: .Default,
             handler: { action in
                 NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeyUsername)
@@ -26,6 +30,20 @@ class MainViewController: UITableViewController {
     }
 
     @IBAction func addFriend(sender: AnyObject) {
+        var usernameTextField = UITextField()
+        var ac = UIAlertController(title: "Add friend by username", message: nil, preferredStyle: .Alert)
+        ac.addTextFieldWithConfigurationHandler({ textField in
+            textField.textAlignment = .Center
+            textField.font = UIFont(name: "Helvetica-Neue", size: 25);
+            textField.placeholder = NSLocalizedString("username", comment: "")
+            usernameTextField = textField
+            })
+        ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Add", style: .Default,
+            handler: { action in
+
+            }))
+        self.presentViewController(ac, animated: true, completion: nil)
     }
 
 // UITableViewDataSource
