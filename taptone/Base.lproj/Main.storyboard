@@ -135,7 +135,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5e-bQ-Qd9">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5e-bQ-Qd9">
                                 <rect key="frame" x="80" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                             </scrollView>
@@ -143,6 +143,7 @@
                         <color key="backgroundColor" red="0.99215692281723022" green="0.56470590829849243" blue="0.14901961386203766" alpha="1" colorSpace="deviceRGB"/>
                         <color key="tintColor" red="0.20000001788139343" green="0.20000001788139343" blue="0.20000001788139343" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
+                            <constraint firstItem="A5e-bQ-Qd9" firstAttribute="leading" secondItem="V98-Ht-ESn" secondAttribute="leading" constant="80" id="97v-3t-3OZ"/>
                             <constraint firstAttribute="centerX" secondItem="A5e-bQ-Qd9" secondAttribute="centerX" id="LkV-bf-B3t"/>
                             <constraint firstItem="A5e-bQ-Qd9" firstAttribute="top" secondItem="V98-Ht-ESn" secondAttribute="top" id="anq-hQ-bGm"/>
                             <constraint firstItem="3oh-7b-3cb" firstAttribute="top" secondItem="A5e-bQ-Qd9" secondAttribute="bottom" id="fae-Nf-jMm"/>
