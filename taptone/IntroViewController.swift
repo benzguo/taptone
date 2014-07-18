@@ -1,17 +1,17 @@
 
 let KeychainServiceName = "taptone"
-let KeychainKeyUsername = "username"
-let KeychainKeyPassword = "password"
+let UserDefaultsKeyUsername = "username"
+let UserDefaultsKeyPassword = "password"
 
 extension UIAlertController {
     class func presentStandardAlert(title: String, message: String, fromViewController viewController: UIViewController) {
-        var ac = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
-        ac.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Cancel, handler: nil))
+        var ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "Ok", style: .Cancel, handler: nil))
         viewController.presentViewController(ac, animated: true, completion: nil)
     }
 }
 
-class IntroViewController: UIViewController, UIAlertViewDelegate {
+@objc(IntroViewController) class IntroViewController: UIViewController, UIAlertViewDelegate {
 
     enum GenericError: String {
         case ConnectionError = "Connection error"
@@ -29,19 +29,24 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
         case FailedToSendCode = "Failed to send code"
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    @IBAction func unwindToIntroViewController(segue: UIStoryboardSegue) {
 
-        let username = SSKeychain.passwordForService(KeychainServiceName, account: KeychainKeyUsername)
-        let password = SSKeychain.passwordForService(KeychainServiceName, account: KeychainKeyPassword)
-        if username && password {
+    }
+
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
+        let username: String? = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultsKeyUsername) as String?
+        let password: String? = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultsKeyPassword) as String?
+        if username != nil && password != nil {
             PFUser.logInWithUsernameInBackground(username,
                 password: password,
                 block: { (user: PFUser?, error: NSError?) in
                     SVProgressHUD.dismiss()
                     if error {
-                        SSKeychain.deletePasswordForService(KeychainServiceName, account: KeychainKeyUsername)
-                        SSKeychain.deletePasswordForService(KeychainServiceName, account: KeychainKeyPassword)
+                        NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeyUsername)
+                        NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeyPassword)
+                        NSUserDefaults.standardUserDefaults().synchronize()
                     }
                     else {
                         self.performSegueWithIdentifier("login", sender: self)
@@ -49,6 +54,7 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
             })
         }
     }
+
 
     func handleSignupError(error: NSError) {
         let userInfo = error.userInfo
@@ -92,9 +98,9 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
         var codeTextField = UITextField()
         var ac = UIAlertController(title: "Enter code",
             message: "Check your email and enter the code the log in.",
-            preferredStyle: UIAlertControllerStyle.Alert)
-        ac.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: "Log in", style: UIAlertActionStyle.Default, handler:
+            preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Log in", style: .Default, handler:
         { action in
             SVProgressHUD.show()
             let password = codeTextField.text
@@ -108,8 +114,9 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
                             fromViewController: self)                       
                     }
                     else {
-                        SSKeychain.setPassword(username, forService: KeychainServiceName, account: KeychainKeyUsername)
-                        SSKeychain.setPassword(password, forService: KeychainServiceName, account: KeychainKeyPassword)
+                        NSUserDefaults.standardUserDefaults().setObject(username, forKey: UserDefaultsKeyUsername)
+                        NSUserDefaults.standardUserDefaults().setObject(password, forKey: UserDefaultsKeyPassword)
+                        NSUserDefaults.standardUserDefaults().synchronize()
                         self.performSegueWithIdentifier("login", sender: self)
                     }
             })
@@ -126,9 +133,9 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
 
     @IBAction func logIn(sender: UIButton) {
         var handleTextField = UITextField()
-        var ac = UIAlertController(title: "Log in", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-        ac.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: "Log in", style: UIAlertActionStyle.Default, handler:
+        var ac = UIAlertController(title: "Log in", message: nil, preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Log in", style: .Default, handler:
         { action in
             SVProgressHUD.show()
             PFCloud.callFunctionInBackground("login",
@@ -158,9 +165,9 @@ class IntroViewController: UIViewController, UIAlertViewDelegate {
     @IBAction func signUp(sender: UIButton) {
         var usernameTextField  = UITextField()
         var emailTextField = UITextField()
-        var ac = UIAlertController(title: "Sign up", message: nil, preferredStyle: UIAlertControllerStyle.Alert)
-        ac.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: "Sign up", style: UIAlertActionStyle.Default, handler:
+        var ac = UIAlertController(title: "Sign up", message: nil, preferredStyle: .Alert)
+        ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Sign up", style: .Default, handler:
         { action in
             SVProgressHUD.show()
             PFCloud.callFunctionInBackground("signup",

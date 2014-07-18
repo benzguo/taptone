@@ -97,6 +97,7 @@
 		967C229E1963B52E001B7F7F /* taptoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = taptoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		967C22A31963B52E001B7F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		967C22A41963B52E001B7F7F /* taptoneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taptoneTests.swift; sourceTree = "<group>"; };
+		968018C81978CD610026FDB3 /* IntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
 		96CF9AB619677C4A00389595 /* A#2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "A#2.caf"; sourceTree = "<group>"; };
 		96CF9AB719677C4A00389595 /* A#3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "A#3.caf"; sourceTree = "<group>"; };
 		96CF9AB819677C4A00389595 /* A#4.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "A#4.caf"; sourceTree = "<group>"; };
@@ -218,6 +219,7 @@
 				96D23B6E1963B88800343C74 /* taptone-Bridging-Header.h */,
 				96626FC3196A024A002D5296 /* Keyboard */,
 				EBC3EF1A196F6F2D00496D06 /* IntroViewController.swift */,
+				968018C81978CD610026FDB3 /* IntroViewController.h */,
 				967C22911963B52E001B7F7F /* AppDelegate.swift */,
 				967C22931963B52E001B7F7F /* MainViewController.swift */,
 				96CF9B1A19679EC200389595 /* Pusher.swift */,

@@ -7,7 +7,7 @@
         <!--Intro View Controller-->
         <scene sceneID="gjI-dW-DlZ">
             <objects>
-                <viewController id="okB-Wb-GAG" customClass="IntroViewController" customModule="taptone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="okB-Wb-GAG" customClass="IntroViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="LEX-8F-jTh"/>
                         <viewControllerLayoutGuide type="bottom" id="1Yk-Uo-VLT"/>
@@ -93,14 +93,24 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="SNt-1A-HXw">
-                        <barButtonItem key="leftBarButtonItem" title="☰☰" id="1fP-GK-Liy"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7qP-dw-X63"/>
+                        <barButtonItem key="leftBarButtonItem" title=" ☰" id="1fP-GK-Liy">
+                            <connections>
+                                <action selector="showMenu:" destination="AzT-xy-8b6" id="WMQ-i6-aWg"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="7qP-dw-X63">
+                            <connections>
+                                <action selector="addFriend:" destination="AzT-xy-8b6" id="IjE-cI-mnv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="bk2-Tn-0YW" kind="show" identifier="showKeyboard" id="NkB-bs-b63"/>
+                        <segue destination="3Fq-WX-HOd" kind="unwind" identifier="logout" unwindAction="unwindToIntroViewController:" id="2Ir-f3-Fiz"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YVA-iR-7O0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="3Fq-WX-HOd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-412" y="738"/>
         </scene>
@@ -138,12 +148,14 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5e-bQ-Qd9">
                                 <rect key="frame" x="80" y="0.0" width="320" height="480"/>
                                 <color key="backgroundColor" name="gridColor" catalog="System" colorSpace="catalog"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="dDz-Bh-P57"/>
+                                </constraints>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.99215692281723022" green="0.56470590829849243" blue="0.14901961386203766" alpha="1" colorSpace="deviceRGB"/>
                         <color key="tintColor" red="0.20000001788139343" green="0.20000001788139343" blue="0.20000001788139343" alpha="1" colorSpace="deviceRGB"/>
                         <constraints>
-                            <constraint firstItem="A5e-bQ-Qd9" firstAttribute="leading" secondItem="V98-Ht-ESn" secondAttribute="leading" constant="80" id="97v-3t-3OZ"/>
                             <constraint firstAttribute="centerX" secondItem="A5e-bQ-Qd9" secondAttribute="centerX" id="LkV-bf-B3t"/>
                             <constraint firstItem="A5e-bQ-Qd9" firstAttribute="top" secondItem="V98-Ht-ESn" secondAttribute="top" id="anq-hQ-bGm"/>
                             <constraint firstItem="3oh-7b-3cb" firstAttribute="top" secondItem="A5e-bQ-Qd9" secondAttribute="bottom" id="fae-Nf-jMm"/>
