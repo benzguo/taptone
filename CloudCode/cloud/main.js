@@ -9,14 +9,14 @@ function randomCode() {
   return nums.join("");
 }
 
-function emailCode(username, email, code, response) {
+function emailCode(email, code, response) {
    Mailgun.sendEmail({
       to: email,
       from: "taptone@taptone.me",
       subject: "Your sign in code: "+code,
       text: "You requested a sign in code for Taptone." }, {
       success: function(httpResponse) {
-            response.success(username); },
+            response.success(); },
       error: function(httpResponse) {
             response.error("Failed to email code"); }
   }); 
@@ -35,25 +35,20 @@ function handleError(error, response) {
 }
 
 Parse.Cloud.define("login", function(request, response) {
-  var handle = request.params.handle; 
+  var email = request.params.email; 
 
   var emailQuery = new Parse.Query(Parse.User);
-  emailQuery.equalTo("email", handle);
-  var usernameQuery = new Parse.Query(Parse.User);
-  usernameQuery.equalTo("username", handle);
-  var query = Parse.Query.or(emailQuery, usernameQuery);
+  emailQuery.equalTo("email", email);
 
-  query.find({
+  emailQuery.find({
     success: function(results) {
       if (results.length) {
         var user = results[0];
         var code = randomCode();
-        var email = user.get("email");
-        var username = user.getUsername();
         Parse.Cloud.useMasterKey();
         user.setPassword(code);
         user.save().then(function(user) {
-          emailCode(username, email, code, response);
+          emailCode(email, code, response);
         }, function(error) {
           response.error("Failed to send code")
         });
@@ -69,32 +64,25 @@ Parse.Cloud.define("login", function(request, response) {
 })
 
 Parse.Cloud.define("signup", function(request, response) {
+  // EMAIL = USERNAME
   var email = request.params.email;
-  var username = request.params.username;
+  var name = request.params.displayName;
   var code = randomCode()
 
   var emailQuery = new Parse.Query(Parse.User);
   emailQuery.equalTo("email", email);
-  var usernameQuery = new Parse.Query(Parse.User);
-  usernameQuery.equalTo("username", username);
-  var query = Parse.Query.or(emailQuery, usernameQuery);
-  query.find({
+  emailQuery.find({
     success: function(results) {
       if (results.length) {
-        var user = results[0];
-        if (user.getUsername() === username) {
-          response.error("Username taken");
-        }
-        else {
-          response.error("Email taken");
-        }
+        response.error("Email taken");
       }
       else {
-        Parse.User.signUp(username, code,
+        Parse.User.signUp(email, code,
          { email: email,
-            code: code }, {
+           code: code,
+           name: name}, {
           success: function(user) {
-            emailCode(username, email, code, response);
+            emailCode(email, code, response);
           },
           error: function(user, error) {
             response.error("Signup failed");
