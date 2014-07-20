@@ -99,7 +99,7 @@ extension UIAlertController {
             switch errorString {
             case LoginError.UserNotFound.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
-                    message: "Check your info or sign up to create an account.",
+                    message: "Please enter the email you signed up with.",
                     fromViewController: self)
              case LoginError.FailedToSendCode.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
