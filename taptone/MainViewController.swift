@@ -19,11 +19,11 @@ class MainViewController: UITableViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         if !(PFUser.currentUser().objectForKey("phone")) {
-            addPhoneNumber()
+            setPhone()
         }
     }
 
-    func addPhoneNumber(title: String = "Enter your phone number",
+    func setPhone(title: String = "Enter your phone number",
         message: String = "\rYour friends can add you on Taptone using your phone number.") {
         var phoneTextField = UITextField()
         var ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)
@@ -36,15 +36,21 @@ class MainViewController: UITableViewController {
         ac.addAction(UIAlertAction(title: "Ok", style: .Default,
             handler: { action in
                 if phoneTextField.text.utf16count < 7 {
-                    self.addPhoneNumber(title: "Please enter a valid phone",
+                    self.setPhone(title: "Please enter a valid phone",
                         message: "\rOnly people who know your phone number can add you on Taptone.")
+                }
+                else {
+                    PFUser.currentUser().setObject(phoneTextField.text, forKey: "phone");
+                    PFUser.currentUser().saveInBackground()
                 }
             }))              
         self.presentViewController(ac, animated: true, completion: nil)
     }
 
     @IBAction func showMenu(sender: AnyObject) {
-        var ac = UIAlertController(title: "Ben Guo", message: "4435700053", preferredStyle: .ActionSheet)
+        let name = PFUser.currentUser().objectForKey("name") as String?
+        let phone = PFUser.currentUser().objectForKey("phone") as String?
+        var ac = UIAlertController(title: name, message: phone, preferredStyle: .ActionSheet)
         ac.addAction(UIAlertAction(title: "Send invite", style: .Default,
             handler: { action in
 
@@ -55,8 +61,8 @@ class MainViewController: UITableViewController {
             }))              
         ac.addAction(UIAlertAction(title: "Edit phone", style: .Default,
             handler: { action in
-
-            }))       
+                self.setPhone(title: "Change your phone number", message: "\rCurrent number: \(phone)")
+            }))
         ac.addAction(UIAlertAction(title: "Log out", style: .Default,
             handler: { action in
                 NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeyEmail)
@@ -67,21 +73,46 @@ class MainViewController: UITableViewController {
         self.presentViewController(ac, animated: true, completion: nil)
     }
 
-    @IBAction func addFriend(sender: AnyObject) {
-        var usernameTextField = UITextField()
-        var ac = UIAlertController(title: "Add a friend by entering their phone number", message: nil, preferredStyle: .Alert)
+    func addFriendByPhone(title: String = "Add a friend by entering their phone number") {
+        var phoneTextField = UITextField()
+        var ac = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
         ac.addTextFieldWithConfigurationHandler({ textField in
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = NSLocalizedString("phone number", comment: "")
-            usernameTextField = textField
+            phoneTextField = textField
             })
         ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Add", style: .Default,
             handler: { action in
+                let phone = phoneTextField.text
+                if phone.utf16count < 7 {
+                    self.addFriendByPhone(title: "Please enter a valid phone")
+                }
+                else {
+                    var query = PFUser.query()
+                    query.whereKey("phone", equalTo: phone)
+                    let user = query.getFirstObject()
+                    if let u = user as? PFUser {
+                        if u.username == PFUser.currentUser().username {
+                            UIAlertController.presentStandardAlert("You can't add yourself",
+                                message: "\rPlease go make some friends.",
+                                fromViewController: self)
+                        }
+                        else {
+                        }
+                    }
+                    else {
+                        SVProgressHUD.showSuccessWithStatus("Can't add yourself")
+                    }
+                }
 
             }))
         self.presentViewController(ac, animated: true, completion: nil)
+    }
+
+    @IBAction func addFriend(sender: AnyObject) {
+        self.addFriendByPhone()
     }
 
 // UITableViewDataSource
