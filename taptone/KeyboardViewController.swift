@@ -26,6 +26,15 @@ class KeyboardViewController: UIViewController {
         scrollView.backgroundColor = UIColor.tt_orangeColor()
         scrollView.addSubview(keyboardView)
         scrollView.contentSize = keyboardView.frame.size
+        scrollView.delaysContentTouches = false
+        scrollView.multipleTouchEnabled = false
+
+        for gestureRecognizer: UIGestureRecognizer in scrollView.gestureRecognizers as [UIGestureRecognizer] {
+            if gestureRecognizer.isKindOfClass(UIPanGestureRecognizer) {
+                var panGestureRecognizer = gestureRecognizer as UIPanGestureRecognizer
+                panGestureRecognizer.minimumNumberOfTouches = 2
+            }
+        }
     }
 
 }

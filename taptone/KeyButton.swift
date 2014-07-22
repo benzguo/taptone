@@ -1,16 +1,32 @@
 class KeyButton: UIButton {
 
-    init(frame: CGRect, color: KeyColor) {
+    let color: KeyColor
 
+    init(frame: CGRect, color: KeyColor) {
+        self.color = color
         super.init(frame: frame)
         if color == KeyColor.White {
             backgroundColor = UIColor.tt_whiteColor()
-            setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)), forState: .Highlighted)
         }
         else {
             backgroundColor = UIColor.tt_grayColor()
-            setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)), forState: .Highlighted)
         }
+        exclusiveTouch = true
     }
+
+    override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
+            self.backgroundColor = UIColor.tt_orangeColor()
+            UIView.animateWithDuration(0.5, animations: {
+                if self.color == KeyColor.White {
+                    self.backgroundColor = UIColor.tt_whiteColor()
+                }
+                else {
+                    self.backgroundColor = UIColor.tt_grayColor()
+                }
+            })
+
+        self.nextResponder().touchesBegan(touches, withEvent: event)
+    }
+
 
 }

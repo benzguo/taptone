@@ -5,7 +5,7 @@ class KeyboardView: UIView {
 
     init(width: CGFloat, notes: [Note]) {
         let whiteNotes = notes.filter { $0.keyColor == KeyColor.White }
-        let whiteKeyHeight = width / 5;
+        let whiteKeyHeight = 65.5;
         let blackKeyHeight = whiteKeyHeight * 2/3
         let blackKeyWidth = width / 2;
         let viewHeight = whiteKeyHeight * CGFloat(whiteNotes.count) + 1

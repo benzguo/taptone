@@ -96,14 +96,6 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="separatorColor" red="0.99215692281723022" green="0.56470590829849243" blue="0.14901961386203766" alpha="1" colorSpace="deviceRGB"/>
-                        <prototypes>
-                            <tableViewCell contentMode="scaleToFill" ambiguous="YES" selectionStyle="default" indentationWidth="10" id="cuM-CO-F4f">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cuM-CO-F4f" id="my4-Dj-YBa">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
                         <connections>
                             <outlet property="dataSource" destination="AzT-xy-8b6" id="0ZD-ci-6eV"/>
                             <outlet property="delegate" destination="AzT-xy-8b6" id="egK-FU-so1"/>
@@ -178,6 +170,9 @@
                             <constraint firstItem="3oh-7b-3cb" firstAttribute="top" secondItem="A5e-bQ-Qd9" secondAttribute="bottom" id="fae-Nf-jMm"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="LGp-bD-QIO">
+                        <barButtonItem key="rightBarButtonItem" title="☰ " id="hyf-0s-H7f"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="scrollView" destination="A5e-bQ-Qd9" id="jaf-uB-7VA"/>
                     </connections>
