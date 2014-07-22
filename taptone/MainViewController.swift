@@ -1,5 +1,6 @@
+import MessageUI
 
-class MainViewController: UITableViewController {
+class MainViewController: UITableViewController, MFMessageComposeViewControllerDelegate {
 
     var friends: [PFUser] = []
 
@@ -43,6 +44,7 @@ class MainViewController: UITableViewController {
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = NSLocalizedString("phone number", comment: "")
+            textField.keyboardType = .PhonePad
             phoneTextField = textField
             })
         ac.addAction(UIAlertAction(title: "Ok", style: .Default,
@@ -82,8 +84,19 @@ class MainViewController: UITableViewController {
         self.presentViewController(ac, animated: true, completion: nil)
     }   
 
-    func inviteUser() {
-
+    func invitePhone(phone: String?) {
+        if MFMessageComposeViewController.canSendText() {
+            var messageVC = MFMessageComposeViewController()
+            messageVC.messageComposeDelegate = self
+            if let p = phone {
+                messageVC.recipients = [p]
+            }
+            messageVC.body = "Add me on Taptone! http://taptone.me/dl"
+            self.presentViewController(messageVC, animated: true, completion: nil)
+        }
+        else {
+            UIAlertController.presentStandardAlert("Can't send texts", message: "\r😢", fromViewController: self)
+        }
     }
 
     @IBAction func showMenu(sender: AnyObject) {
@@ -92,7 +105,7 @@ class MainViewController: UITableViewController {
         var ac = UIAlertController(title: name, message: phone, preferredStyle: .ActionSheet)
         ac.addAction(UIAlertAction(title: "Send invite", style: .Default,
             handler: { action in
-
+                self.invitePhone(nil)
             }))
         ac.addAction(UIAlertAction(title: "Edit name", style: .Default,
             handler: { action in
@@ -119,6 +132,7 @@ class MainViewController: UITableViewController {
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = NSLocalizedString("phone number", comment: "")
+            textField.keyboardType = .PhonePad
             phoneTextField = textField
             })
         ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
@@ -169,7 +183,7 @@ class MainViewController: UITableViewController {
                             ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
                             ac.addAction(UIAlertAction(title: "Invite", style: .Default,
                                 handler: { action in
-                                    self.inviteUser()
+                                    self.invitePhone(phone)
                                 }))
                             self.presentViewController(ac, animated: true, completion: nil)                       
                         }
@@ -214,13 +228,36 @@ class MainViewController: UITableViewController {
         return tableView.frame.size.width / 5
     }
 
+    override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+        return true
+    }
+
 // UITableViewDelegate
 
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         performSegueWithIdentifier("showKeyboard", sender: friends[indexPath.row])
     }
 
+    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!)  {
+        if editingStyle == .Delete {
+            let friend = self.friends[indexPath.row]
+            var friendsRelation = PFUser.currentUser().relationForKey("friends")
+            friendsRelation.removeObject(friend)
+            SVProgressHUD.show()
+            PFUser.currentUser().saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
+                SVProgressHUD.dismiss()
+                self.reloadFriends()
+                })
+        }
+    }
+
+// MFMessageComposeViewControllerDelegate
+
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult)  {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
 
 }
 

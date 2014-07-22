@@ -80,6 +80,7 @@ let UserDefaultsKeyPassword = "password"
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = NSLocalizedString("code", comment: "")
+            textField.keyboardType = .PhonePad
             codeTextField = textField
         }
         self.presentViewController(ac, animated: true, completion: nil)
@@ -130,6 +131,7 @@ let UserDefaultsKeyPassword = "password"
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = NSLocalizedString("email", comment: "")
+            textField.keyboardType = .EmailAddress
             emailTextField = textField
         }
         self.presentViewController(ac, animated: true, completion: nil)
@@ -189,6 +191,7 @@ let UserDefaultsKeyPassword = "password"
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = "email"
+            textField.keyboardType = .EmailAddress
             emailTextField = textField
         }
         self.presentViewController(ac, animated: true, completion: nil)
