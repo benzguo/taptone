@@ -99,7 +99,9 @@ let UserDefaultsKeyPassword = "password"
                     message: "Please try again",
                     fromViewController: self)               
             default:
-               SVProgressHUD.showErrorWithStatus(errorString)
+                UIAlertController.presentStandardAlert(error.localizedDescription,
+                    message: "",
+                    fromViewController: self)
             }
         }
     }

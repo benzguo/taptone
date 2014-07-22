@@ -1,6 +1,8 @@
 
 class MainViewController: UITableViewController {
-                            
+
+    var friends: [PFUser] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let navBar = navigationController.navigationBar
@@ -14,7 +16,7 @@ class MainViewController: UITableViewController {
 
         var user = PFUser.currentUser()
         user.refreshInBackgroundWithBlock({result in
-            self.tableView.reloadData()
+            self.reloadFriends()
             })
     }
 
@@ -23,6 +25,14 @@ class MainViewController: UITableViewController {
         if !(PFUser.currentUser()["phone"]) {
             setPhone()
         }
+    }
+
+    func reloadFriends() {
+        var friendsRelation = PFUser.currentUser().relationForKey("friends")
+        friendsRelation.query().findObjectsInBackgroundWithBlock({(objects: [AnyObject]!, error: NSError?) in
+            self.friends = objects as [PFUser]
+            self.tableView.reloadData()
+            })
     }
 
     func setPhone(title: String = "Enter your phone number",
@@ -49,9 +59,9 @@ class MainViewController: UITableViewController {
         self.presentViewController(ac, animated: true, completion: nil)
     }
 
-    func setName(message: String) {
+    func setName(title: String = "Change your name", message: String = "") {
         var nameTextField = UITextField()
-        var ac = UIAlertController(title: "Change your name", message: message, preferredStyle: .Alert)
+        var ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         ac.addTextFieldWithConfigurationHandler({ textField in
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
@@ -60,12 +70,12 @@ class MainViewController: UITableViewController {
             })
         ac.addAction(UIAlertAction(title: "Ok", style: .Default,
             handler: { action in
-                if nameTextField.text.utf16count < 7 {
-                    self.setPhone(title: "Please enter a valid phone",
-                        message: "\rOnly people who know your phone number can add you on Taptone.")
+                if nameTextField.text.utf16count < 6 {
+                    self.setName(title: "Please enter a valid name",
+                        message: "\rYour name must be at least 6 characters long.")
                 }
                 else {
-                    PFUser.currentUser().setObject(nameTextField.text, forKey: "phone");
+                    PFUser.currentUser().setObject(nameTextField.text, forKey: "name");
                     PFUser.currentUser().saveInBackground()
                 }
             }))              
@@ -86,7 +96,7 @@ class MainViewController: UITableViewController {
             }))
         ac.addAction(UIAlertAction(title: "Edit name", style: .Default,
             handler: { action in
-
+                self.setName()
             }))              
         ac.addAction(UIAlertAction(title: "Edit phone", style: .Default,
             handler: { action in
@@ -121,50 +131,49 @@ class MainViewController: UITableViewController {
                 else {
                     var query = PFUser.query()
                     query.whereKey("phone", equalTo: phone)
-                    let user = query.getFirstObject()
-                    if let u = user as? PFUser {
-                        if u.username == PFUser.currentUser().username {
-                            UIAlertController.presentStandardAlert("You can't add yourself",
-                                message: "\rPlease go make some friends.",
-                                fromViewController: self)
-                        }
-                        else {
-                            let newFriend: Dictionary<String, String> = ["username": u.username as String,
-                                                                         "name": u["name"] as String]
-                            var currentUser = PFUser.currentUser()
-                            var friends = currentUser["friends"] as Array<Dictionary<String, String>>?
-                            if let f = friends {
-                                let duplicates = f.filter({e in e["username"] == newFriend["username"]})
-                                if duplicates.count > 0 {
+                    SVProgressHUD.show()
+                    query.getFirstObjectInBackgroundWithBlock({(user: PFObject?, error: NSError?) in
+                        if let u = user as? PFUser {
+                            if u.username == PFUser.currentUser().username {
+                                SVProgressHUD.dismiss()
+                                UIAlertController.presentStandardAlert("You can't add yourself",
+                                    message: "\rPlease go make some friends.",
+                                    fromViewController: self)
+                            }
+                            else {
+                                var currentUser = PFUser.currentUser()
+                                var friendsRelation = currentUser.relationForKey("friends")
+                                let duplicateQuery = friendsRelation.query()
+                                duplicateQuery.whereKey("username", equalTo:u["username"])
+                                let duplicate = duplicateQuery.getFirstObject()
+                                if let d = duplicate {
+                                    SVProgressHUD.dismiss()
                                     let name = u["name"] as String!
                                     UIAlertController.presentStandardAlert("Already added \(name)",
                                         message: "",
                                         fromViewController: self)
                                 }
                                 else {
-                                    var mf = f
-                                    mf.insert(newFriend, atIndex:0)
-                                    currentUser["friends"] = mf
+                                    friendsRelation.addObject(user)
+                                    currentUser.saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
+                                        SVProgressHUD.dismiss()
+                                        self.reloadFriends()
+                                        })
                                 }
-                             }
-                            else {
-                                currentUser["friends"] = [newFriend]
                             }
-                            currentUser.saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
-                                self.tableView.reloadData()
-                                })
                         }
-                    }
-                    else {
-                        var ac = UIAlertController(title: "We couldn't find a user with that phone number. Invite them to join Taptone!",
-                            message: "", preferredStyle: .Alert)
-                        ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-                        ac.addAction(UIAlertAction(title: "Invite", style: .Default,
-                            handler: { action in
-                                self.inviteUser()
-                            }))
-                        self.presentViewController(ac, animated: true, completion: nil)                       
-                    }
+                        else {
+                            SVProgressHUD.dismiss()
+                            var ac = UIAlertController(title: "We couldn't find a user with that phone number. Invite them to join Taptone!",
+                                message: "", preferredStyle: .Alert)
+                            ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+                            ac.addAction(UIAlertAction(title: "Invite", style: .Default,
+                                handler: { action in
+                                    self.inviteUser()
+                                }))
+                            self.presentViewController(ac, animated: true, completion: nil)                       
+                        }
+                        })
                 }
 
             }))
@@ -180,17 +189,15 @@ class MainViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if segue.identifier == "showKeyboard" {
             var keyboardVC = segue.destinationViewController as KeyboardViewController
-            keyboardVC.title = sender as String
+            var user = sender as PFUser
+            keyboardVC.title = user["name"] as String
         }
     }
 
 // UITableViewDataSource
 
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        if let f = PFUser.currentUser()["friends"] as Array<Dictionary<String, String>>? {
-            return f.count
-        }
-        return 0
+        return friends.count
     }
 
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
@@ -199,9 +206,7 @@ class MainViewController: UITableViewController {
         cell.textLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 30)
         cell.textLabel.textColor = UIColor.whiteColor()
         cell.backgroundColor = UIColor.clearColor()
-        if let f = PFUser.currentUser()["friends"] as Array<Dictionary<String, String>>? {
-            cell.textLabel.text = f[indexPath.row]["name"]
-        }
+        cell.textLabel.text = friends[indexPath.row]["name"] as String
         return cell
     }
 
@@ -213,7 +218,7 @@ class MainViewController: UITableViewController {
 
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        performSegueWithIdentifier("showKeyboard", sender: cell.textLabel.text)
+        performSegueWithIdentifier("showKeyboard", sender: friends[indexPath.row])
     }
 
 

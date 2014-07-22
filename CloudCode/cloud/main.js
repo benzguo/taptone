@@ -3,7 +3,7 @@ Mailgun.initialize('taptone.me', 'key-9jagq65bowrwiamosv35pcxj9lxt4q74')
 
 function randomCode() {
   var nums = []
-  for (i = 0 i < 5 i++) {
+  for (i = 0; i < 5; i++) {
     nums.push(Math.floor((Math.random() * 10)))
   }
   return nums.join("")
