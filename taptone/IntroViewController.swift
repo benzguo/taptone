@@ -141,7 +141,7 @@ let UserDefaultsKeyPassword = "password"
 
     @IBAction func logIn(sender: UIButton) {
         var emailTextField = UITextField()
-        var ac = UIAlertController(title: "Log in", message: nil, preferredStyle: .Alert)
+        var ac = UIAlertController(title: "", message: nil, preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Log in", style: .Default, handler:
         { action in
@@ -192,7 +192,7 @@ let UserDefaultsKeyPassword = "password"
     @IBAction func signUp(sender: UIButton) {
         var nameTextField  = UITextField()
         var emailTextField = UITextField()
-        var ac = UIAlertController(title: "Sign up", message: nil, preferredStyle: .Alert)
+        var ac = UIAlertController(title: "", message: nil, preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Sign up", style: .Default, handler:
         { action in
@@ -230,15 +230,15 @@ let UserDefaultsKeyPassword = "password"
     }
 
     @IBAction func signupTouchDown(sender: AnyObject) {
-        GPlayer.currentTime = 0
-        GPlayer.play()
+        APlayer.currentTime = 0
+        APlayer.play()
     }
     @IBAction func blackKeyTouchDown(sender: AnyObject) {
         GsPlayer.currentTime = 0
         GsPlayer.play()
     }
     @IBAction func loginTouchDown(sender: AnyObject) {
-        APlayer.currentTime = 0
-        APlayer.play()
+        GPlayer.currentTime = 0
+        GPlayer.play()
     }
 }
