@@ -1,10 +1,16 @@
 
+import AVFoundation
+
 let KeychainServiceName = "taptone"
 let UserDefaultsKeyEmail = "email"
 let UserDefaultsKeyPassword = "password"
 
 
 @objc(IntroViewController) class IntroViewController: UIViewController, UIAlertViewDelegate {
+
+    let APlayer: AVAudioPlayer
+    let GsPlayer: AVAudioPlayer
+    let GPlayer: AVAudioPlayer
 
     enum GenericError: String {
         case ConnectionError = "Connection error"
@@ -22,8 +28,34 @@ let UserDefaultsKeyPassword = "password"
         case FailedToSendCode = "Failed to send code"
     }
 
+    init(coder aDecoder: NSCoder!) {
+        APlayer = AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource("A3", withExtension: "caf"), error: nil)
+        GsPlayer = AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource("G#3", withExtension: "caf"), error: nil)
+        GPlayer = AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource("G3", withExtension: "caf"), error: nil)
+        super.init(coder: aDecoder)
+    }
+
+    @IBOutlet var signupButton: UIButton
+    @IBOutlet var blackKeyButton: UIButton
+    @IBOutlet var loginButton: UIButton
+
     @IBAction func unwindToIntroViewController(segue: UIStoryboardSegue) {
 
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        self.signupButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
+            forState: .Highlighted)
+        self.signupButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
+
+        self.loginButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
+            forState: .Highlighted)
+        self.loginButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
+
+        self.blackKeyButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
+            forState: .Highlighted)
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -197,4 +229,16 @@ let UserDefaultsKeyPassword = "password"
         self.presentViewController(ac, animated: true, completion: nil)
     }
 
+    @IBAction func signupTouchDown(sender: AnyObject) {
+        GPlayer.currentTime = 0
+        GPlayer.play()
+    }
+    @IBAction func blackKeyTouchDown(sender: AnyObject) {
+        GsPlayer.currentTime = 0
+        GsPlayer.play()
+    }
+    @IBAction func loginTouchDown(sender: AnyObject) {
+        APlayer.currentTime = 0
+        APlayer.play()
+    }
 }
