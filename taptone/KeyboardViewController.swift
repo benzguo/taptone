@@ -8,7 +8,10 @@ class KeyboardViewController: UIViewController {
 
     let noteNumbers: [Int]
     let notes: [Note]
+    var maxOffset: Double = 0
+    var minOffset: Double = 0
 
+    @IBOutlet var scrollPad: UIView
     @IBOutlet var scrollView: UIScrollView
 
     init(coder aDecoder: NSCoder!) {
@@ -21,20 +24,23 @@ class KeyboardViewController: UIViewController {
         super.viewDidLoad()
 
         navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        scrollPad.layer.cornerRadius = scrollPad.frame.size.height / 2
 
         let keyboardView = KeyboardView(width: scrollView.frame.size.width, notes: notes)
+        maxOffset = keyboardView.frame.size.height - self.view.frame.size.height
+        minOffset = -self.navigationController.navigationBar.frame.size.height
         scrollView.backgroundColor = UIColor.tt_orangeColor()
         scrollView.addSubview(keyboardView)
         scrollView.contentSize = keyboardView.frame.size
         scrollView.delaysContentTouches = false
         scrollView.multipleTouchEnabled = false
-
-        for gestureRecognizer: UIGestureRecognizer in scrollView.gestureRecognizers as [UIGestureRecognizer] {
-            if gestureRecognizer.isKindOfClass(UIPanGestureRecognizer) {
-                var panGestureRecognizer = gestureRecognizer as UIPanGestureRecognizer
-                panGestureRecognizer.minimumNumberOfTouches = 2
-            }
-        }
     }
 
+    @IBAction func handlePan(sender: UIPanGestureRecognizer?) {
+        var translation = sender!.translationInView(sender!.view)
+        var y = self.scrollView.contentOffset.y + (translation.x/8)
+        y = max(min(y, maxOffset), minOffset)
+        self.scrollView.contentOffset = CGPoint(x: 0, y: y)
+
+    }
 }

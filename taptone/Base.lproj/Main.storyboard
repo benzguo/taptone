@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="14A238x" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="okB-Wb-GAG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="okB-Wb-GAG">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
     </dependencies>
@@ -171,15 +171,31 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="LGp-bD-QIO">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="USg-xD-25G">
+                            <rect key="frame" x="160" y="5.5" width="160" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" red="0.91764712333679199" green="0.32156863808631897" blue="0.95294123888015747" alpha="1" colorSpace="deviceRGB"/>
+                            <gestureRecognizers/>
+                            <connections>
+                                <outletCollection property="gestureRecognizers" destination="sFq-Wl-VxC" appends="YES" id="6rh-Dt-H6O"/>
+                            </connections>
+                        </view>
                         <barButtonItem key="rightBarButtonItem" title="☰ " id="hyf-0s-H7f"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="scrollPad" destination="USg-xD-25G" id="8os-HL-Mt0"/>
                         <outlet property="scrollView" destination="A5e-bQ-Qd9" id="jaf-uB-7VA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zYa-37-RNB" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="sFq-Wl-VxC">
+                    <connections>
+                        <action selector="handlePan:" destination="bk2-Tn-0YW" id="nNA-Yh-egJ"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="251" y="362"/>
+            <point key="canvasLocation" x="268" y="362"/>
         </scene>
     </scenes>
 </document>
