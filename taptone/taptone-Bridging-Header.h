@@ -6,4 +6,5 @@
 #import <UIImage+Additions/UIImage+Additions.h>
 #import <SVProgressHUD/SVProgressHUD.h>
 #import <SSKeychain/SSKeychain.h>
+#import <Shimmer/FBShimmeringView.h>
 

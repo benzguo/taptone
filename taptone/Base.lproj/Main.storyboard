@@ -175,7 +175,6 @@
                         <view key="titleView" contentMode="scaleToFill" id="USg-xD-25G">
                             <rect key="frame" x="160" y="5.5" width="160" height="33"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <color key="backgroundColor" red="0.91764712333679199" green="0.32156863808631897" blue="0.95294123888015747" alpha="1" colorSpace="deviceRGB"/>
                             <gestureRecognizers/>
                             <connections>
                                 <outletCollection property="gestureRecognizers" destination="sFq-Wl-VxC" appends="YES" id="6rh-Dt-H6O"/>

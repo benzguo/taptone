@@ -24,7 +24,16 @@ class KeyboardViewController: UIViewController {
         super.viewDidLoad()
 
         navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        scrollPad.layer.cornerRadius = scrollPad.frame.size.height / 2
+        var shimmeringView = FBShimmeringView(frame: scrollPad.bounds)
+        shimmeringView.shimmering = true
+        shimmeringView.shimmeringSpeed = 100
+        shimmeringView.shimmeringPauseDuration = 1
+        shimmeringView.shimmeringOpacity = 0.8
+        var contentView = UIView(frame: shimmeringView.bounds)
+        contentView.layer.cornerRadius = scrollPad.frame.size.height / 2
+        contentView.backgroundColor = UIColor.tt_whiteColor()
+        shimmeringView.contentView = contentView
+        scrollPad.addSubview(shimmeringView)
 
         let keyboardView = KeyboardView(width: scrollView.frame.size.width, notes: notes)
         maxOffset = keyboardView.frame.size.height - self.view.frame.size.height
