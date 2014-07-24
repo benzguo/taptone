@@ -120,8 +120,8 @@ class Note: ProtoNote {
 
     func _toString(ASCII: Bool) -> String {
         var fullName: String = String(name.toRaw())
-        if let _accidental = accidental {
-            let accidentalString = ASCII ? String(_accidental.toRaw()) : _accidental.toASCII()
+        if let a = accidental {
+            let accidentalString = ASCII ? a.toASCII() : String(a.toRaw())
             fullName = fullName + accidentalString
         }
         return fullName + String(octaveNumber)

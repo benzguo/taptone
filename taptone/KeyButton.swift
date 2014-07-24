@@ -1,11 +1,16 @@
+
+import AVFoundation
+
 class KeyButton: UIButton {
 
-    let color: KeyColor
+    let note: Note
+    let audioPlayer: AVAudioPlayer
 
-    init(frame: CGRect, color: KeyColor) {
-        self.color = color
+    init(frame: CGRect, note: Note) {
+        self.note = note
+        self.audioPlayer = AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource(note.toASCIIString(), withExtension: "caf"), error: nil)
         super.init(frame: frame)
-        if color == KeyColor.White {
+        if note.keyColor == KeyColor.White {
             backgroundColor = UIColor.tt_whiteColor()
         }
         else {
@@ -15,15 +20,17 @@ class KeyButton: UIButton {
     }
 
     override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
-            self.backgroundColor = UIColor.tt_orangeColor()
-            UIView.animateWithDuration(0.5, animations: {
-                if self.color == KeyColor.White {
-                    self.backgroundColor = UIColor.tt_whiteColor()
-                }
-                else {
-                    self.backgroundColor = UIColor.tt_grayColor()
-                }
-            })
+        self.audioPlayer.currentTime = 0
+        self.audioPlayer.play()
+        self.backgroundColor = UIColor.tt_orangeColor()
+        UIView.animateWithDuration(0.3, animations: {
+            if self.note.keyColor == KeyColor.White {
+                self.backgroundColor = UIColor.tt_whiteColor()
+            }
+            else {
+                self.backgroundColor = UIColor.tt_grayColor()
+            }
+        })
 
         self.nextResponder().touchesBegan(touches, withEvent: event)
     }

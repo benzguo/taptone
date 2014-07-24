@@ -31,7 +31,7 @@ class KeyboardView: UIView {
                 keyWidth = width
             }
             let keyFrame = CGRectMake(0, y, keyWidth, noteHeight-1)
-            let key = KeyButton(frame: keyFrame, color: n.keyColor)
+            let key = KeyButton(frame: keyFrame, note: n)
 
             if n.keyColor == .Black {
                 blackKeys.append(key)
