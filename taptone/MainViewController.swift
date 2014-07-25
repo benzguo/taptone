@@ -3,6 +3,7 @@ import MessageUI
 class MainViewController: UITableViewController, MFMessageComposeViewControllerDelegate {
 
     var friends: [PFUser] = []
+    var isMultiSelecting: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -14,6 +15,11 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         tableView.tableFooterView = UIView()
         tableView.separatorInset = UIEdgeInsetsZero
         tableView.separatorStyle = .None
+        tableView.allowsMultipleSelection = true
+
+        var longPressGR = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
+        longPressGR.minimumPressDuration = 1.0
+        tableView.addGestureRecognizer(longPressGR)
 
         var user = PFUser.currentUser()
         user.refreshInBackgroundWithBlock({result in
@@ -21,11 +27,12 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             })
     }
 
-    override func viewDidAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
         if !(PFUser.currentUser()["phone"]) {
             setPhone()
         }
+        self.isMultiSelecting = false
     }
 
     func reloadFriends() {
@@ -118,10 +125,6 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             handler: { action in
                 self.invitePhone(nil)
             }))
-        ac.addAction(UIAlertAction(title: |"Edit phone", style: .Default,
-            handler: { action in
-                self.setPhone()
-            }))
 
         ac.addAction(UIAlertAction(title: |"Edit name", style: .Default,
             handler: { action in
@@ -163,8 +166,8 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                         if let u = user as? PFUser {
                             if u.username == PFUser.currentUser().username {
                                 SVProgressHUD.dismiss()
-                                UIAlertController.presentStandardAlert(|"You can't add yourself",
-                                    message: "\r" + |"Please go make some friends",
+                                UIAlertController.presentStandardAlert(|"You can't add yourself!",
+                                    message: "\r" + |"Please go make some friends.",
                                     fromViewController: self)
                             }
                             else {
@@ -191,8 +194,8 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                         }
                         else {
                             SVProgressHUD.dismiss()
-                            var ac = UIAlertController(title: |"We couldn't find a user with that phone number. Invite them to join Taptone!",
-                                message: "", preferredStyle: .Alert)
+                            var ac = UIAlertController(title: |"We couldn't find a user with that phone number",
+                                message: "Invite them to join Taptone!", preferredStyle: .Alert)
                             ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
                             ac.addAction(UIAlertAction(title: |"Invite", style: .Default,
                                 handler: { action in
@@ -251,9 +254,11 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
 // UITableViewDelegate
 
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
-        performSegueWithIdentifier("showKeyboard", sender: friends[indexPath.row])
+        if !self.isMultiSelecting {
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            let cell = tableView.cellForRowAtIndexPath(indexPath)
+            performSegueWithIdentifier("showKeyboard", sender: friends[indexPath.row])
+        }
     }
 
     override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!)  {
@@ -266,6 +271,16 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                 SVProgressHUD.dismiss()
                 self.reloadFriends()
                 })
+        }
+    }
+
+// UIGestureRecognizer
+
+    func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer?) {
+        let p = gestureRecognizer!.locationInView(self.tableView)
+        if let indexPath = self.tableView.indexPathForRowAtPoint(p) {
+            self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
+            self.isMultiSelecting = true
         }
     }
 

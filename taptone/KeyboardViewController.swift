@@ -58,4 +58,8 @@ class KeyboardViewController: UIViewController {
         self.scrollView.contentOffset = CGPoint(x: 0, y: y)
 
     }
+
+    @IBAction func menuButtonAction(sender: AnyObject) {
+
+    }
 }

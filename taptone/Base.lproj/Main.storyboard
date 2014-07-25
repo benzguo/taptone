@@ -180,7 +180,11 @@
                                 <outletCollection property="gestureRecognizers" destination="sFq-Wl-VxC" appends="YES" id="6rh-Dt-H6O"/>
                             </connections>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" image="menu" id="hyf-0s-H7f"/>
+                        <barButtonItem key="rightBarButtonItem" image="menu" id="hyf-0s-H7f">
+                            <connections>
+                                <action selector="menuButtonAction:" destination="bk2-Tn-0YW" id="eiQ-o6-KRU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="scrollPad" destination="USg-xD-25G" id="8os-HL-Mt0"/>

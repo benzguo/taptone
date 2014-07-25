@@ -61,7 +61,7 @@ let UserDefaultsKeyPassword = "password"
     }
 
     override func viewWillAppear(animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
 
         let email: String? = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultsKeyEmail) as String?
         let password: String? = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultsKeyPassword) as String?
@@ -183,11 +183,11 @@ let UserDefaultsKeyPassword = "password"
             switch errorString {
             case SignupError.EmailTaken.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
-                    message: |"This email is already in use. Please log in or choose another email.",
+                    message: |"This email is taken. Please log in or choose another email.",
                     fromViewController: self)
             case SignupError.PhoneTaken.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
-                    message: |"This phone number is already in use. Please log in or choose another phone number.",
+                    message: |"This phone number is taken. Please log in or choose another phone number.",
                     fromViewController: self)
             default:
                SVProgressHUD.showErrorWithStatus(errorString)
