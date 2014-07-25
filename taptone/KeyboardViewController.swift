@@ -6,6 +6,10 @@ extension Range {
 
 class KeyboardViewController: UIViewController {
 
+    // public
+    var channel: String = ""
+
+    // private
     let noteNumbers: [Int]
     let notes: [Note]
     var maxOffset: Double = 0
@@ -35,9 +39,11 @@ class KeyboardViewController: UIViewController {
         shimmeringView.contentView = contentView
         scrollPad.addSubview(shimmeringView)
 
-        let keyboardView = KeyboardView(width: scrollView.frame.size.width, notes: notes)
+        let keyboardView = KeyboardView(width: scrollView.frame.size.width, notes: notes, channel: self.channel)
         maxOffset = keyboardView.frame.size.height - self.view.frame.size.height
         minOffset = -self.navigationController.navigationBar.frame.size.height
+        scrollPad.hidden = (maxOffset < 5)
+
         scrollView.backgroundColor = UIColor.tt_orangeColor()
         scrollView.addSubview(keyboardView)
         scrollView.contentSize = keyboardView.frame.size

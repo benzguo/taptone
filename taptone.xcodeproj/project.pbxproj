@@ -69,6 +69,7 @@
 		96CF9B1B19679EC200389595 /* Pusher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9B1A19679EC200389595 /* Pusher.swift */; };
 		96CF9B1D1967A0FE00389595 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9B1C1967A0FE00389595 /* KeyboardViewController.swift */; };
 		96CF9B1F1967A64700389595 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9B1E1967A64700389595 /* Music.swift */; };
+		EB6A5ED11981EFB800B404BE /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A5ED01981EFB800B404BE /* Localizer.swift */; };
 		EB9700EC197C46C000241451 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9700EB197C46C000241451 /* UIAlertControllerExtension.swift */; };
 		EBC3EF1B196F6F2D00496D06 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC3EF1A196F6F2D00496D06 /* IntroViewController.swift */; };
 /* End PBXBuildFile section */
@@ -153,6 +154,7 @@
 		96CF9B1C1967A0FE00389595 /* KeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		96CF9B1E1967A64700389595 /* Music.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		96D23B6E1963B88800343C74 /* taptone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "taptone-Bridging-Header.h"; sourceTree = "<group>"; };
+		EB6A5ED01981EFB800B404BE /* Localizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
 		EB9700EB197C46C000241451 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		EBC3EF1A196F6F2D00496D06 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,6 +226,7 @@
 				968018C81978CD610026FDB3 /* IntroViewController.h */,
 				967C22911963B52E001B7F7F /* AppDelegate.swift */,
 				967C22931963B52E001B7F7F /* MainViewController.swift */,
+				EB6A5ED01981EFB800B404BE /* Localizer.swift */,
 				96CF9B1A19679EC200389595 /* Pusher.swift */,
 				96626FC4196A067C002D5296 /* UIColorExtension.swift */,
 				EB9700EB197C46C000241451 /* UIAlertControllerExtension.swift */,
@@ -512,6 +515,7 @@
 			files = (
 				EBC3EF1B196F6F2D00496D06 /* IntroViewController.swift in Sources */,
 				967C22941963B52E001B7F7F /* MainViewController.swift in Sources */,
+				EB6A5ED11981EFB800B404BE /* Localizer.swift in Sources */,
 				967C22921963B52E001B7F7F /* AppDelegate.swift in Sources */,
 				96626FC21969E7A9002D5296 /* KeyboardView.swift in Sources */,
 				EB9700EC197C46C000241451 /* UIAlertControllerExtension.swift in Sources */,

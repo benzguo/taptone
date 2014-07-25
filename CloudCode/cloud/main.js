@@ -1,7 +1,7 @@
 var Mailgun = require('mailgun')
 Mailgun.initialize('taptone.me', 'key-9jagq65bowrwiamosv35pcxj9lxt4q74')
 
-function randomCode() {
+var randomCode = function() {
   var nums = []
   for (i = 0; i < 5; i++) {
     nums.push(Math.floor((Math.random() * 10)))
@@ -9,7 +9,7 @@ function randomCode() {
   return nums.join("")
 }
 
-function emailCode(email, code, response) {
+var emailCode = function(email, code, response) {
    Mailgun.sendEmail({
       to: email,
       from: "taptone@taptone.me",
@@ -22,7 +22,7 @@ function emailCode(email, code, response) {
   }) 
 }
 
-function handleError(error, response) {
+var handleError = function(error, response) {
   if (error.code === Parse.Error.OBJECT_NOT_FOUND) {
     response.error("Object not found")
   } 

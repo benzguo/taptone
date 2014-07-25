@@ -36,22 +36,22 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             })
     }
 
-    func setPhone(title: String = "Enter your phone number",
-        message: String = "\rYour friends can add you on Taptone using your phone number.") {
+    func setPhone(title: String = |"Enter your phone number",
+        message: String = |"\rYour friends can add you on Taptone using your phone number.") {
         var phoneTextField = UITextField()
         var ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         ac.addTextFieldWithConfigurationHandler({ textField in
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
-            textField.placeholder = NSLocalizedString("phone number", comment: "")
+            textField.placeholder = |"phone number"
             textField.keyboardType = .PhonePad
             phoneTextField = textField
             })
-        ac.addAction(UIAlertAction(title: "Ok", style: .Default,
+        ac.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default,
             handler: { action in
                 if phoneTextField.text.utf16count < 7 {
-                    self.setPhone(title: "Please enter a valid phone",
-                        message: "\rOnly people who know your phone number can add you on Taptone.")
+                    self.setPhone(title: |"Please enter a valid phone",
+                        message: |"\rOnly people who know your phone number can add you on Taptone.")
                 }
                 else {
                     PFUser.currentUser().setObject(phoneTextField.text, forKey: "phone");
@@ -61,7 +61,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         self.presentViewController(ac, animated: true, completion: nil)
     }
 
-    func setName(title: String = "Change your name", message: String = "") {
+    func setName(title: String = |"Change your name", message: String = "") {
         var nameTextField = UITextField()
         var ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         ac.addTextFieldWithConfigurationHandler({ textField in
@@ -70,11 +70,11 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             textField.placeholder = NSLocalizedString("name", comment: "")
             nameTextField = textField
             })
-        ac.addAction(UIAlertAction(title: "Ok", style: .Default,
+        ac.addAction(UIAlertAction(title: |"Ok", style: .Default,
             handler: { action in
                 if nameTextField.text.utf16count < 6 {
-                    self.setName(title: "Please enter a valid name",
-                        message: "\rYour name must be at least 6 characters long.")
+                    self.setName(title: |"Please enter a valid name",
+                        message: |"\rYour name must be at least 6 characters long.")
                 }
                 else {
                     PFUser.currentUser().setObject(nameTextField.text, forKey: "name");
@@ -91,11 +91,11 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             if let p = phone {
                 messageVC.recipients = [p]
             }
-            messageVC.body = "Add me on Taptone! http://taptone.me/dl"
+            messageVC.body = |"Add me on Taptone! http://taptone.me/dl"
             self.presentViewController(messageVC, animated: true, completion: nil)
         }
         else {
-            UIAlertController.presentStandardAlert("Can't send texts", message: "\r😢", fromViewController: self)
+            UIAlertController.presentStandardAlert(|"Can't send texts", message: "\r😢", fromViewController: self)
         }
     }
 
@@ -103,29 +103,29 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         let name = PFUser.currentUser()["name"] as String?
         let phone = PFUser.currentUser()["phone"] as String?
         var ac = UIAlertController(title: name, message: phone, preferredStyle: .ActionSheet)
-        ac.addAction(UIAlertAction(title: "Send invite", style: .Default,
+        ac.addAction(UIAlertAction(title: |"Send invite", style: .Default,
             handler: { action in
                 self.invitePhone(nil)
             }))
-        ac.addAction(UIAlertAction(title: "Edit name", style: .Default,
+        ac.addAction(UIAlertAction(title: |"Edit name", style: .Default,
             handler: { action in
                 self.setName()
             }))              
-        ac.addAction(UIAlertAction(title: "Edit phone", style: .Default,
+        ac.addAction(UIAlertAction(title: |"Edit phone", style: .Default,
             handler: { action in
-                self.setPhone(title: "Change your phone number", message: "\rCurrent number: \(phone)")
+                self.setPhone(title: |"Change your phone number", message: |"\rCurrent number: \(phone)")
             }))
-        ac.addAction(UIAlertAction(title: "Log out", style: .Default,
+        ac.addAction(UIAlertAction(title: |"Log out", style: .Default,
             handler: { action in
                 NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeyEmail)
                 NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeyPassword)
-                self.performSegueWithIdentifier("logout", sender: self)
+                self.performSegueWithIdentifier(|"logout", sender: self)
             }))
-        ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
         self.presentViewController(ac, animated: true, completion: nil)
     }
 
-    func addFriendByPhone(title: String = "Add a friend by entering their phone number") {
+    func addFriendByPhone(title: String = |"Add a friend by entering their phone number") {
         var phoneTextField = UITextField()
         var ac = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
         ac.addTextFieldWithConfigurationHandler({ textField in
@@ -135,12 +135,12 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             textField.keyboardType = .PhonePad
             phoneTextField = textField
             })
-        ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: "Add", style: .Default,
+        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: |"Add", style: .Default,
             handler: { action in
                 let phone = phoneTextField.text
                 if phone.utf16count < 7 {
-                    self.addFriendByPhone(title: "Please enter a valid phone")
+                    self.addFriendByPhone(title: |"Please enter a valid phone")
                 }
                 else {
                     var query = PFUser.query()
@@ -150,8 +150,8 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                         if let u = user as? PFUser {
                             if u.username == PFUser.currentUser().username {
                                 SVProgressHUD.dismiss()
-                                UIAlertController.presentStandardAlert("You can't add yourself",
-                                    message: "\rPlease go make some friends.",
+                                UIAlertController.presentStandardAlert(|"You can't add yourself",
+                                    message: |"\rPlease go make some friends.",
                                     fromViewController: self)
                             }
                             else {
@@ -163,7 +163,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                                 if let d = duplicate {
                                     SVProgressHUD.dismiss()
                                     let name = u["name"] as String!
-                                    UIAlertController.presentStandardAlert("Already added \(name)",
+                                    UIAlertController.presentStandardAlert(|"Already added \(name)",
                                         message: "",
                                         fromViewController: self)
                                 }
@@ -178,10 +178,10 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                         }
                         else {
                             SVProgressHUD.dismiss()
-                            var ac = UIAlertController(title: "We couldn't find a user with that phone number. Invite them to join Taptone!",
+                            var ac = UIAlertController(title: |"We couldn't find a user with that phone number. Invite them to join Taptone!",
                                 message: "", preferredStyle: .Alert)
-                            ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-                            ac.addAction(UIAlertAction(title: "Invite", style: .Default,
+                            ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
+                            ac.addAction(UIAlertAction(title: |"Invite", style: .Default,
                                 handler: { action in
                                     self.invitePhone(phone)
                                 }))
@@ -203,8 +203,10 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if segue.identifier == "showKeyboard" {
             var keyboardVC = segue.destinationViewController as KeyboardViewController
-            var user = sender as PFUser
+            let user = sender as PFUser
+            let userId = user.objectId
             keyboardVC.title = user["name"] as String
+            keyboardVC.channel = "user_" + userId
         }
     }
 

@@ -49,16 +49,18 @@ let UserDefaultsKeyPassword = "password"
         self.signupButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)
         self.signupButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
+        self.signupButton.titleLabel.text = |"Sign up"
 
         self.loginButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)
         self.loginButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
+        self.loginButton.titleLabel.text = |"Log in"
 
         self.blackKeyButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
         let email: String? = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultsKeyEmail) as String?
@@ -82,11 +84,11 @@ let UserDefaultsKeyPassword = "password"
 
     func enterCode(email: String) {
         var codeTextField = UITextField()
-        var ac = UIAlertController(title: "Enter code",
-            message: "Check your email and enter the code the log in.",
+        var ac = UIAlertController(title: |"Enter code",
+            message: |"Check your email and enter the code the log in.",
             preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: "Log in", style: .Default, handler:
+        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: |"Log in", style: .Default, handler:
         { action in
             SVProgressHUD.show()
             let password = codeTextField.text
@@ -95,11 +97,15 @@ let UserDefaultsKeyPassword = "password"
                 block: { (user: PFUser?, error: NSError?) in
                     SVProgressHUD.dismiss()
                     if let e = error {
-                         UIAlertController.presentStandardAlert("Log in failed",
-                            message: "Please try again",
+                         UIAlertController.presentStandardAlert(|"Log in failed",
+                            message: |"Please try again",
                             fromViewController: self)                       
                     }
                     else {
+                        let channelName = "user_" + user!.objectId
+                        PFInstallation.currentInstallation().addUniqueObject(channelName, forKey:"channels")
+                        PFInstallation.currentInstallation().saveEventually()
+
                         NSUserDefaults.standardUserDefaults().setObject(email, forKey: UserDefaultsKeyEmail)
                         NSUserDefaults.standardUserDefaults().setObject(password, forKey: UserDefaultsKeyPassword)
                         NSUserDefaults.standardUserDefaults().synchronize()
@@ -125,11 +131,11 @@ let UserDefaultsKeyPassword = "password"
             switch errorString {
             case LoginError.UserNotFound.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
-                    message: "Please enter the email you signed up with.",
+                    message: |"Please enter the email you signed up with.",
                     fromViewController: self)
              case LoginError.FailedToSendCode.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
-                    message: "Please try again",
+                    message: |"Please try again",
                     fromViewController: self)               
             default:
                 UIAlertController.presentStandardAlert(error.localizedDescription,
@@ -142,8 +148,8 @@ let UserDefaultsKeyPassword = "password"
     @IBAction func logIn(sender: UIButton) {
         var emailTextField = UITextField()
         var ac = UIAlertController(title: "", message: nil, preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: "Log in", style: .Default, handler:
+        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: |"Log in", style: .Default, handler:
         { action in
             SVProgressHUD.show()
             PFCloud.callFunctionInBackground("login",
@@ -163,6 +169,7 @@ let UserDefaultsKeyPassword = "password"
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = NSLocalizedString("email", comment: "")
+            textField.autocapitalizationType = .None
             textField.keyboardType = .EmailAddress
             emailTextField = textField
         }
@@ -176,11 +183,11 @@ let UserDefaultsKeyPassword = "password"
             switch errorString {
             case SignupError.EmailTaken.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
-                    message: "This email is already in use. Please log in or choose another email.",
+                    message: |"This email is already in use. Please log in or choose another email.",
                     fromViewController: self)
             case SignupError.PhoneTaken.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
-                    message: "This phone number is already in use. Please log in or choose another phone number.",
+                    message: |"This phone number is already in use. Please log in or choose another phone number.",
                     fromViewController: self)
             default:
                SVProgressHUD.showErrorWithStatus(errorString)
@@ -193,8 +200,8 @@ let UserDefaultsKeyPassword = "password"
         var nameTextField  = UITextField()
         var emailTextField = UITextField()
         var ac = UIAlertController(title: "", message: nil, preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: "Cancel", style: .Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: "Sign up", style: .Default, handler:
+        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: |"Sign up", style: .Default, handler:
         { action in
             SVProgressHUD.show()
             PFCloud.callFunctionInBackground("signup",
@@ -215,14 +222,14 @@ let UserDefaultsKeyPassword = "password"
             textField in
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
-            textField.placeholder = "name"
+            textField.placeholder = |"name"
             nameTextField = textField
         }
         ac.addTextFieldWithConfigurationHandler {
             textField in
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
-            textField.placeholder = "email"
+            textField.placeholder = |"email"
             textField.keyboardType = .EmailAddress
             emailTextField = textField
         }
