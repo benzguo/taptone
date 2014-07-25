@@ -1,6 +1,6 @@
 PODS:
   - Bolts (1.1.0)
-  - Facebook-iOS-SDK (3.16.1):
+  - Facebook-iOS-SDK (3.16.2):
     - Bolts
   - Parse-iOS-SDK (1.2.19):
     - Facebook-iOS-SDK (~> 3.7)
@@ -18,7 +18,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: 91c2af8eae1d44e1dd75946a5b0ae04a43ea43e4
-  Facebook-iOS-SDK: 594f0e2398fe62b0a44b6f7ae113c7795cfabfa4
+  Facebook-iOS-SDK: 34eef640c2cc4c8618ba0f574ad2b290e07f1b4e
   Parse-iOS-SDK: 5e1f7e649a02f1cc19e73cc95bd43d7778848314
   Shimmer: 35aa2a57b8fbc17f9e16706021665966fd93dbd1
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
