@@ -1,3 +1,4 @@
+
 extension UIAlertController {
     class func presentStandardAlert(title: String, message: String, fromViewController viewController: UIViewController) {
         var ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)

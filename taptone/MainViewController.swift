@@ -37,7 +37,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     }
 
     func setPhone(title: String = |"Enter your phone number",
-        message: String = |"\rYour friends can add you on Taptone using your phone number.") {
+        message: String = "\r" + |"Your friends can add you on Taptone using your phone number.") {
         var phoneTextField = UITextField()
         var ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         ac.addTextFieldWithConfigurationHandler({ textField in
@@ -49,13 +49,24 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             })
         ac.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default,
             handler: { action in
-                if phoneTextField.text.utf16count < 7 {
+                let phone = phoneTextField.text
+                if phone.utf16count < 7 {
                     self.setPhone(title: |"Please enter a valid phone",
-                        message: |"\rOnly people who know your phone number can add you on Taptone.")
+                        message: "\r" + |"Only people who know your phone number can add you on Taptone.")
                 }
                 else {
-                    PFUser.currentUser().setObject(phoneTextField.text, forKey: "phone");
-                    PFUser.currentUser().saveInBackground()
+                    var query = PFUser.query()
+                    query.whereKey("phone", equalTo: phone)
+                    query.getFirstObjectInBackgroundWithBlock({(object: PFObject?, error: NSError?) in
+                        if let user = object as? PFUser {
+                            UIAlertController.presentStandardAlert(|"Phone number taken",
+                                message: "\r" + |"Please choose a different number", fromViewController: self)
+                        }
+                        else {
+                            PFUser.currentUser().setObject(phone, forKey: "phone");
+                            PFUser.currentUser().saveInBackground()
+                        }
+                        })
                 }
             }))              
         self.presentViewController(ac, animated: true, completion: nil)
@@ -74,7 +85,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             handler: { action in
                 if nameTextField.text.utf16count < 6 {
                     self.setName(title: |"Please enter a valid name",
-                        message: |"\rYour name must be at least 6 characters long.")
+                        message: "\r" + |"Your name must be at least 6 characters long.")
                 }
                 else {
                     PFUser.currentUser().setObject(nameTextField.text, forKey: "name");
@@ -95,7 +106,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             self.presentViewController(messageVC, animated: true, completion: nil)
         }
         else {
-            UIAlertController.presentStandardAlert(|"Can't send texts", message: "\r😢", fromViewController: self)
+            UIAlertController.presentStandardAlert(|"This device can't send texts", message: "", fromViewController: self)
         }
     }
 
@@ -107,14 +118,16 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             handler: { action in
                 self.invitePhone(nil)
             }))
+        ac.addAction(UIAlertAction(title: |"Edit phone", style: .Default,
+            handler: { action in
+                self.setPhone()
+            }))
+
         ac.addAction(UIAlertAction(title: |"Edit name", style: .Default,
             handler: { action in
                 self.setName()
             }))              
-        ac.addAction(UIAlertAction(title: |"Edit phone", style: .Default,
-            handler: { action in
-                self.setPhone(title: |"Change your phone number", message: |"\rCurrent number: \(phone)")
-            }))
+
         ac.addAction(UIAlertAction(title: |"Log out", style: .Default,
             handler: { action in
                 NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeyEmail)
@@ -151,7 +164,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                             if u.username == PFUser.currentUser().username {
                                 SVProgressHUD.dismiss()
                                 UIAlertController.presentStandardAlert(|"You can't add yourself",
-                                    message: |"\rPlease go make some friends.",
+                                    message: "\r" + |"Please go make some friends",
                                     fromViewController: self)
                             }
                             else {

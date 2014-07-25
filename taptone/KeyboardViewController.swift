@@ -7,7 +7,7 @@ extension Range {
 class KeyboardViewController: UIViewController {
 
     // public
-    var channels: [String]
+    var channels: [String] = []
 
     // private
     let noteNumbers: [Int]
