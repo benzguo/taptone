@@ -2,8 +2,13 @@ import MessageUI
 
 class MainViewController: UITableViewController, MFMessageComposeViewControllerDelegate {
 
+    @IBOutlet var rightBarButtonItem: UIBarButtonItem
     var friends: [PFUser] = []
-    var isMultiSelecting: Bool = false
+    var isMultiSelecting: Bool = false {
+        didSet {
+            self.rightBarButtonItem.image = isMultiSelecting ? UIImage(named: "next") : UIImage(named: "plus")
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -210,8 +215,13 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         self.presentViewController(ac, animated: true, completion: nil)
     }
 
-    @IBAction func addFriend(sender: AnyObject) {
-        self.addFriendByPhone()
+    @IBAction func rightBarButtonItemAction(sender: AnyObject) {
+        if self.isMultiSelecting {
+            performSegueWithIdentifier("showKeyboard", sender: nil)
+        }
+        else {
+            self.addFriendByPhone()
+        }
     }
 
 // Segues
@@ -219,11 +229,20 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if segue.identifier == "showKeyboard" {
             var keyboardVC = segue.destinationViewController as KeyboardViewController
-            let user = sender as PFUser
-            let userId = user.objectId
-            keyboardVC.title = user["name"] as String
-            keyboardVC.channels = ["user_" + userId]
-            // TODO multiselect
+            if let user = sender as? PFUser {
+                let userId = user.objectId
+                keyboardVC.channels = ["user_" + userId]
+            }
+            else {
+                var selectedFriends: [PFUser] = []
+                let indexPaths = self.tableView.indexPathsForSelectedRows()
+                for indexPath in indexPaths {
+                    selectedFriends += self.friends[indexPath.row]
+                }
+                keyboardVC.channels = selectedFriends.map {(user: PFUser) in
+                    return "user_" + user.objectId
+                }
+            }
         }
     }
 
@@ -279,7 +298,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer?) {
         let p = gestureRecognizer!.locationInView(self.tableView)
         if let indexPath = self.tableView.indexPathForRowAtPoint(p) {
-            self.tableView.selectRowAtIndexPath(indexPath, animated: true, scrollPosition: .None)
+            self.tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
             self.isMultiSelecting = true
         }
     }
