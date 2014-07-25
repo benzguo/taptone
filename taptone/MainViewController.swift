@@ -317,7 +317,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
 
     override func tableView(tableView: UITableView!, didDeselectRowAtIndexPath indexPath: NSIndexPath!) {
         let indexPaths: NSArray? = tableView.indexPathsForSelectedRows()
-        if indexPaths?.count == 0 {
+        if indexPaths == nil {
             self.isMultiSelecting = false
         }
     }
