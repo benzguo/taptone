@@ -206,7 +206,8 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             let user = sender as PFUser
             let userId = user.objectId
             keyboardVC.title = user["name"] as String
-            keyboardVC.channel = "user_" + userId
+            keyboardVC.channels = ["user_" + userId]
+            // TODO multiselect
         }
     }
 

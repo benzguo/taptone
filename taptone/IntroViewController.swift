@@ -85,7 +85,7 @@ let UserDefaultsKeyPassword = "password"
     func enterCode(email: String) {
         var codeTextField = UITextField()
         var ac = UIAlertController(title: |"Enter code",
-            message: |"Check your email and enter the code the log in.",
+            message: |"Check your email and enter the code to log in.",
             preferredStyle: .Alert)
         ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
         ac.addAction(UIAlertAction(title: |"Log in", style: .Default, handler:
@@ -102,8 +102,8 @@ let UserDefaultsKeyPassword = "password"
                             fromViewController: self)                       
                     }
                     else {
-                        let channelName = "user_" + user!.objectId
-                        PFInstallation.currentInstallation().addUniqueObject(channelName, forKey:"channels")
+                        let userChannel = "user_" + user!.objectId
+                        PFInstallation.currentInstallation().addUniqueObject(userChannel, forKey:"channels")
                         PFInstallation.currentInstallation().saveEventually()
 
                         NSUserDefaults.standardUserDefaults().setObject(email, forKey: UserDefaultsKeyEmail)

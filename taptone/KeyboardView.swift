@@ -3,7 +3,7 @@ class KeyboardView: UIView {
     var whiteKeys: [KeyButton] = []
     var blackKeys: [KeyButton] = []
 
-    init(width: CGFloat, notes: [Note], channel: String) {
+    init(width: CGFloat, notes: [Note], channels: [String]) {
         let whiteNotes = notes.filter { $0.keyColor == KeyColor.White }
         let whiteKeyHeight = 65.5;
         let blackKeyHeight = whiteKeyHeight * 2/3
@@ -31,7 +31,7 @@ class KeyboardView: UIView {
                 keyWidth = width
             }
             let keyFrame = CGRectMake(0, y, keyWidth, noteHeight-1)
-            let key = KeyButton(frame: keyFrame, note: n, channel: channel)
+            let key = KeyButton(frame: keyFrame, note: n, channels: channels)
 
             if n.keyColor == .Black {
                 blackKeys.append(key)
