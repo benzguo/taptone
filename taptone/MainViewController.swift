@@ -2,11 +2,32 @@ import MessageUI
 
 class MainViewController: UITableViewController, MFMessageComposeViewControllerDelegate {
 
+    @IBOutlet var leftBarButtonItem: UIBarButtonItem
     @IBOutlet var rightBarButtonItem: UIBarButtonItem
+
+
     var friends: [PFUser] = []
     var isMultiSelecting: Bool = false {
         didSet {
-            self.rightBarButtonItem.image = isMultiSelecting ? UIImage(named: "next") : UIImage(named: "plus")
+            if isMultiSelecting {
+                self.leftBarButtonItem.image = UIImage(named: "cancel")
+                self.rightBarButtonItem.image = UIImage(named: "next")
+            }
+            else {
+                self.leftBarButtonItem.image = UIImage(named: "menu")
+                self.rightBarButtonItem.image = UIImage(named: "plus")
+                self.deselectAllRows()
+            }
+        }
+    }
+
+    func deselectAllRows() {
+        let optIndexPaths: NSArray? = self.tableView.indexPathsForSelectedRows()
+        if let indexPaths = optIndexPaths {
+            for indexPath in indexPaths {
+                self.tableView.deselectRowAtIndexPath(indexPath as NSIndexPath,
+                    animated: true)
+            }
         }
     }
 
@@ -122,7 +143,18 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         }
     }
 
-    @IBAction func showMenu(sender: AnyObject) {
+
+
+    @IBAction func leftBarButtonItemAction(sender: AnyObject) {
+        if self.isMultiSelecting {
+            self.isMultiSelecting = false
+        }
+        else {
+            self.showMenu()
+        }
+    }
+
+    func showMenu() {
         let name = PFUser.currentUser()["name"] as String?
         let phone = PFUser.currentUser()["phone"] as String?
         var ac = UIAlertController(title: name, message: phone, preferredStyle: .ActionSheet)
@@ -143,7 +175,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                 self.performSegueWithIdentifier(|"logout", sender: self)
             }))
         ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
-        self.presentViewController(ac, animated: true, completion: nil)
+        self.presentViewController(ac, animated: true, completion: nil)       
     }
 
     func addFriendByPhone(title: String = |"Add a friend by entering their phone number") {
@@ -235,12 +267,15 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             }
             else {
                 var selectedFriends: [PFUser] = []
-                let indexPaths = self.tableView.indexPathsForSelectedRows()
-                for indexPath in indexPaths {
-                    selectedFriends += self.friends[indexPath.row]
-                }
-                keyboardVC.channels = selectedFriends.map {(user: PFUser) in
-                    return "user_" + user.objectId
+                let optIndexPaths: NSArray? = self.tableView.indexPathsForSelectedRows()
+                if let indexPaths = optIndexPaths {
+                    for indexPath in indexPaths {
+                        selectedFriends += self.friends[indexPath.row]
+                    }
+                    keyboardVC.channels = selectedFriends.map {(user: PFUser) in
+                        return "user_" + user.objectId
+                    }
+                    self.deselectAllRows()
                 }
             }
         }
@@ -277,6 +312,13 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             let cell = tableView.cellForRowAtIndexPath(indexPath)
             performSegueWithIdentifier("showKeyboard", sender: friends[indexPath.row])
+        }
+    }
+
+    override func tableView(tableView: UITableView!, didDeselectRowAtIndexPath indexPath: NSIndexPath!) {
+        let indexPaths: NSArray? = tableView.indexPathsForSelectedRows()
+        if indexPaths?.count == 0 {
+            self.isMultiSelecting = false
         }
     }
 

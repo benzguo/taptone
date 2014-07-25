@@ -104,7 +104,7 @@
                     <navigationItem key="navigationItem" id="SNt-1A-HXw">
                         <barButtonItem key="leftBarButtonItem" image="menu" id="1fP-GK-Liy">
                             <connections>
-                                <action selector="showMenu:" destination="AzT-xy-8b6" id="WMQ-i6-aWg"/>
+                                <action selector="leftBarButtonItemAction:" destination="AzT-xy-8b6" id="e7h-Vm-EkV"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="plus" id="7qP-dw-X63">
@@ -114,6 +114,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="leftBarButtonItem" destination="1fP-GK-Liy" id="edX-1V-LRU"/>
                         <outlet property="rightBarButtonItem" destination="7qP-dw-X63" id="BeR-g3-ZtD"/>
                         <segue destination="bk2-Tn-0YW" kind="show" identifier="showKeyboard" id="NkB-bs-b63"/>
                         <segue destination="3Fq-WX-HOd" kind="unwind" identifier="logout" unwindAction="unwindToIntroViewController:" id="2Ir-f3-Fiz"/>
