@@ -60,25 +60,11 @@ let UserDefaultsKeyPassword = "password"
             forState: .Highlighted)
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
 
-        let email: String? = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultsKeyEmail) as String?
-        let password: String? = NSUserDefaults.standardUserDefaults().objectForKey(UserDefaultsKeyPassword) as String?
-        if email != nil && password != nil {
-            PFUser.logInWithUsernameInBackground(email,
-                password: password,
-                block: { (user: PFUser?, error: NSError?) in
-                    SVProgressHUD.dismiss()
-                    if error {
-                        NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeyEmail)
-                        NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeyPassword)
-                        NSUserDefaults.standardUserDefaults().synchronize()
-                    }
-                    else {
-                        self.performSegueWithIdentifier("login", sender: self)
-                    }
-            })
+        if PFUser.currentUser() != nil {
+            self.performSegueWithIdentifier("login", sender: self)
         }
     }
 
@@ -103,7 +89,7 @@ let UserDefaultsKeyPassword = "password"
                     }
                     else {
                         let userChannel = "user_" + user!.objectId
-                        PFInstallation.currentInstallation().addUniqueObject(userChannel, forKey:"channels")
+                        PFInstallation.currentInstallation().setObject([userChannel], forKey:"channels")
                         PFInstallation.currentInstallation().saveEventually()
 
                         NSUserDefaults.standardUserDefaults().setObject(email, forKey: UserDefaultsKeyEmail)

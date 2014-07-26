@@ -47,6 +47,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         longPressGR.minimumPressDuration = 1.0
         tableView.addGestureRecognizer(longPressGR)
 
+        self.reloadFriends()
         var user = PFUser.currentUser()
         user.refreshInBackgroundWithBlock({result in
             self.reloadFriends()

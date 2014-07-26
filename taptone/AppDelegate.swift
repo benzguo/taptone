@@ -1,4 +1,5 @@
 import UIKit
+import AVFoundation
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,7 +15,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // configure Parse + notifications
         Parse.setApplicationId("RUXkfe7Otj8ROooI0DQxH1AZULZonaz1EA3XFjnk",
             clientKey: "OIUU5084O4vsjvwUZHlRy0Pjf6h9Iog6OQLPMIwW")
-//        application.registerForRemoteNotificationTypes(.Badge | .Alert | .Sound)  // pre iOS8
         application.registerForRemoteNotifications()
 
         var settings = UIUserNotificationSettings(forTypes: .Badge | .Alert | .Sound,
@@ -30,6 +30,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         currentInstallation.saveInBackground()
     }
 
+    func application(application: UIApplication!, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]!)
+    {
+        let aps = userInfo["aps"] as NSDictionary?
+        var sound = aps!["sound"] as String
+        sound = sound.stringByReplacingOccurrencesOfString(".caf", withString: "") as NSString
+        var soundURL = NSBundle.mainBundle().URLForResource(sound, withExtension:"caf") as CFURLRef
+        var soundID: SystemSoundID = 0
+        AudioServicesCreateSystemSoundID(soundURL, &soundID)
+        CFRelease(soundURL)
+        AudioServicesPlaySystemSound(soundID)
+    }
 
     func application(application: UIApplication!,
         didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings!)

@@ -1,7 +1,7 @@
 import Foundation
 
 class Pusher {
-    class func push(note: String, channels: [String]) {
+    class func push(note: String, channels: [String], completionHandler handler:((Bool)->(Void))!) {
         let push = PFPush()
         push.setChannels(channels)
         push.setData(["sound": "\(note).caf"])
@@ -9,6 +9,7 @@ class Pusher {
             if (!success || error) {
                 print(error)
             }
+            handler(success)
             })
     }
 }
