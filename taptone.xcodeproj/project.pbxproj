@@ -69,6 +69,8 @@
 		96CF9B1B19679EC200389595 /* Pusher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9B1A19679EC200389595 /* Pusher.swift */; };
 		96CF9B1D1967A0FE00389595 /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9B1C1967A0FE00389595 /* KeyboardViewController.swift */; };
 		96CF9B1F1967A64700389595 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CF9B1E1967A64700389595 /* Music.swift */; };
+		96FD80CF198458B000F6D438 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96FD80CE198458B000F6D438 /* NotificationView.xib */; };
+		96FD80D21984598E00F6D438 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FD80D11984598E00F6D438 /* NotificationView.swift */; };
 		EB6A5ED11981EFB800B404BE /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A5ED01981EFB800B404BE /* Localizer.swift */; };
 		EB9700EC197C46C000241451 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9700EB197C46C000241451 /* UIAlertControllerExtension.swift */; };
 		EBC3EF1B196F6F2D00496D06 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC3EF1A196F6F2D00496D06 /* IntroViewController.swift */; };
@@ -154,6 +156,8 @@
 		96CF9B1C1967A0FE00389595 /* KeyboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
 		96CF9B1E1967A64700389595 /* Music.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		96D23B6E1963B88800343C74 /* taptone-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "taptone-Bridging-Header.h"; sourceTree = "<group>"; };
+		96FD80CE198458B000F6D438 /* NotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
+		96FD80D11984598E00F6D438 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		EB6A5ED01981EFB800B404BE /* Localizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
 		EB9700EB197C46C000241451 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
 		EBC3EF1A196F6F2D00496D06 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
@@ -222,12 +226,13 @@
 			children = (
 				96D23B6E1963B88800343C74 /* taptone-Bridging-Header.h */,
 				96626FC3196A024A002D5296 /* Keyboard */,
+				96FD80D01984597A00F6D438 /* NotificationView */,
 				EBC3EF1A196F6F2D00496D06 /* IntroViewController.swift */,
 				968018C81978CD610026FDB3 /* IntroViewController.h */,
 				967C22911963B52E001B7F7F /* AppDelegate.swift */,
 				967C22931963B52E001B7F7F /* MainViewController.swift */,
-				EB6A5ED01981EFB800B404BE /* Localizer.swift */,
 				96CF9B1A19679EC200389595 /* Pusher.swift */,
+				EB6A5ED01981EFB800B404BE /* Localizer.swift */,
 				96626FC4196A067C002D5296 /* UIColorExtension.swift */,
 				EB9700EB197C46C000241451 /* UIAlertControllerExtension.swift */,
 				96CF9B1E1967A64700389595 /* Music.swift */,
@@ -326,6 +331,15 @@
 				96CF9AE719677C4A00389595 /* G5.caf */,
 			);
 			path = caf;
+			sourceTree = "<group>";
+		};
+		96FD80D01984597A00F6D438 /* NotificationView */ = {
+			isa = PBXGroup;
+			children = (
+				96FD80CE198458B000F6D438 /* NotificationView.xib */,
+				96FD80D11984598E00F6D438 /* NotificationView.swift */,
+			);
+			name = NotificationView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -447,6 +461,7 @@
 				967C22991963B52E001B7F7F /* Images.xcassets in Resources */,
 				96CF9AFE19677C4B00389595 /* D#2.caf in Resources */,
 				96CF9B0519677C4B00389595 /* D5.caf in Resources */,
+				96FD80CF198458B000F6D438 /* NotificationView.xib in Resources */,
 				96CF9B1319677C4B00389595 /* G#3.caf in Resources */,
 				96CF9AF919677C4B00389595 /* C2.caf in Resources */,
 				96CF9AF019677C4A00389595 /* B2.caf in Resources */,
@@ -514,6 +529,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EBC3EF1B196F6F2D00496D06 /* IntroViewController.swift in Sources */,
+				96FD80D21984598E00F6D438 /* NotificationView.swift in Sources */,
 				967C22941963B52E001B7F7F /* MainViewController.swift in Sources */,
 				EB6A5ED11981EFB800B404BE /* Localizer.swift in Sources */,
 				967C22921963B52E001B7F7F /* AppDelegate.swift in Sources */,

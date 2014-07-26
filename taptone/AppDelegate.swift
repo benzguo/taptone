@@ -5,12 +5,16 @@ import AVFoundation
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
+    var notificationView: NotificationView?
 
 
     func application(application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool
     {
         application.statusBarHidden = true
+        notificationView = NSBundle.mainBundle().loadNibNamed("NotificationView", owner: nil, options: nil)[0] as? NotificationView
+        notificationView!.frame = CGRect(x: 0, y: 0,
+            width: self.window!.frame.size.width, height: notificationView!.frame.size.height)
 
         // configure Parse + notifications
         Parse.setApplicationId("RUXkfe7Otj8ROooI0DQxH1AZULZonaz1EA3XFjnk",
@@ -40,6 +44,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AudioServicesCreateSystemSoundID(soundURL, &soundID)
         CFRelease(soundURL)
         AudioServicesPlaySystemSound(soundID)
+
+        notificationView!.alpha = 0
+        self.window!.addSubview(notificationView)
+        UIView.animateWithDuration(0.3, animations: {
+            self.notificationView!.alpha = 1
+            }, completion: {finished in
+                UIView.animateWithDuration(1, animations: {
+                    self.notificationView!.alpha = 0;
+                })
+            })
+
     }
 
     func application(application: UIApplication!,

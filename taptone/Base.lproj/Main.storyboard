@@ -90,7 +90,7 @@
         <!--Main View Controller-->
         <scene sceneID="iFl-Bt-vwZ">
             <objects>
-                <tableViewController id="AzT-xy-8b6" customClass="MainViewController" customModule="taptone" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="mainViewController" id="AzT-xy-8b6" customClass="MainViewController" customModule="taptone" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="xjC-oD-pdy">
                         <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -147,7 +147,7 @@
         <!--Keyboard View Controller-->
         <scene sceneID="Crk-dh-UE7">
             <objects>
-                <viewController id="bk2-Tn-0YW" customClass="KeyboardViewController" customModule="taptone" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="keyboardViewController" id="bk2-Tn-0YW" customClass="KeyboardViewController" customModule="taptone" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="5X1-5Q-y5d"/>
                         <viewControllerLayoutGuide type="bottom" id="3oh-7b-3cb"/>

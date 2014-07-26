@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6185.7" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6181.2"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view userInteractionEnabled="NO" contentMode="scaleToFill" id="iN0-l3-epB" customClass="NotificationView" customModule="taptone" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9cw-Ed-Rof">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <label opaque="NO" clipsSubviews="YES" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="György Ligeti" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Rz-cn-6qD">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="44"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="17"/>
+                    <color key="textColor" red="0.97254908080000002" green="0.97254908080000002" blue="0.97254908080000002" alpha="1" colorSpace="deviceRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="9cw-Ed-Rof" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="JSQ-p3-mhQ"/>
+                <constraint firstAttribute="bottom" secondItem="5Rz-cn-6qD" secondAttribute="bottom" id="R5k-bi-dIV"/>
+                <constraint firstAttribute="bottom" secondItem="9cw-Ed-Rof" secondAttribute="bottom" id="TrY-aR-jet"/>
+                <constraint firstItem="5Rz-cn-6qD" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="aBd-sb-13L"/>
+                <constraint firstItem="5Rz-cn-6qD" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="bwa-na-53U"/>
+                <constraint firstAttribute="trailing" secondItem="5Rz-cn-6qD" secondAttribute="trailing" id="prH-T7-oqQ"/>
+                <constraint firstAttribute="trailing" secondItem="9cw-Ed-Rof" secondAttribute="trailing" id="qWo-dn-eSz"/>
+                <constraint firstItem="9cw-Ed-Rof" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="zSj-Q1-FfZ"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="nameLabel" destination="5Rz-cn-6qD" id="aYX-Ad-uVE"/>
+            </connections>
+            <point key="canvasLocation" x="181" y="75"/>
+        </view>
+    </objects>
+</document>
