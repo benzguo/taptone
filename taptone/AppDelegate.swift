@@ -34,10 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         currentInstallation.saveInBackground()
     }
 
-    func application(application: UIApplication!, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]!)
+    func application(application: UIApplication!, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]!, fetchCompletionHandler completionHandler: ((UIBackgroundFetchResult) -> Void)!)
     {
         let aps = userInfo["aps"] as NSDictionary?
         var sound = aps!["sound"] as String
+        let userId = userInfo["userId"] as AnyObject? as String // WTF
+        let name = userInfo["name"] as AnyObject? as String // WTF
         sound = sound.stringByReplacingOccurrencesOfString(".caf", withString: "") as NSString
         var soundURL = NSBundle.mainBundle().URLForResource(sound, withExtension:"caf") as CFURLRef
         var soundID: SystemSoundID = 0
@@ -45,6 +47,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CFRelease(soundURL)
         AudioServicesPlaySystemSound(soundID)
 
+        var query = PFUser.query()
+        query.whereKey("objectId", equalTo:userId)
+        query.getFirstObjectInBackgroundWithBlock({(user: PFObject?, error: NSError?) in
+            if let u = user as? PFUser {
+                var friendsRelation = PFUser.currentUser().relationForKey("friends")
+                friendsRelation.addObject(user)
+                PFUser.currentUser().saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
+        //            self.reloadFriends()
+                    completionHandler(.NewData)
+                })
+            }
+            })
+
+        notificationView!.nameLabel.text = name
         notificationView!.alpha = 0
         self.window!.addSubview(notificationView)
         UIView.animateWithDuration(0.3, animations: {
@@ -53,9 +69,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 UIView.animateWithDuration(1, animations: {
                     self.notificationView!.alpha = 0;
                 })
-            })
-
+            })       
     }
+
 
     func application(application: UIApplication!,
         didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings!)

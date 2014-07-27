@@ -47,7 +47,6 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         longPressGR.minimumPressDuration = 1.0
         tableView.addGestureRecognizer(longPressGR)
 
-        self.reloadFriends()
         var user = PFUser.currentUser()
         user.refreshInBackgroundWithBlock({result in
             self.reloadFriends()
@@ -56,6 +55,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        self.reloadFriends()
         if !(PFUser.currentUser()["phone"]) {
             setPhone()
         }
@@ -211,23 +211,11 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                             else {
                                 var currentUser = PFUser.currentUser()
                                 var friendsRelation = currentUser.relationForKey("friends")
-                                let duplicateQuery = friendsRelation.query()
-                                duplicateQuery.whereKey("username", equalTo:u["username"])
-                                let duplicate = duplicateQuery.getFirstObject()
-                                if let d = duplicate {
+                                friendsRelation.addObject(user)
+                                currentUser.saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
                                     SVProgressHUD.dismiss()
-                                    let name = u["name"] as String!
-                                    UIAlertController.presentStandardAlert(|"Already added \(name)",
-                                        message: "",
-                                        fromViewController: self)
-                                }
-                                else {
-                                    friendsRelation.addObject(user)
-                                    currentUser.saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
-                                        SVProgressHUD.dismiss()
-                                        self.reloadFriends()
-                                        })
-                                }
+                                    self.reloadFriends()
+                                    })
                             }
                         }
                         else {
