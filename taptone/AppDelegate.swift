@@ -1,12 +1,13 @@
 import UIKit
 import AVFoundation
 
+let NotificationNameShouldReloadFriends = "ShouldReloadFriends"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
                             
     var window: UIWindow?
     var notificationView: NotificationView?
-
 
     func application(application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool
@@ -40,6 +41,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var sound = aps!["sound"] as String
         let userId = userInfo["userId"] as AnyObject? as String // WTF
         let name = userInfo["name"] as AnyObject? as String // WTF
+
+        // play sound
         sound = sound.stringByReplacingOccurrencesOfString(".caf", withString: "") as NSString
         var soundURL = NSBundle.mainBundle().URLForResource(sound, withExtension:"caf") as CFURLRef
         var soundID: SystemSoundID = 0
@@ -47,19 +50,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         CFRelease(soundURL)
         AudioServicesPlaySystemSound(soundID)
 
-        var query = PFUser.query()
-        query.whereKey("objectId", equalTo:userId)
-        query.getFirstObjectInBackgroundWithBlock({(user: PFObject?, error: NSError?) in
-            if let u = user as? PFUser {
-                var friendsRelation = PFUser.currentUser().relationForKey("friends")
-                friendsRelation.addObject(user)
-                PFUser.currentUser().saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
-        //            self.reloadFriends()
-                    completionHandler(.NewData)
-                })
+        // add friend if not already added
+        let friendsRelation = PFUser.currentUser().relationForKey("friends")
+        var relationQuery = friendsRelation.query()
+        relationQuery.whereKey("objectId", equalTo:userId)
+        relationQuery.getFirstObjectInBackgroundWithBlock({(user: PFObject?, error: NSError?) in
+            if let u = user {
+                completionHandler(.NewData)
+            }
+            else {
+                var query = PFUser.query()
+                query.whereKey("objectId", equalTo:userId)
+                query.getFirstObjectInBackgroundWithBlock({(user: PFObject?, error: NSError?) in
+                    if let u = user as? PFUser {
+                        var friendsRelation = PFUser.currentUser().relationForKey("friends")
+                        friendsRelation.addObject(user)
+                        PFUser.currentUser().saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
+                            NSNotificationCenter.defaultCenter().postNotificationName(NotificationNameShouldReloadFriends, object: nil)
+                            completionHandler(.NewData)
+                            })
+                    }
+                    })               
             }
             })
 
+
+        // show notification view
         notificationView!.nameLabel.text = name
         notificationView!.alpha = 0
         self.window!.addSubview(notificationView)

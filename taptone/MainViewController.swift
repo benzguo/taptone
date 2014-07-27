@@ -5,7 +5,6 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     @IBOutlet var leftBarButtonItem: UIBarButtonItem
     @IBOutlet var rightBarButtonItem: UIBarButtonItem
 
-
     var friends: [PFUser] = []
     var isMultiSelecting: Bool = false {
         didSet {
@@ -44,8 +43,11 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         tableView.allowsMultipleSelection = true
 
         var longPressGR = UILongPressGestureRecognizer(target: self, action: "handleLongPress:")
-        longPressGR.minimumPressDuration = 1.0
+        longPressGR.minimumPressDuration = 0.8
         tableView.addGestureRecognizer(longPressGR)
+
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "shouldReloadFriends:",
+            name: NotificationNameShouldReloadFriends, object: nil)
 
         var user = PFUser.currentUser()
         user.refreshInBackgroundWithBlock({result in
@@ -62,12 +64,23 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         self.isMultiSelecting = false
     }
 
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+    }
+
+
     func reloadFriends() {
         var friendsRelation = PFUser.currentUser().relationForKey("friends")
-        friendsRelation.query().findObjectsInBackgroundWithBlock({(objects: [AnyObject]!, error: NSError?) in
-            self.friends = objects as [PFUser]
-            self.tableView.reloadData()
+        friendsRelation.query().findObjectsInBackgroundWithBlock({(objects: [AnyObject]?, error: NSError?) in
+            if let os = objects {
+                self.friends = os as [PFUser]
+                self.tableView.reloadData()
+            }
             })
+    }
+
+    func shouldReloadFriends(notification: NSNotification?) {
+        reloadFriends()
     }
 
     func setPhone(title: String = |"Enter your phone number",
@@ -97,9 +110,16 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                                 message: "\r" + |"Please choose a different number", fromViewController: self)
                         }
                         else {
+                            let originalPhone = PFUser.currentUser().objectForKey("phone") as String
                             PFUser.currentUser().setObject(phone, forKey: "phone");
-                            PFUser.currentUser().saveInBackground()
-                        }
+                            PFUser.currentUser().saveInBackgroundWithBlock({(success: Bool, error: NSError?) in
+                                if let e = error {
+                                    PFUser.currentUser().setObject(originalPhone, forKey: "phone");
+                                    UIAlertController.presentStandardAlert(|"Save failed",
+                                        message: e.localizedDescription, fromViewController: self)
+                                }
+                                })
+                            }
                         })
                 }
             }))              
@@ -115,6 +135,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             textField.placeholder = NSLocalizedString("name", comment: "")
             nameTextField = textField
             })
+        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
         ac.addAction(UIAlertAction(title: |"Ok", style: .Default,
             handler: { action in
                 if nameTextField.text.utf16count < 6 {
@@ -122,8 +143,15 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                         message: "\r" + |"Your name must be at least 6 characters long.")
                 }
                 else {
+                    let originalName = PFUser.currentUser().objectForKey("name") as String
                     PFUser.currentUser().setObject(nameTextField.text, forKey: "name");
-                    PFUser.currentUser().saveInBackground()
+                    PFUser.currentUser().saveInBackgroundWithBlock({(success: Bool, error: NSError?) in
+                        if let e = error {
+                            PFUser.currentUser().setObject(originalName, forKey: "name");
+                            UIAlertController.presentStandardAlert(|"Save failed",
+                                message: e.localizedDescription, fromViewController: self)
+                        }
+                        })
                 }
             }))              
         self.presentViewController(ac, animated: true, completion: nil)
@@ -171,8 +199,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
 
         ac.addAction(UIAlertAction(title: |"Log out", style: .Default,
             handler: { action in
-                NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeyEmail)
-                NSUserDefaults.standardUserDefaults().removeObjectForKey(UserDefaultsKeyPassword)
+                PFUser.logOut()
                 self.performSegueWithIdentifier(|"logout", sender: self)
             }))
         ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
@@ -253,6 +280,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             if let user = sender as? PFUser {
                 let userId = user.objectId
                 keyboardVC.channels = ["user_" + userId]
+                keyboardVC.phones = [user.objectForKey("phone") as String]
             }
             else {
                 var selectedFriends: [PFUser] = []
@@ -263,6 +291,9 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                     }
                     keyboardVC.channels = selectedFriends.map {(user: PFUser) in
                         return "user_" + user.objectId
+                    }
+                    keyboardVC.phones = selectedFriends.map {(user: PFUser) in
+                        return user.objectForKey("phone") as String
                     }
                     self.deselectAllRows()
                 }

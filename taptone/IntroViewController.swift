@@ -1,11 +1,6 @@
 
 import AVFoundation
 
-let KeychainServiceName = "taptone"
-let UserDefaultsKeyEmail = "email"
-let UserDefaultsKeyPassword = "password"
-
-
 @objc(IntroViewController) class IntroViewController: UIViewController, UIAlertViewDelegate {
 
     let APlayer: AVAudioPlayer
@@ -92,9 +87,6 @@ let UserDefaultsKeyPassword = "password"
                         PFInstallation.currentInstallation().setObject([userChannel], forKey:"channels")
                         PFInstallation.currentInstallation().saveEventually()
 
-                        NSUserDefaults.standardUserDefaults().setObject(email, forKey: UserDefaultsKeyEmail)
-                        NSUserDefaults.standardUserDefaults().setObject(password, forKey: UserDefaultsKeyPassword)
-                        NSUserDefaults.standardUserDefaults().synchronize()
                         self.performSegueWithIdentifier("login", sender: self)
                     }
             })

@@ -345,9 +345,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		967C228B1963B52E001B7F7F /* taptone */ = {
+		967C228B1963B52E001B7F7F /* Taptone */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 967C22A81963B52E001B7F7F /* Build configuration list for PBXNativeTarget "taptone" */;
+			buildConfigurationList = 967C22A81963B52E001B7F7F /* Build configuration list for PBXNativeTarget "Taptone" */;
 			buildPhases = (
 				9D061BEA8D2B435DBEF8FCE4 /* Check Pods Manifest.lock */,
 				967C22881963B52E001B7F7F /* Sources */,
@@ -359,7 +359,7 @@
 			);
 			dependencies = (
 			);
-			name = taptone;
+			name = Taptone;
 			productName = taptone;
 			productReference = 967C228C1963B52E001B7F7F /* taptone.app */;
 			productType = "com.apple.product-type.application";
@@ -414,7 +414,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				967C228B1963B52E001B7F7F /* taptone */,
+				967C228B1963B52E001B7F7F /* Taptone */,
 				967C229D1963B52E001B7F7F /* taptoneTests */,
 			);
 		};
@@ -556,7 +556,7 @@
 /* Begin PBXTargetDependency section */
 		967C22A01963B52E001B7F7F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 967C228B1963B52E001B7F7F /* taptone */;
+			target = 967C228B1963B52E001B7F7F /* Taptone */;
 			targetProxy = 967C229F1963B52E001B7F7F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -739,7 +739,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		967C22A81963B52E001B7F7F /* Build configuration list for PBXNativeTarget "taptone" */ = {
+		967C22A81963B52E001B7F7F /* Build configuration list for PBXNativeTarget "Taptone" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				967C22A91963B52E001B7F7F /* Debug */,

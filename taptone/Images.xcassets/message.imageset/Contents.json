@@ -6,12 +6,12 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "cancel.png"
+      "filename" : "message.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "cancel@2x.png"
+      "filename" : "message@2x.png"
     }
   ],
   "info" : {

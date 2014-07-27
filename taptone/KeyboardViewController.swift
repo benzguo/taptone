@@ -1,13 +1,16 @@
+import MessageUI
+
 extension Range {
     func toArray() -> [T] {
         return [T](self)
     }
 }
 
-class KeyboardViewController: UIViewController {
+class KeyboardViewController: UIViewController, MFMessageComposeViewControllerDelegate {
 
     // public
     var channels: [String] = []
+    var phones: [String] = []
 
     // private
     let noteNumbers: [Int]
@@ -59,7 +62,21 @@ class KeyboardViewController: UIViewController {
 
     }
 
-    @IBAction func menuButtonAction(sender: AnyObject) {
+    @IBAction func messageButtonAction(sender: AnyObject) {
+        if MFMessageComposeViewController.canSendText() {
+            var messageVC = MFMessageComposeViewController()
+            messageVC.messageComposeDelegate = self
+            messageVC.recipients = phones
+            self.presentViewController(messageVC, animated: true, completion: nil)
+        }
+        else {
+            UIAlertController.presentStandardAlert(|"This device can't send texts", message: "", fromViewController: self)
+        }
+    }
 
+// MFMessageComposeViewControllerDelegate
+
+    func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult)  {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
 }

@@ -16,7 +16,7 @@ var emailCode = function(email, code, response) {
       subject: "Your sign in code: "+code,
       text: "You requested a sign in code for Taptone." }, {
       success: function(httpResponse) {
-            response.success() },
+            response.success(code) },
       error: function(httpResponse) {
             response.error("Failed to email code") }
   }) 

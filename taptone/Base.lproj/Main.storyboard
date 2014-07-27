@@ -182,9 +182,9 @@
                                 <outletCollection property="gestureRecognizers" destination="sFq-Wl-VxC" appends="YES" id="6rh-Dt-H6O"/>
                             </connections>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" image="menu" id="hyf-0s-H7f">
+                        <barButtonItem key="rightBarButtonItem" image="message" id="hyf-0s-H7f">
                             <connections>
-                                <action selector="menuButtonAction:" destination="bk2-Tn-0YW" id="eiQ-o6-KRU"/>
+                                <action selector="messageButtonAction:" destination="bk2-Tn-0YW" id="7va-LM-Spr"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -205,6 +205,7 @@
     </scenes>
     <resources>
         <image name="menu" width="21" height="13"/>
+        <image name="message" width="21" height="21"/>
         <image name="plus" width="21" height="21"/>
     </resources>
 </document>
