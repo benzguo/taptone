@@ -92,7 +92,7 @@
 		9617A3E71967C5480032ED54 /* KeyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyButton.swift; sourceTree = "<group>"; };
 		96626FC11969E7A9002D5296 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
 		96626FC4196A067C002D5296 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
-		967C228C1963B52E001B7F7F /* taptone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = taptone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		967C228C1963B52E001B7F7F /* Taptone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taptone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967C22901963B52E001B7F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		967C22911963B52E001B7F7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		967C22931963B52E001B7F7F /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 		967C228D1963B52E001B7F7F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				967C228C1963B52E001B7F7F /* taptone.app */,
+				967C228C1963B52E001B7F7F /* Taptone.app */,
 				967C229E1963B52E001B7F7F /* taptoneTests.xctest */,
 			);
 			name = Products;
@@ -361,7 +361,7 @@
 			);
 			name = Taptone;
 			productName = taptone;
-			productReference = 967C228C1963B52E001B7F7F /* taptone.app */;
+			productReference = 967C228C1963B52E001B7F7F /* Taptone.app */;
 			productType = "com.apple.product-type.application";
 		};
 		967C229D1963B52E001B7F7F /* taptoneTests */ = {

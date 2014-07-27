@@ -12,6 +12,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool
     {
+        window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        
         application.statusBarHidden = true
         notificationView = NSBundle.mainBundle().loadNibNamed("NotificationView", owner: nil, options: nil)[0] as? NotificationView
         notificationView!.frame = CGRect(x: 0, y: 0,
@@ -25,6 +27,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var settings = UIUserNotificationSettings(forTypes: .Badge | .Alert | .Sound,
             categories: nil)
         application.registerUserNotificationSettings(settings)
+
+        // set initial view controller
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        var rootViewController: UIViewController
+        if PFUser.currentUser() != nil {
+            rootViewController = storyboard.instantiateViewControllerWithIdentifier("NavigationController") as UIViewController
+        }
+        else {
+            rootViewController = storyboard.instantiateViewControllerWithIdentifier("IntroViewController") as UIViewController
+        }
+        window!.rootViewController = rootViewController
+        window!.makeKeyAndVisible()
+
         return true
     }
 

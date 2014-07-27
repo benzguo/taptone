@@ -7,6 +7,10 @@ import AVFoundation
     let GsPlayer: AVAudioPlayer
     let GPlayer: AVAudioPlayer
 
+    @IBOutlet var signupButton: UIButton
+    @IBOutlet var blackKeyButton: UIButton
+    @IBOutlet var loginButton: UIButton
+
     enum GenericError: String {
         case ConnectionError = "Connection error"
         case ObjectNotFound = "Object not found"
@@ -30,10 +34,6 @@ import AVFoundation
         super.init(coder: aDecoder)
     }
 
-    @IBOutlet var signupButton: UIButton
-    @IBOutlet var blackKeyButton: UIButton
-    @IBOutlet var loginButton: UIButton
-
     @IBAction func unwindToIntroViewController(segue: UIStoryboardSegue) {
 
     }
@@ -41,17 +41,17 @@ import AVFoundation
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.signupButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
+        signupButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)
-        self.signupButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
-        self.signupButton.titleLabel.text = |"Sign up"
+        signupButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
+        signupButton.titleLabel.text = |"Sign up"
 
-        self.loginButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
+        loginButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)
-        self.loginButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
-        self.loginButton.titleLabel.text = |"Log in"
+        loginButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
+        loginButton.titleLabel.text = |"Log in"
 
-        self.blackKeyButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
+        blackKeyButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)
     }
 
@@ -59,7 +59,7 @@ import AVFoundation
         super.viewDidAppear(animated)
 
         if PFUser.currentUser() != nil {
-            self.performSegueWithIdentifier("login", sender: self)
+            performSegueWithIdentifier("login", sender: self)
         }
     }
 
