@@ -1,5 +1,5 @@
 
-class Friend {
+class Friend: NSObject, NSCoding {
     let userId: String
     let name: String
     let phone: String
@@ -9,4 +9,18 @@ class Friend {
         name = n
         phone = p
     }
+
+    init(coder decoder: NSCoder!) {
+        userId = decoder.decodeObjectForKey("userId") as String
+        name = decoder.decodeObjectForKey("name") as String
+        phone = decoder.decodeObjectForKey("phone") as String
+        super.init()
+    }
+
+    func encodeWithCoder(coder: NSCoder!) {
+        coder.encodeObject(userId, forKey:"userId")
+        coder.encodeObject(name, forKey:"name")
+        coder.encodeObject(phone, forKey:"phone")
+    }
+
 }

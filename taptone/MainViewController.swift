@@ -51,6 +51,11 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "shouldReloadFriends:",
             name: NotificationNameShouldReloadFriends, object: nil)
 
+        let maybeData: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey(cachedFriendsKey)
+        if let data = maybeData as? NSData {
+            self.friends = NSKeyedUnarchiver.unarchiveObjectWithData(data) as [Friend]
+            self.reloadTableView()
+        }
         var user = PFUser.currentUser()
         user.refreshInBackgroundWithBlock({result in
             self.reloadFriends()
@@ -85,6 +90,9 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                         name: $0.objectForKey("name") as String,
                         phone: $0.objectForKey("phone") as String)
                 }
+                let cachedFriends = NSKeyedArchiver.archivedDataWithRootObject(self.friends)
+                NSUserDefaults.standardUserDefaults().setObject(cachedFriends, forKey: cachedFriendsKey)
+                NSUserDefaults.standardUserDefaults().synchronize()
                 self.reloadTableView()
             }
             })
