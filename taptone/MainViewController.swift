@@ -71,6 +71,10 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
 
+    func reloadTableView() {
+        self.friends.sort { $0.name < $1.name }
+        self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+    }
 
     func reloadFriends() {
         var friendsRelation = PFUser.currentUser().relationForKey("friends")
@@ -81,7 +85,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                         name: $0.objectForKey("name") as String,
                         phone: $0.objectForKey("phone") as String)
                 }
-                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+                self.reloadTableView()
             }
             })
     }
@@ -236,19 +240,26 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                     SVProgressHUD.show()
                     query.getFirstObjectInBackgroundWithBlock({(user: PFObject?, error: NSError?) in
                         if let u = user as? PFUser {
+                            SVProgressHUD.dismiss()
                             if u.username == PFUser.currentUser().username {
-                                SVProgressHUD.dismiss()
                                 UIAlertController.presentStandardAlert(|"You can't add yourself!",
                                     message: "\r" + |"Please go make some friends.",
                                     fromViewController: self)
                             }
                             else {
+                                let friend = Friend(userId: u.objectId,
+                                    name: u.objectForKey("name") as String,
+                                    phone: u.objectForKey("phone") as String)
+                                self.friends.append(friend)
+                                self.reloadTableView()
+
                                 var currentUser = PFUser.currentUser()
                                 var friendsRelation = currentUser.relationForKey("friends")
                                 friendsRelation.addObject(user)
                                 currentUser.saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
-                                    SVProgressHUD.dismiss()
-                                    self.reloadFriends()
+                                    if !succeeded || error != nil {
+                                        self.reloadFriends()
+                                    }
                                     })
                             }
                         }
@@ -352,6 +363,8 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         if editingStyle == .Delete {
             let friend = self.friends[indexPath.row]
             self.friends.removeAtIndex(indexPath.row)
+            self.reloadTableView()
+
             var friendsRelation = PFUser.currentUser().relationForKey("friends")
             let friendQuery = friendsRelation.query()
             friendQuery.whereKey("objectId", equalTo:friend.userId)
@@ -368,7 +381,6 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                     self.reloadFriends()
                 }
                 })
-            tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         }
     }
 
