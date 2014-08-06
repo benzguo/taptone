@@ -37,7 +37,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             var navController = storyboard.instantiateViewControllerWithIdentifier("NavigationController") as UINavigationController
             let mainViewController = navController.topViewController as MainViewController
             rootViewController.presentViewController(navController, animated: false, completion: nil)
-            mainViewController.reloadFriends()
         }       
 
         return true

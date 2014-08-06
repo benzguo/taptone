@@ -247,6 +247,13 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                                     fromViewController: self)
                             }
                             else {
+                                if self.friends.filter({ return $0.userId == u.objectId }).count != 0  {
+                                    let name = u.objectForKey("name") as String
+                                    UIAlertController.presentStandardAlert(|"Already added " + "\(name)",
+                                        message: "\r",
+                                        fromViewController: self)
+                                    return
+                                }
                                 let friend = Friend(userId: u.objectId,
                                     name: u.objectForKey("name") as String,
                                     phone: u.objectForKey("phone") as String)
