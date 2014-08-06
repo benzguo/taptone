@@ -28,17 +28,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             categories: nil)
         application.registerUserNotificationSettings(settings)
 
-        // set initial view controller
+        // configure root view controller
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        var rootViewController: UIViewController
-        if PFUser.currentUser() != nil {
-            rootViewController = storyboard.instantiateViewControllerWithIdentifier("NavigationController") as UIViewController
-        }
-        else {
-            rootViewController = storyboard.instantiateViewControllerWithIdentifier("IntroViewController") as UIViewController
-        }
+        var rootViewController = storyboard.instantiateViewControllerWithIdentifier("IntroViewController") as UIViewController
         window!.rootViewController = rootViewController
         window!.makeKeyAndVisible()
+        if PFUser.currentUser() != nil {
+            var navController = storyboard.instantiateViewControllerWithIdentifier("NavigationController") as UINavigationController
+            let mainViewController = navController.topViewController as MainViewController
+            rootViewController.presentViewController(navController, animated: false, completion: nil)
+            mainViewController.reloadFriends()
+        }       
 
         return true
     }

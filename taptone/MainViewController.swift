@@ -1,11 +1,13 @@
 import MessageUI
 
+let cachedFriendsKey = "cachedFriends"
+
 class MainViewController: UITableViewController, MFMessageComposeViewControllerDelegate {
 
     @IBOutlet var leftBarButtonItem: UIBarButtonItem
     @IBOutlet var rightBarButtonItem: UIBarButtonItem
 
-    var friends: [PFUser] = []
+    var friends: [Friend] = []
     var isMultiSelecting: Bool = false {
         didSet {
             if isMultiSelecting {
@@ -33,10 +35,10 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
         let navBar = navigationController.navigationBar
-        navBar.barTintColor = UIColor.tt_orangeColor()
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.shadowImage = UIImage()
-        tableView.backgroundColor = UIColor.tt_orangeColor()
+        navBar.alpha = 1.0
+        tableView.backgroundColor = navBar.backgroundColor
         tableView.tableFooterView = UIView()
         tableView.separatorInset = UIEdgeInsetsZero
         tableView.separatorStyle = .None
@@ -55,8 +57,9 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             })
     }
 
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+
         self.reloadFriends()
         if !(PFUser.currentUser()["phone"]) {
             setPhone()
@@ -72,9 +75,13 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     func reloadFriends() {
         var friendsRelation = PFUser.currentUser().relationForKey("friends")
         friendsRelation.query().findObjectsInBackgroundWithBlock({(objects: [AnyObject]?, error: NSError?) in
-            if let os = objects {
-                self.friends = os as [PFUser]
-                self.tableView.reloadData()
+            if let os = objects as? [PFUser] {
+                self.friends = os.map {
+                    return Friend(userId: $0.objectId,
+                        name: $0.objectForKey("name") as String,
+                        phone: $0.objectForKey("phone") as String)
+                }
+                self.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
             }
             })
     }
@@ -277,23 +284,22 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if segue.identifier == "showKeyboard" {
             var keyboardVC = segue.destinationViewController as KeyboardViewController
-            if let user = sender as? PFUser {
-                let userId = user.objectId
-                keyboardVC.channels = ["user_" + userId]
-                keyboardVC.phones = [user.objectForKey("phone") as String]
+            if let friend = sender as? Friend {
+                keyboardVC.channels = ["user_" + friend.userId]
+                keyboardVC.phones = [friend.phone as String]
             }
             else {
-                var selectedFriends: [PFUser] = []
-                let optIndexPaths: NSArray? = self.tableView.indexPathsForSelectedRows()
-                if let indexPaths = optIndexPaths {
+                var selectedFriends: [Friend] = []
+                let maybeIndexPaths: NSArray? = self.tableView.indexPathsForSelectedRows()
+                if let indexPaths = maybeIndexPaths {
                     for indexPath in indexPaths {
                         selectedFriends += self.friends[indexPath.row]
                     }
-                    keyboardVC.channels = selectedFriends.map {(user: PFUser) in
-                        return "user_" + user.objectId
+                    keyboardVC.channels = selectedFriends.map {(friend: Friend) in
+                        return "user_" + friend.userId
                     }
-                    keyboardVC.phones = selectedFriends.map {(user: PFUser) in
-                        return user.objectForKey("phone") as String
+                    keyboardVC.phones = selectedFriends.map {(friend: Friend) in
+                        return friend.phone
                     }
                     self.deselectAllRows()
                 }
@@ -304,7 +310,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
 // UITableViewDataSource
 
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
-        return friends.count
+        return self.friends.count
     }
 
     override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
@@ -313,7 +319,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         cell.textLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 30)
         cell.textLabel.textColor = UIColor.whiteColor()
         cell.backgroundColor = UIColor.clearColor()
-        cell.textLabel.text = friends[indexPath.row]["name"] as String
+        cell.textLabel.text = friends[indexPath.row].name as String
         return cell
     }
 
@@ -345,13 +351,24 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!)  {
         if editingStyle == .Delete {
             let friend = self.friends[indexPath.row]
+            self.friends.removeAtIndex(indexPath.row)
             var friendsRelation = PFUser.currentUser().relationForKey("friends")
-            friendsRelation.removeObject(friend)
-            SVProgressHUD.show()
-            PFUser.currentUser().saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
-                SVProgressHUD.dismiss()
-                self.reloadFriends()
+            let friendQuery = friendsRelation.query()
+            friendQuery.whereKey("objectId", equalTo:friend.userId)
+            friendQuery.getFirstObjectInBackgroundWithBlock({(friend: PFObject?, error: NSError?) in
+                if let f = friend {
+                    friendsRelation.removeObject(friend)
+                    PFUser.currentUser().saveInBackgroundWithBlock({(succeeded: Bool, error: NSError?) in
+                        if !succeeded || error != nil {
+                            self.reloadFriends()
+                        }
+                        })
+                }
+                else {
+                    self.reloadFriends()
+                }
                 })
+            tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
         }
     }
 
