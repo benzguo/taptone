@@ -51,10 +51,14 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "shouldReloadFriends:",
             name: NotificationNameShouldReloadFriends, object: nil)
 
+        // load cached friends
         let maybeData: AnyObject? = NSUserDefaults.standardUserDefaults().objectForKey(cachedFriendsKey)
         if let data = maybeData as? NSData {
             self.friends = NSKeyedUnarchiver.unarchiveObjectWithData(data) as [Friend]
             self.reloadTableView()
+        }
+        else {
+            SVProgressHUD.show()
         }
         var user = PFUser.currentUser()
         user.refreshInBackgroundWithBlock({result in
@@ -65,7 +69,6 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        self.reloadFriends()
         if !(PFUser.currentUser()["phone"]) {
             setPhone()
         }
@@ -84,6 +87,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     func reloadFriends() {
         var friendsRelation = PFUser.currentUser().relationForKey("friends")
         friendsRelation.query().findObjectsInBackgroundWithBlock({(objects: [AnyObject]?, error: NSError?) in
+            SVProgressHUD.dismiss()
             if let os = objects as? [PFUser] {
                 self.friends = os.map {
                     return Friend(userId: $0.objectId,
@@ -219,6 +223,10 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         ac.addAction(UIAlertAction(title: |"Log out", style: .Default,
             handler: { action in
                 PFUser.logOut()
+                PFInstallation.currentInstallation().setObject([], forKey:"channels")
+                PFInstallation.currentInstallation().saveEventually()
+                NSUserDefaults.standardUserDefaults().removeObjectForKey(cachedFriendsKey)
+                NSUserDefaults.standardUserDefaults().synchronize()
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 var rootViewController = storyboard.instantiateViewControllerWithIdentifier("IntroViewController") as UIViewController
                 let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
@@ -301,6 +309,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
 
     @IBAction func rightBarButtonItemAction(sender: AnyObject) {
         if self.isMultiSelecting {
+            self.isMultiSelecting = false
             performSegueWithIdentifier("showKeyboard", sender: nil)
         }
         else {
