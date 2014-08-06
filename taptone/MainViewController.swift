@@ -219,7 +219,10 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         ac.addAction(UIAlertAction(title: |"Log out", style: .Default,
             handler: { action in
                 PFUser.logOut()
-                self.performSegueWithIdentifier(|"logout", sender: self)
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                var rootViewController = storyboard.instantiateViewControllerWithIdentifier("IntroViewController") as UIViewController
+                let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+                appDelegate.window!.rootViewController = rootViewController
             }))
         ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
         self.presentViewController(ac, animated: true, completion: nil)       
