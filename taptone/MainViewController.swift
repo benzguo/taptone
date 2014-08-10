@@ -207,33 +207,37 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     }
 
     func showMenu() {
-        let name = PFUser.currentUser()["name"] as String?
-        let phone = PFUser.currentUser()["phone"] as String?
-        var ac = UIAlertController(title: name, message: phone, preferredStyle: .ActionSheet)
-        ac.addAction(UIAlertAction(title: |"Send invite", style: .Default,
-            handler: { action in
-                self.invitePhone(nil)
-            }))
+        let name = PFUser.currentUser()["name"] as String
+        let phone = PFUser.currentUser()["phone"] as String
 
-        ac.addAction(UIAlertAction(title: |"Edit name", style: .Default,
-            handler: { action in
-                self.setName()
-            }))              
-
-        ac.addAction(UIAlertAction(title: |"Log out", style: .Default,
-            handler: { action in
-                PFUser.logOut()
-                PFInstallation.currentInstallation().setObject([], forKey:"channels")
-                PFInstallation.currentInstallation().saveEventually()
-                NSUserDefaults.standardUserDefaults().removeObjectForKey(cachedFriendsKey)
-                NSUserDefaults.standardUserDefaults().synchronize()
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                var rootViewController = storyboard.instantiateViewControllerWithIdentifier("IntroViewController") as UIViewController
-                let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-                appDelegate.window!.rootViewController = rootViewController
-            }))
-        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
-        self.presentViewController(ac, animated: true, completion: nil)       
+        var actionSheet = AHKActionSheet(title: "\(name) (\(phone))")
+        actionSheet.separatorColor = UIColor.clearColor()
+        actionSheet.blurTintColor = UIColor(white: 1.0, alpha: 0.2)
+        actionSheet.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 20),
+                                            NSForegroundColorAttributeName : UIColor.tt_grayColor() ]
+        actionSheet.buttonTextAttributes = [ NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 25),
+                                             NSForegroundColorAttributeName : UIColor.whiteColor() ]
+        actionSheet.cancelButtonTextAttributes = actionSheet.buttonTextAttributes
+        actionSheet.cancelButtonHeight = 60
+        actionSheet.selectedBackgroundColor = UIColor(white: 1.0, alpha: 0.7)
+        actionSheet.addButtonWithTitle(|"Send invite", type: .Default, handler: { actionSheet in
+            self.invitePhone(nil)
+        })
+        actionSheet.addButtonWithTitle(|"Edit name", type: .Default, handler: { actionSheet in
+            self.setName()
+        })
+        actionSheet.addButtonWithTitle(|"Log out", type: .Default, handler: { actionSheet in
+            PFUser.logOut()
+            PFInstallation.currentInstallation().setObject([], forKey:"channels")
+            PFInstallation.currentInstallation().saveEventually()
+            NSUserDefaults.standardUserDefaults().removeObjectForKey(cachedFriendsKey)
+            NSUserDefaults.standardUserDefaults().synchronize()
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            var rootViewController = storyboard.instantiateViewControllerWithIdentifier("IntroViewController") as UIViewController
+            let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
+            appDelegate.window!.rootViewController = rootViewController           
+        })
+        actionSheet.show()
     }
 
     func addFriendByPhone(title: String = |"Add a friend by entering their phone number") {
