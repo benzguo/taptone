@@ -14,8 +14,8 @@ enum KeyColor {
     case White, Black
     static func colorForNoteName(name: NoteName, accidental: Accidental?) -> KeyColor {
         var color: KeyColor = .White
-        if (accidental) {
-            switch (name) {
+        if accidental != nil {
+            switch name {
             case .C:
                 if accidental! == .Sharp || accidental! == .DoubleFlat {
                     color = .Black

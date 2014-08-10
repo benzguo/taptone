@@ -1,5 +1,5 @@
 class NotificationView: UIView {
 
-    @IBOutlet var nameLabel: UILabel
+    @IBOutlet var nameLabel: UILabel!
 
 }

@@ -4,19 +4,19 @@ let cachedFriendsKey = "cachedFriends"
 
 class MainViewController: UITableViewController, MFMessageComposeViewControllerDelegate {
 
-    @IBOutlet var leftBarButtonItem: UIBarButtonItem
-    @IBOutlet var rightBarButtonItem: UIBarButtonItem
+    @IBOutlet var leftBarButtonItem: UIBarButtonItem!
+    @IBOutlet var rightBarButtonItem: UIBarButtonItem!
 
     var friends: [Friend] = []
     var isMultiSelecting: Bool = false {
         didSet {
             if isMultiSelecting {
-                self.leftBarButtonItem.image = UIImage(named: "cancel")
-                self.rightBarButtonItem.image = UIImage(named: "next")
+                self.leftBarButtonItem!.image = UIImage(named: "cancel")
+                self.rightBarButtonItem!.image = UIImage(named: "next")
             }
             else {
-                self.leftBarButtonItem.image = UIImage(named: "menu")
-                self.rightBarButtonItem.image = UIImage(named: "plus")
+                self.leftBarButtonItem!.image = UIImage(named: "menu")
+                self.rightBarButtonItem!.image = UIImage(named: "plus")
                 self.deselectAllRows()
             }
         }
@@ -120,7 +120,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         ac.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default,
             handler: { action in
                 let phone = phoneTextField.text
-                if phone.utf16count < 7 {
+                if phone.utf16Count < 7 {
                     self.setPhone(title: |"Please enter a valid phone",
                         message: "\r" + |"Only people who know your phone number can add you on Taptone.")
                 }
@@ -161,7 +161,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
         ac.addAction(UIAlertAction(title: |"Ok", style: .Default,
             handler: { action in
-                if nameTextField.text.utf16count < 6 {
+                if nameTextField.text.utf16Count < 6 {
                     self.setName(title: |"Please enter a valid name",
                         message: "\r" + |"Your name must be at least 6 characters long.")
                 }
@@ -250,7 +250,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         ac.addAction(UIAlertAction(title: |"Add", style: .Default,
             handler: { action in
                 let phone = phoneTextField.text
-                if phone.utf16count < 7 {
+                if phone.utf16Count < 7 {
                     self.addFriendByPhone(title: |"Please enter a valid phone")
                 }
                 else {
@@ -331,7 +331,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                 let maybeIndexPaths: NSArray? = self.tableView.indexPathsForSelectedRows()
                 if let indexPaths = maybeIndexPaths {
                     for indexPath in indexPaths {
-                        selectedFriends += self.friends[indexPath.row]
+                        selectedFriends.append(self.friends[indexPath.row])
                     }
                     keyboardVC.channels = selectedFriends.map {(friend: Friend) in
                         return "user_" + friend.userId

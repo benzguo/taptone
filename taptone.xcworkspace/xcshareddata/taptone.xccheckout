@@ -10,29 +10,29 @@
 	<string>taptone</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>5FA798E8-ED69-4E40-83A3-F3F87A3B845A</key>
+		<key>7AC0ED28F547ADA80E81B59BFBC727AFBAF5CAB2</key>
 		<string>ssh://github.com/benzguo/taptone.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>taptone.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>5FA798E8-ED69-4E40-83A3-F3F87A3B845A</key>
+		<key>7AC0ED28F547ADA80E81B59BFBC727AFBAF5CAB2</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
 	<string>ssh://github.com/benzguo/taptone.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>5FA798E8-ED69-4E40-83A3-F3F87A3B845A</string>
+	<string>7AC0ED28F547ADA80E81B59BFBC727AFBAF5CAB2</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>5FA798E8-ED69-4E40-83A3-F3F87A3B845A</string>
+			<string>7AC0ED28F547ADA80E81B59BFBC727AFBAF5CAB2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>taptone</string>
 		</dict>

@@ -10,7 +10,7 @@ class Pusher {
             "name": name,
             "userId": userId])
         push.sendPushInBackgroundWithBlock({(success: Bool, error: NSError?) in
-            if (!success || error) {
+            if (!success || error != nil) {
                 print(error)
             }
             handler(success)

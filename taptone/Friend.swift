@@ -10,7 +10,7 @@ class Friend: NSObject, NSCoding {
         phone = p
     }
 
-    init(coder decoder: NSCoder!) {
+    required init(coder decoder: NSCoder!) {
         userId = decoder.decodeObjectForKey("userId") as String
         name = decoder.decodeObjectForKey("name") as String
         phone = decoder.decodeObjectForKey("phone") as String

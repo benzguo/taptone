@@ -1,6 +1,6 @@
 
-operator prefix | {}
-@prefix func | (string: String) -> String {
+prefix operator | {}
+prefix func | (string: String) -> String {
     return NSLocalizedString(string, comment:"")
 }
 

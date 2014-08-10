@@ -3,11 +3,15 @@ class KeyboardView: UIView {
     var whiteKeys: [KeyButton] = []
     var blackKeys: [KeyButton] = []
 
+    required init(coder aDecoder: NSCoder!) {
+        fatalError("NSCoding not supported")
+    }
+
     init(width: CGFloat, notes: [Note], channels: [String]) {
         let whiteNotes = notes.filter { $0.keyColor == KeyColor.White }
-        let whiteKeyHeight = 65.5;
-        let blackKeyHeight = whiteKeyHeight * 2/3
-        let blackKeyWidth = width / 2;
+        let whiteKeyHeight: CGFloat = 65.5;
+        let blackKeyHeight: CGFloat = whiteKeyHeight * 2/3
+        let blackKeyWidth: CGFloat = width / 2;
         let viewHeight = whiteKeyHeight * CGFloat(whiteNotes.count) + 1
 
         var y = viewHeight

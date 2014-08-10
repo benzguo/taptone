@@ -9,6 +9,10 @@ class KeyButton: UIButton {
     let shimmeringView: FBShimmeringView
     let originalBackgroundColor: UIColor
 
+    required init(coder aDecoder: NSCoder!) {
+        fatalError("NSCoding not supported")
+    }
+
     init(frame: CGRect, note: Note, channels: [String]) {
         self.note = note
         self.channels = channels

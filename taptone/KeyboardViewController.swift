@@ -15,13 +15,13 @@ class KeyboardViewController: UIViewController, MFMessageComposeViewControllerDe
     // private
     let noteNumbers: [Int]
     let notes: [Note]
-    var maxOffset: Double = 0
-    var minOffset: Double = 0
+    var maxOffset: CGFloat = 0
+    var minOffset: CGFloat = 0
 
-    @IBOutlet var scrollPad: UIView
-    @IBOutlet var scrollView: UIScrollView
+    @IBOutlet var scrollPad: UIView!
+    @IBOutlet var scrollView: UIScrollView!
 
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         noteNumbers = (48...72).toArray()
         notes = noteNumbers.map { Note(midiNumber: $0) }
         super.init(coder: aDecoder)
@@ -31,16 +31,16 @@ class KeyboardViewController: UIViewController, MFMessageComposeViewControllerDe
         super.viewDidLoad()
 
         navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
-        var shimmeringView = FBShimmeringView(frame: scrollPad.bounds)
+        var shimmeringView = FBShimmeringView(frame: scrollPad!.bounds)
         shimmeringView.shimmering = true
         shimmeringView.shimmeringSpeed = 100
         shimmeringView.shimmeringPauseDuration = 1
         shimmeringView.shimmeringOpacity = 0.8
         var contentView = UIView(frame: shimmeringView.bounds)
-        contentView.layer.cornerRadius = scrollPad.frame.size.height / 2
+        contentView.layer.cornerRadius = scrollPad!.frame.size.height / 2
         contentView.backgroundColor = UIColor.tt_whiteColor()
         shimmeringView.contentView = contentView
-        scrollPad.addSubview(shimmeringView)
+        scrollPad!.addSubview(shimmeringView)
 
         let keyboardView = KeyboardView(width: scrollView.frame.size.width, notes: notes, channels: self.channels)
         maxOffset = keyboardView.frame.size.height - self.view.frame.size.height

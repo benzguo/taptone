@@ -7,9 +7,9 @@ import AVFoundation
     let GsPlayer: AVAudioPlayer
     let GPlayer: AVAudioPlayer
 
-    @IBOutlet var signupButton: UIButton
-    @IBOutlet var blackKeyButton: UIButton
-    @IBOutlet var loginButton: UIButton
+    @IBOutlet var signupButton: UIButton!
+    @IBOutlet var blackKeyButton: UIButton!
+    @IBOutlet var loginButton: UIButton!
 
     enum GenericError: String {
         case ConnectionError = "Connection error"
@@ -27,7 +27,7 @@ import AVFoundation
         case FailedToSendCode = "Failed to send code"
     }
 
-    init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder!) {
         APlayer = AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource("A3", withExtension: "caf"), error: nil)
         GsPlayer = AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource("G#3", withExtension: "caf"), error: nil)
         GPlayer = AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource("G3", withExtension: "caf"), error: nil)
@@ -104,14 +104,14 @@ import AVFoundation
 
     func handleLoginError(error: NSError) {
         let userInfo = error.userInfo
-        if let u = userInfo {
-            let errorString: NSString = u["error"] as NSString
+        if let u = userInfo as? [String: String]{
+            let errorString = u["error"] as String!
             switch errorString {
             case LoginError.UserNotFound.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
                     message: |"Please enter the email you signed up with.",
                     fromViewController: self)
-             case LoginError.FailedToSendCode.toRaw():
+            case LoginError.FailedToSendCode.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
                     message: |"Please try again",
                     fromViewController: self)               
@@ -156,8 +156,8 @@ import AVFoundation
 
     func handleSignupError(error: NSError) {
         let userInfo = error.userInfo
-        if let u = userInfo {
-            let errorString: NSString = u["error"] as NSString
+        if let u = userInfo as? [String: String] {
+            let errorString  = u["error"] as String!
             switch errorString {
             case SignupError.EmailTaken.toRaw():
                 UIAlertController.presentStandardAlert(errorString,

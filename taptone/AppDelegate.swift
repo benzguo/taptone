@@ -59,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var soundURL = NSBundle.mainBundle().URLForResource(sound, withExtension:"caf") as CFURLRef
         var soundID: SystemSoundID = 0
         AudioServicesCreateSystemSoundID(soundURL, &soundID)
-        CFRelease(soundURL)
         AudioServicesPlaySystemSound(soundID)
 
         // add friend if not already added
@@ -90,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // show notification view
         notificationView!.nameLabel.text = name
         notificationView!.alpha = 0
-        self.window!.addSubview(notificationView)
+        self.window!.addSubview(notificationView!)
         UIView.animateWithDuration(0.3, animations: {
             self.notificationView!.alpha = 1
             }, completion: {finished in
