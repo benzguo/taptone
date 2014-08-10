@@ -217,7 +217,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                                             NSForegroundColorAttributeName : UIColor.tt_grayColor() ]
         actionSheet.buttonTextAttributes = [ NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 25),
                                              NSForegroundColorAttributeName : UIColor.whiteColor() ]
-        actionSheet.cancelButtonTextAttributes = actionSheet.buttonTextAttributes
+        actionSheet.cancelButtonTextAttributes = actionSheet.titleTextAttributes
         actionSheet.cancelButtonHeight = 60
         actionSheet.selectedBackgroundColor = UIColor(white: 1.0, alpha: 0.7)
         actionSheet.addButtonWithTitle(|"Send invite", type: .Default, handler: { actionSheet in
