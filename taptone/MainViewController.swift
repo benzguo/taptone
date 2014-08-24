@@ -34,6 +34,8 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        
         let navBar = navigationController.navigationBar
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.shadowImage = UIImage()
@@ -114,7 +116,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                 textField.textAlignment = .Center
                 textField.font = UIFont(name: "Helvetica-Neue", size: 25);
                 textField.placeholder = "phone number"|
-                textField.keyboardType = .PhonePad
+                textField.keyboardType = .NumberPad
                 phoneTextField = textField
             })
             ac.addAction(UIAlertAction(title: "Ok"|, style: .Default,
@@ -211,6 +213,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         let phone = PFUser.currentUser()["phone"] as String
 
         var actionSheet = AHKActionSheet(title: "\(name) (\(phone))")
+        actionSheet.animationDuration = 0.4
         actionSheet.separatorColor = UIColor.clearColor()
         actionSheet.blurTintColor = UIColor(white: 1.0, alpha: 0.2)
         actionSheet.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 20),
@@ -226,6 +229,10 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         actionSheet.addButtonWithTitle("Edit name"|, type: .Default, handler: { actionSheet in
             self.setName()
         })
+        actionSheet.addButtonWithTitle("About"|, type: .Default, handler: { actionSheet in
+            let url = NSURL(string: "http://taptone.me/about")
+            UIApplication.sharedApplication().openURL(url)
+        })       
         actionSheet.addButtonWithTitle("Log out"|, type: .Default, handler: { actionSheet in
             PFUser.logOut()
             PFInstallation.currentInstallation().setObject([], forKey:"channels")
@@ -247,7 +254,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = "phone number"|
-            textField.keyboardType = .PhonePad
+            textField.keyboardType = .NumberPad
             phoneTextField = textField
         })
         ac.addAction(UIAlertAction(title: "Cancel"|, style: .Cancel, handler: nil))

@@ -96,7 +96,7 @@ import AVFoundation
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
             textField.placeholder = "code"|
-            textField.keyboardType = .PhonePad
+            textField.keyboardType = .NumberPad
             codeTextField = textField
         }
         self.presentViewController(ac, animated: true, completion: nil)

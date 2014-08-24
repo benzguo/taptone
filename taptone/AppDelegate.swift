@@ -14,7 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     {
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.makeKeyAndVisible()
-        
+
+        AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, withOptions: .MixWithOthers, error: nil)
+
         application.statusBarHidden = true
         notificationView = NSBundle.mainBundle().loadNibNamed("NotificationView", owner: nil, options: nil)[0] as? NotificationView
         notificationView!.frame = CGRect(x: 0, y: 0,

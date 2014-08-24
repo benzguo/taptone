@@ -70,7 +70,7 @@ class KeyboardViewController: UIViewController, MFMessageComposeViewControllerDe
             self.presentViewController(messageVC, animated: true, completion: nil)
         }
         else {
-            UIAlertController.presentStandardAlert(|"This device can't send texts", message: "", fromViewController: self)
+            UIAlertController.presentStandardAlert("This device can't send texts"|, message: "", fromViewController: self)
         }
     }
 
