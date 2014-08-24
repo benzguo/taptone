@@ -12,13 +12,15 @@ var randomCode = function() {
 var emailCode = function(email, code, response) {
 
   var emailText =  "\
-  You requested a sign in code for Taptone.<br>\
-  Enter the following code <b>"+code+"</b><br>\
-  If you did not try to sign in, you can ignore this message. Someone may have used your email address by mistake.<br>\
-  <a href=\"https://twitter.com/taptoneapp\">@taptoneapp</a>"
-   Mailgun.sendEmail({
+  You requested a sign in code for Taptone.\n\n\
+  Enter the following code: "+code+"\n\n\
+  If you did not try to sign in, you can ignore this message. Someone may have used your email address by mistake.\n\n\
+  www.taptone.me\n\n\
+  This email was sent by Taptone, 175 Orchard St #5C, New York, NY 10002"
+
+  Mailgun.sendEmail({
       to: email,
-      from: "taptone@taptone.me",
+      from: "taptone.me@gmail.com",
       subject: "Your sign in code: "+code,
       text: emailText
     }, {
