@@ -63,7 +63,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         var user = PFUser.currentUser()
         user.refreshInBackgroundWithBlock({result in
             self.reloadFriends()
-            })
+        })
     }
 
     override func viewDidAppear(animated: Bool) {
@@ -99,71 +99,71 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                 NSUserDefaults.standardUserDefaults().synchronize()
                 self.reloadTableView()
             }
-            })
+        })
     }
 
     func shouldReloadFriends(notification: NSNotification?) {
         reloadFriends()
     }
 
-    func setPhone(title: String = |"Enter your phone number",
-        message: String = "\r" + |"Your friends can add you on Taptone using your phone number.") {
-        var phoneTextField = UITextField()
-        var ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)
-        ac.addTextFieldWithConfigurationHandler({ textField in
-            textField.textAlignment = .Center
-            textField.font = UIFont(name: "Helvetica-Neue", size: 25);
-            textField.placeholder = |"phone number"
-            textField.keyboardType = .PhonePad
-            phoneTextField = textField
+    func setPhone(title: String = "Enter your phone number"|,
+        message: String = "\r" + "Your friends can add you on Taptone using your phone number."|) {
+            var phoneTextField = UITextField()
+            var ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)
+            ac.addTextFieldWithConfigurationHandler({ textField in
+                textField.textAlignment = .Center
+                textField.font = UIFont(name: "Helvetica-Neue", size: 25);
+                textField.placeholder = "phone number"|
+                textField.keyboardType = .PhonePad
+                phoneTextField = textField
             })
-        ac.addAction(UIAlertAction(title: NSLocalizedString("Ok", comment: ""), style: .Default,
-            handler: { action in
-                let phone = phoneTextField.text
-                if phone.utf16Count < 7 {
-                    self.setPhone(title: |"Please enter a valid phone",
-                        message: "\r" + |"Only people who know your phone number can add you on Taptone.")
-                }
-                else {
-                    var query = PFUser.query()
-                    query.whereKey("phone", equalTo: phone)
-                    query.getFirstObjectInBackgroundWithBlock({(object: PFObject?, error: NSError?) in
-                        if let user = object as? PFUser {
-                            UIAlertController.presentStandardAlert(|"Phone number taken",
-                                message: "\r" + |"Please choose a different number", fromViewController: self)
-                        }
-                        else {
-                            let originalPhone = PFUser.currentUser().objectForKey("phone") as String
-                            PFUser.currentUser().setObject(phone, forKey: "phone");
-                            PFUser.currentUser().saveInBackgroundWithBlock({(success: Bool, error: NSError?) in
-                                if let e = error {
-                                    PFUser.currentUser().setObject(originalPhone, forKey: "phone");
-                                    UIAlertController.presentStandardAlert(|"Save failed",
-                                        message: e.localizedDescription, fromViewController: self)
-                                }
+            ac.addAction(UIAlertAction(title: "Ok"|, style: .Default,
+                handler: { action in
+                    let phone = phoneTextField.text
+                    if phone.utf16Count < 7 {
+                        self.setPhone(title: "Please enter a valid phone"|,
+                            message: "\r" + "Only people who know your phone number can add you on Taptone."|)
+                    }
+                    else {
+                        var query = PFUser.query()
+                        query.whereKey("phone", equalTo: phone)
+                        query.getFirstObjectInBackgroundWithBlock({(object: PFObject?, error: NSError?) in
+                            if let user = object as? PFUser {
+                                UIAlertController.presentStandardAlert("Phone number taken"|,
+                                    message: "\r" + "Please choose a different number"|, fromViewController: self)
+                            }
+                            else {
+                                let originalPhone = PFUser.currentUser().objectForKey("phone") as String
+                                PFUser.currentUser().setObject(phone, forKey: "phone");
+                                PFUser.currentUser().saveInBackgroundWithBlock({(success: Bool, error: NSError?) in
+                                    if let e = error {
+                                        PFUser.currentUser().setObject(originalPhone, forKey: "phone");
+                                        UIAlertController.presentStandardAlert("Save failed"|,
+                                            message: e.localizedDescription, fromViewController: self)
+                                    }
                                 })
                             }
                         })
-                }
-            }))              
-        self.presentViewController(ac, animated: true, completion: nil)
+                    }
+            }))
+            self.presentViewController(ac, animated: true, completion: nil)
     }
 
-    func setName(title: String = |"Change your name", message: String = "") {
+    func setName(title: String = "Change your name"|, message: String = "") {
         var nameTextField = UITextField()
         var ac = UIAlertController(title: title, message: message, preferredStyle: .Alert)
         ac.addTextFieldWithConfigurationHandler({ textField in
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
-            textField.placeholder = NSLocalizedString("name", comment: "")
+            textField.placeholder = "name"|
             nameTextField = textField
-            })
-        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: |"Ok", style: .Default,
+        })
+        ac.addAction(UIAlertAction(title: "Cancel"|, style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Ok"|, style: .Default,
             handler: { action in
                 if nameTextField.text.utf16Count < 6 {
-                    self.setName(title: |"Please enter a valid name",
-                        message: "\r" + |"Your name must be at least 6 characters long.")
+                    self.setName(title: "Please enter a valid name"|,
+                        message: "\r" + "Your name must be at least 6 characters long."|)
                 }
                 else {
                     let originalName = PFUser.currentUser().objectForKey("name") as String
@@ -171,14 +171,14 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                     PFUser.currentUser().saveInBackgroundWithBlock({(success: Bool, error: NSError?) in
                         if let e = error {
                             PFUser.currentUser().setObject(originalName, forKey: "name");
-                            UIAlertController.presentStandardAlert(|"Save failed",
+                            UIAlertController.presentStandardAlert("Save failed"|,
                                 message: e.localizedDescription, fromViewController: self)
                         }
-                        })
+                    })
                 }
-            }))              
+        }))
         self.presentViewController(ac, animated: true, completion: nil)
-    }   
+    }
 
     func invitePhone(phone: String?) {
         if MFMessageComposeViewController.canSendText() {
@@ -187,11 +187,11 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             if let p = phone {
                 messageVC.recipients = [p]
             }
-            messageVC.body = |"Add me on Taptone! http://taptone.me/dl"
+            messageVC.body = "Add me on Taptone! http://taptone.me/dl"|
             self.presentViewController(messageVC, animated: true, completion: nil)
         }
         else {
-            UIAlertController.presentStandardAlert(|"This device can't send texts", message: "", fromViewController: self)
+            UIAlertController.presentStandardAlert("This device can't send texts"|, message: "", fromViewController: self)
         }
     }
 
@@ -214,19 +214,19 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         actionSheet.separatorColor = UIColor.clearColor()
         actionSheet.blurTintColor = UIColor(white: 1.0, alpha: 0.2)
         actionSheet.titleTextAttributes = [ NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 20),
-                                            NSForegroundColorAttributeName : UIColor.tt_grayColor() ]
+            NSForegroundColorAttributeName : UIColor.tt_grayColor() ]
         actionSheet.buttonTextAttributes = [ NSFontAttributeName : UIFont(name: "HelveticaNeue-Medium", size: 25),
-                                             NSForegroundColorAttributeName : UIColor.whiteColor() ]
+            NSForegroundColorAttributeName : UIColor.whiteColor() ]
         actionSheet.cancelButtonTextAttributes = actionSheet.titleTextAttributes
         actionSheet.cancelButtonHeight = 60
         actionSheet.selectedBackgroundColor = UIColor(white: 1.0, alpha: 0.7)
-        actionSheet.addButtonWithTitle(|"Send invite", type: .Default, handler: { actionSheet in
+        actionSheet.addButtonWithTitle("Send invite"|, type: .Default, handler: { actionSheet in
             self.invitePhone(nil)
         })
-        actionSheet.addButtonWithTitle(|"Edit name", type: .Default, handler: { actionSheet in
+        actionSheet.addButtonWithTitle("Edit name"|, type: .Default, handler: { actionSheet in
             self.setName()
         })
-        actionSheet.addButtonWithTitle(|"Log out", type: .Default, handler: { actionSheet in
+        actionSheet.addButtonWithTitle("Log out"|, type: .Default, handler: { actionSheet in
             PFUser.logOut()
             PFInstallation.currentInstallation().setObject([], forKey:"channels")
             PFInstallation.currentInstallation().saveEventually()
@@ -235,27 +235,27 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             var rootViewController = storyboard.instantiateViewControllerWithIdentifier("IntroViewController") as UIViewController
             let appDelegate = UIApplication.sharedApplication().delegate as AppDelegate
-            appDelegate.window!.rootViewController = rootViewController           
+            appDelegate.window!.rootViewController = rootViewController
         })
         actionSheet.show()
     }
 
-    func addFriendByPhone(title: String = |"Add a friend by entering their phone number") {
+    func addFriendByPhone(title: String = "Add a friend by entering their phone number"|) {
         var phoneTextField = UITextField()
         var ac = UIAlertController(title: title, message: nil, preferredStyle: .Alert)
         ac.addTextFieldWithConfigurationHandler({ textField in
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
-            textField.placeholder = NSLocalizedString("phone number", comment: "")
+            textField.placeholder = "phone number"|
             textField.keyboardType = .PhonePad
             phoneTextField = textField
-            })
-        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: |"Add", style: .Default,
+        })
+        ac.addAction(UIAlertAction(title: "Cancel"|, style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Add"|, style: .Default,
             handler: { action in
                 let phone = phoneTextField.text
                 if phone.utf16Count < 7 {
-                    self.addFriendByPhone(title: |"Please enter a valid phone")
+                    self.addFriendByPhone(title: "Please enter a valid phone"|)
                 }
                 else {
                     var query = PFUser.query()
@@ -265,14 +265,14 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                         if let u = user as? PFUser {
                             SVProgressHUD.dismiss()
                             if u.username == PFUser.currentUser().username {
-                                UIAlertController.presentStandardAlert(|"You can't add yourself!",
-                                    message: "\r" + |"Please go make some friends.",
+                                UIAlertController.presentStandardAlert("You can't add yourself!"|,
+                                    message: "\r" + "Please go make some friends."|,
                                     fromViewController: self)
                             }
                             else {
                                 if self.friends.filter({ return $0.userId == u.objectId }).count != 0  {
                                     let name = u.objectForKey("name") as String
-                                    UIAlertController.presentStandardAlert(|"Already added " + "\(name)",
+                                    UIAlertController.presentStandardAlert("Already added "| + "\(name)",
                                         message: "\r",
                                         fromViewController: self)
                                     return
@@ -290,24 +290,24 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                                     if !succeeded || error != nil {
                                         self.reloadFriends()
                                     }
-                                    })
+                                })
                             }
                         }
                         else {
                             SVProgressHUD.dismiss()
-                            var ac = UIAlertController(title: |"We couldn't find a user with that phone number",
+                            var ac = UIAlertController(title: "We couldn't find a user with that phone number"|,
                                 message: "Invite them to join Taptone!", preferredStyle: .Alert)
-                            ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
-                            ac.addAction(UIAlertAction(title: |"Invite", style: .Default,
+                            ac.addAction(UIAlertAction(title: "Cancel"|, style: .Cancel, handler: nil))
+                            ac.addAction(UIAlertAction(title: "Invite"|, style: .Default,
                                 handler: { action in
                                     self.invitePhone(phone)
-                                }))
-                            self.presentViewController(ac, animated: true, completion: nil)                       
+                            }))
+                            self.presentViewController(ac, animated: true, completion: nil)
                         }
-                        })
+                    })
                 }
 
-            }))
+        }))
         self.presentViewController(ac, animated: true, completion: nil)
     }
 
@@ -321,7 +321,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         }
     }
 
-// Segues
+    // Segues
 
     override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
         if segue.identifier == "showKeyboard" {
@@ -349,7 +349,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         }
     }
 
-// UITableViewDataSource
+    // UITableViewDataSource
 
     override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
         return self.friends.count
@@ -373,7 +373,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         return true
     }
 
-// UITableViewDelegate
+    // UITableViewDelegate
 
     override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
         if !self.isMultiSelecting {
@@ -406,16 +406,16 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                         if !succeeded || error != nil {
                             self.reloadFriends()
                         }
-                        })
+                    })
                 }
                 else {
                     self.reloadFriends()
                 }
-                })
+            })
         }
     }
 
-// UIGestureRecognizer
+    // UIGestureRecognizer
 
     func handleLongPress(gestureRecognizer: UILongPressGestureRecognizer?) {
         let p = gestureRecognizer!.locationInView(self.tableView)
@@ -424,12 +424,12 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             self.isMultiSelecting = true
         }
     }
-
-// MFMessageComposeViewControllerDelegate
-
+    
+    // MFMessageComposeViewControllerDelegate
+    
     func messageComposeViewController(controller: MFMessageComposeViewController!, didFinishWithResult result: MessageComposeResult)  {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-
+    
 }
 

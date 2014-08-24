@@ -11,7 +11,7 @@
 		9617A3E81967C5480032ED54 /* KeyButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9617A3E71967C5480032ED54 /* KeyButton.swift */; };
 		9626C8631991DC27007AA9B1 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9626C8621991DC27007AA9B1 /* Friend.swift */; };
 		96626FC21969E7A9002D5296 /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96626FC11969E7A9002D5296 /* KeyboardView.swift */; };
-		96626FC5196A067C002D5296 /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96626FC4196A067C002D5296 /* UIColorExtension.swift */; };
+		96626FC5196A067C002D5296 /* UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96626FC4196A067C002D5296 /* UIColor.swift */; };
 		967C22921963B52E001B7F7F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C22911963B52E001B7F7F /* AppDelegate.swift */; };
 		967C22941963B52E001B7F7F /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 967C22931963B52E001B7F7F /* MainViewController.swift */; };
 		967C22971963B52E001B7F7F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 967C22951963B52E001B7F7F /* Main.storyboard */; };
@@ -73,7 +73,7 @@
 		96FD80CF198458B000F6D438 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96FD80CE198458B000F6D438 /* NotificationView.xib */; };
 		96FD80D21984598E00F6D438 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96FD80D11984598E00F6D438 /* NotificationView.swift */; };
 		EB6A5ED11981EFB800B404BE /* Localizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB6A5ED01981EFB800B404BE /* Localizer.swift */; };
-		EB9700EC197C46C000241451 /* UIAlertControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9700EB197C46C000241451 /* UIAlertControllerExtension.swift */; };
+		EB9700EC197C46C000241451 /* UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB9700EB197C46C000241451 /* UIAlertController.swift */; };
 		EBC3EF1B196F6F2D00496D06 /* IntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC3EF1A196F6F2D00496D06 /* IntroViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -93,7 +93,7 @@
 		9617A3E71967C5480032ED54 /* KeyButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyButton.swift; sourceTree = "<group>"; };
 		9626C8621991DC27007AA9B1 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
 		96626FC11969E7A9002D5296 /* KeyboardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
-		96626FC4196A067C002D5296 /* UIColorExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		96626FC4196A067C002D5296 /* UIColor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColor.swift; sourceTree = "<group>"; };
 		967C228C1963B52E001B7F7F /* Taptone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Taptone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		967C22901963B52E001B7F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		967C22911963B52E001B7F7F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 		96FD80CE198458B000F6D438 /* NotificationView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
 		96FD80D11984598E00F6D438 /* NotificationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		EB6A5ED01981EFB800B404BE /* Localizer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizer.swift; sourceTree = "<group>"; };
-		EB9700EB197C46C000241451 /* UIAlertControllerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertControllerExtension.swift; sourceTree = "<group>"; };
+		EB9700EB197C46C000241451 /* UIAlertController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIAlertController.swift; sourceTree = "<group>"; };
 		EBC3EF1A196F6F2D00496D06 /* IntroViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IntroViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -236,8 +236,8 @@
 				96CF9B1A19679EC200389595 /* Pusher.swift */,
 				9626C8621991DC27007AA9B1 /* Friend.swift */,
 				EB6A5ED01981EFB800B404BE /* Localizer.swift */,
-				96626FC4196A067C002D5296 /* UIColorExtension.swift */,
-				EB9700EB197C46C000241451 /* UIAlertControllerExtension.swift */,
+				96626FC4196A067C002D5296 /* UIColor.swift */,
+				EB9700EB197C46C000241451 /* UIAlertController.swift */,
 				96CF9B1E1967A64700389595 /* Music.swift */,
 				967C22951963B52E001B7F7F /* Main.storyboard */,
 				967C22981963B52E001B7F7F /* Images.xcassets */,
@@ -537,8 +537,8 @@
 				EB6A5ED11981EFB800B404BE /* Localizer.swift in Sources */,
 				967C22921963B52E001B7F7F /* AppDelegate.swift in Sources */,
 				96626FC21969E7A9002D5296 /* KeyboardView.swift in Sources */,
-				EB9700EC197C46C000241451 /* UIAlertControllerExtension.swift in Sources */,
-				96626FC5196A067C002D5296 /* UIColorExtension.swift in Sources */,
+				EB9700EC197C46C000241451 /* UIAlertController.swift in Sources */,
+				96626FC5196A067C002D5296 /* UIColor.swift in Sources */,
 				96CF9B1F1967A64700389595 /* Music.swift in Sources */,
 				9617A3E81967C5480032ED54 /* KeyButton.swift in Sources */,
 				96CF9B1B19679EC200389595 /* Pusher.swift in Sources */,

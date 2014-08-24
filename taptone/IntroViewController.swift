@@ -44,12 +44,12 @@ import AVFoundation
         signupButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)
         signupButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
-        signupButton.titleLabel.text = |"Sign up"
+        signupButton.titleLabel.text = "Sign up"|
 
         loginButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)
         loginButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
-        loginButton.titleLabel.text = |"Log in"
+        loginButton.titleLabel.text = "Log in"|
 
         blackKeyButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)
@@ -65,37 +65,37 @@ import AVFoundation
 
     func enterCode(email: String) {
         var codeTextField = UITextField()
-        var ac = UIAlertController(title: |"Enter code",
-            message: |"Check your email and enter the code to log in.",
+        var ac = UIAlertController(title: "Enter code"|,
+            message: "Check your email and enter the code to log in."|,
             preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: |"Log in", style: .Default, handler:
-        { action in
-            SVProgressHUD.show()
-            let password = codeTextField.text
-            PFUser.logInWithUsernameInBackground(email,
-                password: password,
-                block: { (user: PFUser?, error: NSError?) in
-                    SVProgressHUD.dismiss()
-                    if let e = error {
-                         UIAlertController.presentStandardAlert(|"Log in failed",
-                            message: |"Please try again",
-                            fromViewController: self)                       
-                    }
-                    else {
-                        let userChannel = "user_" + user!.objectId
-                        PFInstallation.currentInstallation().setObject([userChannel], forKey:"channels")
-                        PFInstallation.currentInstallation().saveEventually()
+        ac.addAction(UIAlertAction(title: "Cancel"|, style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Log in"|, style: .Default, handler:
+            { action in
+                SVProgressHUD.show()
+                let password = codeTextField.text
+                PFUser.logInWithUsernameInBackground(email,
+                    password: password,
+                    block: { (user: PFUser?, error: NSError?) in
+                        SVProgressHUD.dismiss()
+                        if let e = error {
+                            UIAlertController.presentStandardAlert("Log in failed"|,
+                                message: "Please try again"|,
+                                fromViewController: self)
+                        }
+                        else {
+                            let userChannel = "user_" + user!.objectId
+                            PFInstallation.currentInstallation().setObject([userChannel], forKey:"channels")
+                            PFInstallation.currentInstallation().saveEventually()
 
-                        self.performSegueWithIdentifier("login", sender: self)
-                    }
-            })
+                            self.performSegueWithIdentifier("login", sender: self)
+                        }
+                })
         }))
         ac.addTextFieldWithConfigurationHandler {
             textField in
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
-            textField.placeholder = NSLocalizedString("code", comment: "")
+            textField.placeholder = "code"|
             textField.keyboardType = .PhonePad
             codeTextField = textField
         }
@@ -109,12 +109,12 @@ import AVFoundation
             switch errorString {
             case LoginError.UserNotFound.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
-                    message: |"Please enter the email you signed up with.",
+                    message: "Please enter the email you signed up with."|,
                     fromViewController: self)
             case LoginError.FailedToSendCode.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
-                    message: |"Please try again",
-                    fromViewController: self)               
+                    message: "Please try again"|,
+                    fromViewController: self)
             default:
                 UIAlertController.presentStandardAlert(error.localizedDescription,
                     message: "",
@@ -126,27 +126,27 @@ import AVFoundation
     @IBAction func logIn(sender: UIButton) {
         var emailTextField = UITextField()
         var ac = UIAlertController(title: "", message: nil, preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: |"Log in", style: .Default, handler:
-        { action in
-            SVProgressHUD.show()
-            PFCloud.callFunctionInBackground("login",
-                withParameters: ["email": emailTextField.text],
-                block: {(result: AnyObject?, error: NSError?) in
-                    SVProgressHUD.dismiss()
-                    if let e = error {
-                        self.handleLoginError(e)
-                    }
-                    else {
-                        self.enterCode(emailTextField.text);
-                    }
+        ac.addAction(UIAlertAction(title: "Cancel"|, style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Log in"|, style: .Default, handler:
+            { action in
+                SVProgressHUD.show()
+                PFCloud.callFunctionInBackground("login",
+                    withParameters: ["email": emailTextField.text],
+                    block: {(result: AnyObject?, error: NSError?) in
+                        SVProgressHUD.dismiss()
+                        if let e = error {
+                            self.handleLoginError(e)
+                        }
+                        else {
+                            self.enterCode(emailTextField.text);
+                        }
                 })
         }))
         ac.addTextFieldWithConfigurationHandler {
             textField in
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
-            textField.placeholder = NSLocalizedString("email", comment: "")
+            textField.placeholder = "email"|
             textField.autocapitalizationType = .None
             textField.keyboardType = .EmailAddress
             emailTextField = textField
@@ -161,14 +161,14 @@ import AVFoundation
             switch errorString {
             case SignupError.EmailTaken.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
-                    message: |"This email is taken. Please log in or choose another email.",
+                    message: "This email is taken. Please log in or choose another email."|,
                     fromViewController: self)
             case SignupError.PhoneTaken.toRaw():
                 UIAlertController.presentStandardAlert(errorString,
-                    message: |"This phone number is taken. Please log in or choose another phone number.",
+                    message: "This phone number is taken. Please log in or choose another phone number."|,
                     fromViewController: self)
             default:
-               SVProgressHUD.showErrorWithStatus(errorString)
+                SVProgressHUD.showErrorWithStatus(errorString)
             }
         }
     }
@@ -178,21 +178,21 @@ import AVFoundation
         var nameTextField  = UITextField()
         var emailTextField = UITextField()
         var ac = UIAlertController(title: "", message: nil, preferredStyle: .Alert)
-        ac.addAction(UIAlertAction(title: |"Cancel", style: .Cancel, handler: nil))
-        ac.addAction(UIAlertAction(title: |"Sign up", style: .Default, handler:
-        { action in
-            SVProgressHUD.show()
-            PFCloud.callFunctionInBackground("signup",
-                withParameters: ["displayName": nameTextField.text,
-                                 "email": emailTextField.text],
-                block: {(result: AnyObject?, error: NSError?) in
-                    SVProgressHUD.dismiss()
-                    if let e = error {
-                        self.handleSignupError(e)
-                    }
-                    else {
-                        self.enterCode(emailTextField.text)
-                    }
+        ac.addAction(UIAlertAction(title: "Cancel"|, style: .Cancel, handler: nil))
+        ac.addAction(UIAlertAction(title: "Sign up"|, style: .Default, handler:
+            { action in
+                SVProgressHUD.show()
+                PFCloud.callFunctionInBackground("signup",
+                    withParameters: ["displayName": nameTextField.text,
+                        "email": emailTextField.text],
+                    block: {(result: AnyObject?, error: NSError?) in
+                        SVProgressHUD.dismiss()
+                        if let e = error {
+                            self.handleSignupError(e)
+                        }
+                        else {
+                            self.enterCode(emailTextField.text)
+                        }
                 })
 
         }))
@@ -200,14 +200,14 @@ import AVFoundation
             textField in
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
-            textField.placeholder = |"name"
+            textField.placeholder = "name"|
             nameTextField = textField
         }
         ac.addTextFieldWithConfigurationHandler {
             textField in
             textField.textAlignment = .Center
             textField.font = UIFont(name: "Helvetica-Neue", size: 25);
-            textField.placeholder = |"email"
+            textField.placeholder = "email"|
             textField.keyboardType = .EmailAddress
             emailTextField = textField
         }

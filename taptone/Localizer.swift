@@ -1,9 +1,11 @@
 
-prefix operator | {}
-prefix func | (string: String) -> String {
-    return NSLocalizedString(string, comment:"")
+infix operator | {}
+func | (lhs: String, rhs: String) -> String {
+    return NSLocalizedString(lhs, comment: rhs)
 }
-
-let localizedString = |"username"
+postfix operator | {}
+postfix func | (s: String) -> String {
+    return NSLocalizedString(s, comment: "")
+}
 
 
