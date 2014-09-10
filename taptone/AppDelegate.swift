@@ -1,5 +1,6 @@
 import UIKit
 import AVFoundation
+import Crashlytics
 
 let NotificationNameShouldReloadFriends = "ShouldReloadFriends"
 
@@ -12,6 +13,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: NSDictionary?) -> Bool
     {
+        Crashlytics.startWithAPIKey("3885017ed24101339d5de097acd32dd57117a9b8")
+        
         window = UIWindow(frame: UIScreen.mainScreen().bounds)
         window!.makeKeyAndVisible()
 

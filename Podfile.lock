@@ -1,7 +1,8 @@
 PODS:
   - AHKActionSheet (0.4.2)
-  - Bolts (1.1.1)
-  - Facebook-iOS-SDK (3.16.2):
+  - Bolts (1.1.2)
+  - CrashlyticsFramework (2.2.3)
+  - Facebook-iOS-SDK (3.17.0):
     - Bolts
   - Parse-iOS-SDK (1.2.19):
     - Facebook-iOS-SDK (~> 3.7)
@@ -12,6 +13,7 @@ PODS:
 
 DEPENDENCIES:
   - AHKActionSheet (~> 0.4.2)
+  - CrashlyticsFramework (~> 2.2)
   - Parse-iOS-SDK (~> 1.2.19)
   - Shimmer (~> 1.0.1)
   - SSKeychain (~> 1.2.2)
@@ -20,8 +22,9 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AHKActionSheet: 5bac772d0e966456257fbb8eefafbea9717ccbbc
-  Bolts: 0ca796081c3e7c139bd86d6903c27f1b83036a5d
-  Facebook-iOS-SDK: 34eef640c2cc4c8618ba0f574ad2b290e07f1b4e
+  Bolts: 2635e8698a630774689441047f3465d78c48d485
+  CrashlyticsFramework: 03a73a1d756f69413b7b6fcb552f7a2fcf341589
+  Facebook-iOS-SDK: f20274d809f112ba540842e2b6cbe50128d51b7b
   Parse-iOS-SDK: 5e1f7e649a02f1cc19e73cc95bd43d7778848314
   Shimmer: 35aa2a57b8fbc17f9e16706021665966fd93dbd1
   SSKeychain: cc48bd3ad24fcd9125adb9e0d23dd50b8bbd08b9
