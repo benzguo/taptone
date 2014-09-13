@@ -130,6 +130,12 @@ import AVFoundation
         ac.addAction(UIAlertAction(title: "Log in"|, style: .Default, handler:
             { action in
                 SVProgressHUD.show()
+
+                // FOR APP STORE REVIEW
+                if emailTextField.text == "test1" || emailTextField.text == "test2" {
+                    self.enterCode(emailTextField.text)
+                }
+
                 PFCloud.callFunctionInBackground("login",
                     withParameters: ["email": emailTextField.text],
                     block: {(result: AnyObject?, error: NSError?) in
