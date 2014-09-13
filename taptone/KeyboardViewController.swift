@@ -30,7 +30,7 @@ class KeyboardViewController: UIViewController, MFMessageComposeViewControllerDe
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+        navigationController!.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
         var shimmeringView = FBShimmeringView(frame: scrollPad!.bounds)
         shimmeringView.shimmering = true
         shimmeringView.shimmeringSpeed = 100
@@ -44,7 +44,7 @@ class KeyboardViewController: UIViewController, MFMessageComposeViewControllerDe
 
         let keyboardView = KeyboardView(width: scrollView.frame.size.width, notes: notes, channels: self.channels)
         maxOffset = keyboardView.frame.size.height - self.view.frame.size.height
-        minOffset = -self.navigationController.navigationBar.frame.size.height
+        minOffset = -self.navigationController!.navigationBar.frame.size.height
         scrollPad.hidden = (maxOffset < 5)
 
         scrollView.backgroundColor = UIColor.tt_orangeColor()
@@ -55,7 +55,7 @@ class KeyboardViewController: UIViewController, MFMessageComposeViewControllerDe
     }
 
     @IBAction func handlePan(sender: UIPanGestureRecognizer?) {
-        var translation = sender!.translationInView(sender!.view)
+        var translation = sender!.translationInView(sender!.view!)
         var y = self.scrollView.contentOffset.y + (translation.x/8)
         y = max(min(y, maxOffset), minOffset)
         self.scrollView.contentOffset = CGPoint(x: 0, y: y)

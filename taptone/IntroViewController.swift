@@ -27,7 +27,7 @@ import AVFoundation
         case FailedToSendCode = "Failed to send code"
     }
 
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         APlayer = AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource("A3", withExtension: "caf"), error: nil)
         GsPlayer = AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource("G#3", withExtension: "caf"), error: nil)
         GPlayer = AVAudioPlayer(contentsOfURL: NSBundle.mainBundle().URLForResource("G3", withExtension: "caf"), error: nil)
@@ -44,12 +44,12 @@ import AVFoundation
         signupButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)
         signupButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
-        signupButton.titleLabel.text = "Sign up"|
+        signupButton.titleLabel!.text = "Sign up"|
 
         loginButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)
         loginButton.setTitleColor(UIColor.tt_whiteColor(), forState: .Highlighted)
-        loginButton.titleLabel.text = "Log in"|
+        loginButton.titleLabel!.text = "Log in"|
 
         blackKeyButton.setBackgroundImage(UIImage(color: UIColor.tt_orangeColor(), size: CGSizeMake(1, 1)),
             forState: .Highlighted)

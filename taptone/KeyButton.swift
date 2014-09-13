@@ -34,7 +34,7 @@ class KeyButton: UIButton {
         exclusiveTouch = true
     }
 
-    override func touchesBegan(touches: NSSet!, withEvent event: UIEvent!) {
+    override func touchesBegan(touches: NSSet!, withEvent event: UIEvent) {
         self.audioPlayer.currentTime = 0
         self.audioPlayer.play()
         self.backgroundColor = UIColor.tt_orangeColor()
@@ -55,7 +55,7 @@ class KeyButton: UIButton {
         })
 
 
-        self.nextResponder().touchesBegan(touches, withEvent: event)
+        self.nextResponder()!.touchesBegan(touches, withEvent: event)
     }
 
 

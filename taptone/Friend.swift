@@ -10,14 +10,14 @@ class Friend: NSObject, NSCoding {
         phone = p
     }
 
-    required init(coder decoder: NSCoder!) {
+    required init(coder decoder: NSCoder) {
         userId = decoder.decodeObjectForKey("userId") as String
         name = decoder.decodeObjectForKey("name") as String
         phone = decoder.decodeObjectForKey("phone") as String
         super.init()
     }
 
-    func encodeWithCoder(coder: NSCoder!) {
+    func encodeWithCoder(coder: NSCoder) {
         coder.encodeObject(userId, forKey:"userId")
         coder.encodeObject(name, forKey:"name")
         coder.encodeObject(phone, forKey:"phone")

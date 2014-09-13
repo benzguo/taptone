@@ -36,7 +36,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         super.viewDidLoad()
 
         
-        let navBar = navigationController.navigationBar
+        let navBar = navigationController!.navigationBar
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.shadowImage = UIImage()
         navBar.alpha = 1.0
@@ -71,7 +71,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
-        if !(PFUser.currentUser()["phone"]) {
+        if !((PFUser.currentUser()["phone"]) != nil) {
             setPhone()
         }
         self.isMultiSelecting = false
@@ -303,7 +303,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                         else {
                             SVProgressHUD.dismiss()
                             var ac = UIAlertController(title: "We couldn't find a user with that phone number"|,
-                                message: "Invite them to join Taptone!", preferredStyle: .Alert)
+                                message: "\rInvite them to join Taptone!", preferredStyle: .Alert)
                             ac.addAction(UIAlertAction(title: "Cancel"|, style: .Cancel, handler: nil))
                             ac.addAction(UIAlertAction(title: "Invite"|, style: .Default,
                                 handler: { action in
@@ -358,31 +358,31 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
 
     // UITableViewDataSource
 
-    override func tableView(tableView: UITableView!, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.friends.count
     }
 
-    override func tableView(tableView: UITableView!, cellForRowAtIndexPath indexPath: NSIndexPath!) -> UITableViewCell! {
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
-        cell.textLabel.textAlignment = .Center
-        cell.textLabel.font = UIFont(name: "HelveticaNeue-Medium", size: 30)
-        cell.textLabel.textColor = UIColor.whiteColor()
+        cell.textLabel!.textAlignment = .Center
+        cell.textLabel!.font = UIFont(name: "HelveticaNeue-Medium", size: 30)
+        cell.textLabel!.textColor = UIColor.whiteColor()
         cell.backgroundColor = UIColor.clearColor()
-        cell.textLabel.text = friends[indexPath.row].name as String
+        cell.textLabel!.text = friends[indexPath.row].name as String
         return cell
     }
 
-    override func tableView(tableView: UITableView!, heightForRowAtIndexPath indexPath: NSIndexPath!) -> CGFloat {
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return tableView.frame.size.width / 5
     }
 
-    override func tableView(tableView: UITableView!, canEditRowAtIndexPath indexPath: NSIndexPath!) -> Bool {
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         return true
     }
 
     // UITableViewDelegate
 
-    override func tableView(tableView: UITableView!, didSelectRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if !self.isMultiSelecting {
             tableView.deselectRowAtIndexPath(indexPath, animated: true)
             let cell = tableView.cellForRowAtIndexPath(indexPath)
@@ -390,14 +390,14 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         }
     }
 
-    override func tableView(tableView: UITableView!, didDeselectRowAtIndexPath indexPath: NSIndexPath!) {
+    override func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let indexPaths: NSArray? = tableView.indexPathsForSelectedRows()
         if indexPaths == nil {
             self.isMultiSelecting = false
         }
     }
 
-    override func tableView(tableView: UITableView!, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath!)  {
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)  {
         if editingStyle == .Delete {
             let friend = self.friends[indexPath.row]
             self.friends.removeAtIndex(indexPath.row)

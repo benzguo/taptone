@@ -61,7 +61,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // play sound
         sound = sound.stringByReplacingOccurrencesOfString(".caf", withString: "") as NSString
-        var soundURL = NSBundle.mainBundle().URLForResource(sound, withExtension:"caf") as CFURLRef
+//        var soundURL = NSBundle.mainBundle().URLForResource(sound, withExtension:"caf") as CFURLRef
+        var soundURL = NSBundle.mainBundle().URLForResource(sound, withExtension: "caf")//.CFURLRef
         var soundID: SystemSoundID = 0
         AudioServicesCreateSystemSoundID(soundURL, &soundID)
         AudioServicesPlaySystemSound(soundID)
