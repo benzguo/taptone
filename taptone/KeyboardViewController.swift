@@ -21,7 +21,7 @@ class KeyboardViewController: UIViewController, MFMessageComposeViewControllerDe
     @IBOutlet var scrollPad: UIView!
     @IBOutlet var scrollView: UIScrollView!
 
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         noteNumbers = (48...72).toArray()
         notes = noteNumbers.map { Note(midiNumber: $0) }
         super.init(coder: aDecoder)

@@ -189,7 +189,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             if let p = phone {
                 messageVC.recipients = [p]
             }
-            messageVC.body = "Add me on Taptone! http://taptone.me/dl"|
+            messageVC.body = "Add me on Taptone! http://taptone.me"|
             self.presentViewController(messageVC, animated: true, completion: nil)
         }
         else {
@@ -230,7 +230,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             self.setName()
         })
         actionSheet.addButtonWithTitle("About"|, type: .Default, handler: { actionSheet in
-            let url = NSURL(string: "http://taptone.me/about")
+            let url = NSURL(string: "http://taptone.me")
             UIApplication.sharedApplication().openURL(url)
         })       
         actionSheet.addButtonWithTitle("Log out"|, type: .Default, handler: { actionSheet in
@@ -330,7 +330,7 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
 
     // Segues
 
-    override func prepareForSegue(segue: UIStoryboardSegue!, sender: AnyObject!) {
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject!) {
         if segue.identifier == "showKeyboard" {
             var keyboardVC = segue.destinationViewController as KeyboardViewController
             if let friend = sender as? Friend {

@@ -9,7 +9,7 @@ class KeyButton: UIButton {
     let shimmeringView: FBShimmeringView
     let originalBackgroundColor: UIColor
 
-    required init(coder aDecoder: NSCoder!) {
+    required init(coder aDecoder: NSCoder) {
         fatalError("NSCoding not supported")
     }
 
@@ -34,7 +34,7 @@ class KeyButton: UIButton {
         exclusiveTouch = true
     }
 
-    override func touchesBegan(touches: NSSet!, withEvent event: UIEvent) {
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.audioPlayer.currentTime = 0
         self.audioPlayer.play()
         self.backgroundColor = UIColor.tt_orangeColor()
