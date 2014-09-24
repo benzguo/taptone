@@ -135,13 +135,15 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                                     message: "\r" + "Please choose a different number"|, fromViewController: self)
                             }
                             else {
-                                let originalPhone = PFUser.currentUser().objectForKey("phone") as String
+                                let originalPhone = PFUser.currentUser().objectForKey("phone") as? String
                                 PFUser.currentUser().setObject(phone, forKey: "phone");
                                 PFUser.currentUser().saveInBackgroundWithBlock({(success: Bool, error: NSError?) in
                                     if let e = error {
-                                        PFUser.currentUser().setObject(originalPhone, forKey: "phone");
-                                        UIAlertController.presentStandardAlert("Save failed"|,
-                                            message: e.localizedDescription, fromViewController: self)
+                                        if let p = originalPhone {
+                                            PFUser.currentUser().setObject(p, forKey: "phone");
+                                            UIAlertController.presentStandardAlert("Save failed"|,
+                                                message: e.localizedDescription, fromViewController: self)
+                                        }
                                     }
                                 })
                             }
@@ -168,13 +170,15 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
                         message: "\r" + "Your name must be at least 6 characters long."|)
                 }
                 else {
-                    let originalName = PFUser.currentUser().objectForKey("name") as String
+                    let originalName = PFUser.currentUser().objectForKey("name") as? String
                     PFUser.currentUser().setObject(nameTextField.text, forKey: "name");
                     PFUser.currentUser().saveInBackgroundWithBlock({(success: Bool, error: NSError?) in
                         if let e = error {
-                            PFUser.currentUser().setObject(originalName, forKey: "name");
-                            UIAlertController.presentStandardAlert("Save failed"|,
-                                message: e.localizedDescription, fromViewController: self)
+                            if let n = originalName {
+                                PFUser.currentUser().setObject(n, forKey: "name");
+                                UIAlertController.presentStandardAlert("Save failed"|,
+                                    message: e.localizedDescription, fromViewController: self)
+                            }
                         }
                     })
                 }
