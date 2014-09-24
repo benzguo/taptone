@@ -101,7 +101,6 @@
 		967C22961963B52E001B7F7F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		967C22981963B52E001B7F7F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		967C229E1963B52E001B7F7F /* taptoneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = taptoneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		967C22A31963B52E001B7F7F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		967C22A41963B52E001B7F7F /* taptoneTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = taptoneTests.swift; sourceTree = "<group>"; };
 		96CF9AB619677C4A00389595 /* A#2.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "A#2.caf"; sourceTree = "<group>"; };
 		96CF9AB719677C4A00389595 /* A#3.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "A#3.caf"; sourceTree = "<group>"; };
@@ -264,7 +263,6 @@
 		967C22A21963B52E001B7F7F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				967C22A31963B52E001B7F7F /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -719,7 +717,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = taptoneTests/Info.plist;
+				INFOPLIST_FILE = taptone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -735,7 +733,7 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = taptoneTests/Info.plist;
+				INFOPLIST_FILE = taptone/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
