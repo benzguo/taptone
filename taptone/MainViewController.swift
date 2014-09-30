@@ -35,7 +35,6 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
         let navBar = navigationController!.navigationBar
         navBar.setBackgroundImage(UIImage(), forBarMetrics: .Default)
         navBar.shadowImage = UIImage()
@@ -121,7 +120,9 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
             })
             ac.addAction(UIAlertAction(title: "Ok"|, style: .Default,
                 handler: { action in
-                    let phone = phoneTextField.text
+                    let nonDecimals = NSCharacterSet.decimalDigitCharacterSet().invertedSet
+                    let phoneComponents = (phoneTextField.text as NSString).componentsSeparatedByCharactersInSet(nonDecimals)
+                    let phone = (phoneComponents as NSArray).componentsJoinedByString("")
                     if phone.utf16Count < 7 {
                         self.setPhone(title: "Please enter a valid phone"|,
                             message: "\r" + "Only people who know your phone number can add you on Taptone."|)
@@ -264,7 +265,9 @@ class MainViewController: UITableViewController, MFMessageComposeViewControllerD
         ac.addAction(UIAlertAction(title: "Cancel"|, style: .Cancel, handler: nil))
         ac.addAction(UIAlertAction(title: "Add"|, style: .Default,
             handler: { action in
-                let phone = phoneTextField.text
+                let nonDecimals = NSCharacterSet.decimalDigitCharacterSet().invertedSet
+                let phoneComponents = (phoneTextField.text as NSString).componentsSeparatedByCharactersInSet(nonDecimals)
+                let phone = (phoneComponents as NSArray).componentsJoinedByString("")
                 if phone.utf16Count < 7 {
                     self.addFriendByPhone(title: "Please enter a valid phone"|)
                 }
