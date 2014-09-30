@@ -72,8 +72,9 @@ import AVFoundation
         ac.addAction(UIAlertAction(title: "Log in"|, style: .Default, handler:
             { action in
                 SVProgressHUD.show()
+                let normalizedEmail = (email as NSString).lowercaseString
                 let password = codeTextField.text
-                PFUser.logInWithUsernameInBackground(email,
+                PFUser.logInWithUsernameInBackground(normalizedEmail,
                     password: password,
                     block: { (user: PFUser?, error: NSError?) in
                         SVProgressHUD.dismiss()
@@ -135,9 +136,10 @@ import AVFoundation
                 if emailTextField.text == "test1" || emailTextField.text == "test2" {
                     self.enterCode(emailTextField.text)
                 }
+                let normalizedEmail = (emailTextField.text as NSString).lowercaseString
 
                 PFCloud.callFunctionInBackground("login",
-                    withParameters: ["email": emailTextField.text],
+                    withParameters: ["email": normalizedEmail],
                     block: {(result: AnyObject?, error: NSError?) in
                         SVProgressHUD.dismiss()
                         if let e = error {
@@ -188,9 +190,10 @@ import AVFoundation
         ac.addAction(UIAlertAction(title: "Sign up"|, style: .Default, handler:
             { action in
                 SVProgressHUD.show()
+                let normalizedEmail = (emailTextField.text as NSString).lowercaseString
                 PFCloud.callFunctionInBackground("signup",
                     withParameters: ["displayName": nameTextField.text,
-                        "email": emailTextField.text],
+                        "email": normalizedEmail],
                     block: {(result: AnyObject?, error: NSError?) in
                         SVProgressHUD.dismiss()
                         if let e = error {
